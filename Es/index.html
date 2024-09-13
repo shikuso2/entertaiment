@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="Es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Estilos/Menu.css" media="all">
+    <title>Document</title>
+</head>
+<body>
+    <nav id='menu'>
+        <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+        <ul>
+          <li><a href='http://'>HOME</a></li>
+          <li><a class='dropdown-arrow' href='http://'>WARCRAFT III</a>
+            <ul class='sub-menus'>
+              <li><a href='http://'>TOOLTIPS GENERATOR</a></li>
+            </ul>
+          </li>
+          <li><a class='dropdown-arrow' href='http://'>MINECRAFT</a>
+            <ul class='sub-menus'>
+              <li><a href='http://'>RESOURCE PACKS</a></li>
+            </ul>
+          </li>
+          <li><a class='dropdown-arrow' href='http://'>PALADINS</a>
+            <ul class='sub-menus'>
+              <li><a href='http://'>Roulette</a></li>
+              <li><a href='http://'>Random teams</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    
+</body>
+<script>
+    function updatemenu() {
+  if (document.getElementById('responsive-menu').checked == true) {
+    document.getElementById('menu').style.borderBottomRightRadius = '0';
+    document.getElementById('menu').style.borderBottomLeftRadius = '0';
+  }else{
+    document.getElementById('menu').style.borderRadius = '1px';
+  }
+}
+
+</script>
+</html>
