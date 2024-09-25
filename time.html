@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <span id="horas">00</span>
+        <span >:</span>
+        <span id="minutos">00</span>
+        <span>:</span>
+        <span id="segundos">00</span>
+    </div>
+
+    
+</body>
+<style>
+    body{
+        background-color: black;
+        color: rgb(245, 117, 58);
+    }
+    span{
+        font-size: 1em;
+    }
+
+</style>
+<script>
+    document.getElementById("minutos").innerHTML=""+location.href.split("=")[1];
+
+</script>
+
+</html>
