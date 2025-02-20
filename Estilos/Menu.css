@@ -26,22 +26,36 @@
     color: white;
     text-decoration: none;
 }
+.seccion a:first-child{
+    width: 18px;
+}
+.seccion a:first-child img{
+    width: 100%;
+    vertical-align: middle;
+}
 
 
 
 
 
 
-.mwarcraft{
+.submenu{
     background-color: rgb(41, 41, 41);
     padding: 5%;
     text-align: center;
+    display: none;
+    border-bottom: 1px solid rgb(31, 31, 31);
+    box-shadow: 0px 0px 2px #00000061;
 }
 .slot{
-    margin: 5px;
-    max-width: 100px;
-    max-height:100px;
+    margin: 10px 20px;
+    display: inline-block;
+    max-width: 150px;
+    font-size: 12px;
+    border: 2px solid #3a3a39;
+    padding: 4px;
+    border-radius: 3px;
 }
 .slot>img{
-
+    width: 100%;
 }
