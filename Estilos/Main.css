@@ -7,3 +7,51 @@
 html{
     background: #282828;
 }
+.contenido{
+    margin-top: 50px;
+    /*padding: 0px 1% 1% 1%;*/
+}
+.contenido>div{
+    margin-top: -9px;   
+    background: rgb(2,0,36);
+    background: radial-gradient(circle, rgb(52 80 169) 10%, rgb(4 20 65) 100%);
+    display: block;
+    height: 400px;
+}    
+.back{
+    align-content: center;
+    padding: 0 10%;
+    background-size: cover;
+    background-image: url("../Imgs/homeback.png");
+    -webkit-animation: slide 20s linear infinite;
+    animation: slide 40s linear infinite;
+    height: 400px;
+
+}
+.about{
+    padding: 0 20%;
+    text-align: center;
+    font-size: 11px;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+.about:first-child{
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+@-webkit-keyframes slide {
+    0% {
+    background-position: 0 0;
+    }
+    100% {
+    background-position: 0 1000px;
+    }
+    }
+    @keyframes slide {
+    0% {
+    background-position: 0 0;
+    }
+    100% {
+    background-position: 0 1000px ;
+    }
+}
