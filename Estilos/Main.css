@@ -16,7 +16,7 @@ html{
     background: rgb(2,0,36);
     background: radial-gradient(circle, rgb(52 80 169) 10%, rgb(4 20 65) 100%);
     display: block;
-    height: 400px;
+    height: 500px;
 }    
 .back{
     align-content: center;
@@ -25,17 +25,17 @@ html{
     background-image: url("../Imgs/homeback.png");
     -webkit-animation: slide 20s linear infinite;
     animation: slide 40s linear infinite;
-    height: 400px;
+    height: 500px;
 
 }
 .about{
     padding: 0 20%;
     text-align: center;
-    font-size: 11px;
+    font-size: 13px;
     text-shadow: black 0.1em 0.1em 0.2em;
 }
 .about:first-child{
-    font-size: 1.6em;
+    font-size: 2em;
     margin-bottom: 10px;
 }
 
