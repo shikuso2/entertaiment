@@ -26,6 +26,7 @@
     margin: 0 10px;
     color: white;
     text-decoration: none;
+    cursor: pointer;
 }
 .seccion a:first-child{
     width: 18px;
