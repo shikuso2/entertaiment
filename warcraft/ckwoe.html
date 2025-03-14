@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dota Allstar Editor</title>	
+	<title>CustomKeys</title>	
 	<link rel="shortcut icon" href="../Imgs/mini.png" type="image/x-icon">
 	<link rel="stylesheet" href="../Estilos/Main.css">
 	<link rel="stylesheet" href="../Estilos/Menu.css">
@@ -42,7 +42,40 @@
 </div>
 <!-- CONTENIDO --------------------------------------------------- -->
  <center class="contenido">
-	
+	<textarea id="content" placeholder="Content..." cols="32" rows="7">Lorem ipsum
+		dolor sit amet!</textarea><br>
+		<input type="text" id="fileName" placeholder="download.txt">
+		<button type="button" id="download">Download</button>
+		
+		<script>
+		// DOM utility functions:
+		
+		const el = (sel, par) => (par || document).querySelector(sel);
+		const elNew = (tag, prop) => Object.assign(document.createElement(tag), prop);
+		
+		
+		// Create file and download it:
+		
+		const createAndDownload = (content, download = "download.txt", type = "text/plain") => {
+			var aFileParts = ['<a id="a">\nXD','lol'];
+		  const file = new Blob([aFileParts], { type });
+		  const href = URL.createObjectURL(file);
+		  const elAnchor = elNew("a", { href, download });
+		  el("body").append(elAnchor);
+		  elAnchor.click();
+		  elAnchor.remove();
+		  URL.revokeObjectURL(href);
+		};
+		
+		
+		// Usage example:
+		
+		el("#download").addEventListener("click", () => {
+		  const text = el("#content").value;
+		  const name = el("#fileName").value;
+		  createAndDownload(text, name, "text/plain");
+		});
+		</script>
 	
  </center>
 
@@ -50,12 +83,22 @@
 
 <!-- MENU  --------------------------------------------------------->
 <iframe src="../Templates/footer.html" frameborder="0" class="ifooter"></iframe>
-<script>
-	/*if (window.navigator.language.includes("es") ){
-			window.location.href = 'Es/';
-		} else{
-			window.location.href = 'En/';
-		}*/
+<style>
+	center *{
+		color: black;
+	}
+</style>
+<script  LANGUAGE="JavaScript">
+	function WriteToFile(passForm) {
+
+		let fso = CreateObject("Scripting.FileSystemObject");  
+		let s = fso.CreateTextFile("C:\test.txt", True);
+		s.writeline("HI");
+		s.writeline("Bye");
+		s.writeline("-----------------------------");
+		s.Close();
+
+	}
 </script>
 <body>
 </body>
