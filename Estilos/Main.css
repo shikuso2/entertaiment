@@ -16,7 +16,7 @@ html{
     background: rgb(2,0,36);
     background: radial-gradient(circle, rgb(52 80 169) 10%, rgb(4 20 65) 100%);
     display: block;
-    height: 500px;
+    height: 450px;
 }    
 .back{
     align-content: center;
@@ -25,7 +25,7 @@ html{
     background-image: url("../Imgs/homeback.png");
     -webkit-animation: slide 20s linear infinite;
     animation: slide 40s linear infinite;
-    height: 500px;
+    height: 450px;
 
 }
 .about{
@@ -54,9 +54,4 @@ html{
     100% {
     background-position: 0 1000px ;
     }
-}
-.ifooter{
-    width: 100%;
-    padding: 0 0 0 0;
-    overflow: hidden;
 }
