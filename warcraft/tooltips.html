@@ -82,9 +82,9 @@
             	
             <br><br>
             <div style="font-size: 25px;">
-                <a href="tooltips.html" style="text-decoration: none;color: #09f;"  >Habilidades</a> | 
-                <a href="TooltipGenerador-Objetos.html" style="text-decoration: none;color: #9A9C9E;" >Objetos</a> | 
-                <a href="TooltipGenerador-Unidades.html" style="text-decoration: none;color: #9A9C9E;"  >Unidad</a>
+                <a href="tooltips.html" style="text-decoration: none;color: #09f;"  >Skills</a> | 
+                <a href="Objetos.html" style="text-decoration: none;color: #9A9C9E;" >Items</a> | 
+                <a href="TooltipGenerador-Unidades.html" style="text-decoration: none;color: #9A9C9E;"  >Units</a>
             </div>				
             <div >
                 <div style="display: grid;grid-template-columns: repeat(auto-fill,50%);padding: 40px;">
@@ -93,30 +93,30 @@
                             <tr style="">
                                 <td colspan="2">
                                     <div style="color: white;display: flex;align-items: center;">			
-                                        <label for="colorhabilidad" class="colorpicked" style="background:#458DDD;"></label><input id="colorhabilidad" type="color" value="#458DDD" style="display: none;"> <span id="spanskill"> <script></script>Habilidad:</span>
+                                        <label for="colorhabilidad" class="colorpicked" style="background:#458DDD;"></label><input id="colorhabilidad" type="color" value="#458DDD" style="display: none;"> <span id="spanskill"> <script></script>Ability:</span>
                                         <select  id="Habilidad">
-                                            <option value="Objetivo">Objetivo</option>
-                                            <option value="Canalizador">Canalizador</option>
-                                            <option value="Pasivo">Pasivo</option>
-                                            <option value="Activo">Activo</option>
-                                            <option value="Sin objetivo">Sin objetivo</option>
+                                            <option value="Objetivo">Target</option>
+                                            <option value="Canalizador">Channeling</option>
+                                            <option value="Pasivo">Passive</option>
+                                            <option value="Activo">Active</option>
+                                            <option value="Sin objetivo">No target</option>
                                         </select>
                                     
                                     <div id="divobjetivo" style="">
-                                        <label for="colorobjetivo" class="colorpicked" style="background:#458DDD;"></label><input id="colorobjetivo" type="color" value="#458DDD" style="display: none;"> <span id="spantarget">Objetivo:</span>
+                                        <label for="colorobjetivo" class="colorpicked" style="background:#458DDD;"></label><input id="colorobjetivo" type="color" value="#458DDD" style="display: none;"> <span id="spantarget">Target:</span>
                                         <select id="objetivo">
-                                            <option value="Heroe">Heroe</option>
-                                            <option value="Unidad">Unidad</option>
-                                            <option value="Arbol">Arbol</option>
+                                            <option value="Heroe">Hero</option>
+                                            <option value="Unidad">Unit</option>
+                                            <option value="Arbol">Tree</option>
                                             <option value="Area">Area</option>
-                                            <option value="Punto">Punto</option>
+                                            <option value="Punto">Point</option>
                                         </select>
                                     </div>                         
-                                        <label for="colordamage" class="colorpicked" style="background:#458DDD;"></label><input id="colordamage" type="color" value="#458DDD" style="display: none;"> <span id="spandamage">Tipo de Daño:</span>
+                                        <label for="colordamage" class="colorpicked" style="background:#458DDD;"></label><input id="colordamage" type="color" value="#458DDD" style="display: none;"> <span id="spandamage">Damage Type:</span>
                                         <select id="tipodamage" >
-                                            <option value="Magico">Magico</option>
-                                            <option value="Fisico">Fisico</option>
-                                            <option value="Ninguno">Ninguno</option>
+                                            <option value="Magico">Magical</option>
+                                            <option value="Fisico">Physical</option>
+                                            <option value="Ninguno">Nothing</option>
                                         </select>
                                     </div>
                                 </td>				
@@ -124,7 +124,7 @@
                             <tr><td colspan="2"><hr class="separador"></td></tr>
                             <tr>
                                 <td>
-                                    <label for="colordescripcion" class="colorpicked" style="background:#ffffff;"></label><input id="colordescripcion" type="color" value="#ffffff" style="display: none;"><span>Descripcion:</span>
+                                    <label for="colordescripcion" class="colorpicked" style="background:#ffffff;"></label><input id="colordescripcion" type="color" value="#ffffff" style="display: none;"><span>Description:</span>
                                 </td>
                                 <td>
                                     <textarea type="text" style="width: 100%;height: 66px;resize: none;" id="descripcion"></textarea>
@@ -133,7 +133,7 @@
                             <tr><td colspan="2"><hr class="separador"></td></tr>
                             <tr>
                                 <td>
-                                    <label for="coloratributo1" class="colorpicked" style="background:#ffcc00;"></label><input id="coloratributo1" type="color" value="#ffcc00" style="display: none;"><span>Atributos 1:</span>
+                                    <label for="coloratributo1" class="colorpicked" style="background:#ffcc00;"></label><input id="coloratributo1" type="color" value="#ffcc00" style="display: none;"><span>Attributes 1:</span>
                                 </td>
                                 <td>
                                     <input type="text" id="atributo1" style="width: 100%;">
@@ -163,10 +163,10 @@
                                 <td colspan="2">
                                     <center>
                                         <a id="btnwc3" style="width: 160px;">
-                                            <input  type="submit" value="+ Atributos" id="masatributos" >
+                                            <input  type="submit" value="+ Attributes" id="masatributos" >
                                         </a>
                                         <a id="btnwc3" style="width: 160px;">
-                                            <input type="submit" value="+ Niveles" id="masniveles">
+                                            <input type="submit" value="+ Levels" id="masniveles">
                                         </a>
                                         <a id="btnwc3" style="width: 70px;">
                                             <select id="nselect">
@@ -212,7 +212,7 @@
                             <tr><td colspan="2"><hr class="separador"></td></tr>
                             <tr>
                                 <td>
-                                    <label for="colormana" class="colorpicked" style="background:#0296C8;"></label><input id="colormana" type="color" value="#0296C8" style="display: none;"><span>Costo de Mana:</span>
+                                    <label for="colormana" class="colorpicked" style="background:#0296C8;"></label><input id="colormana" type="color" value="#0296C8" style="display: none;"><span>Mana cost:</span>
                                 </td>
                                 <td>
                                     <div class="nivelattr" id="mn">
@@ -244,7 +244,7 @@
                             <input type="submit" value="Mostrar cadena Wc3" id="preview" >
                         </div>
                         <div id="btnwc3" style="width: 160px;">
-                            <input type="submit" value="Copiar Tooltip" id="btncopy" >
+                            <input type="submit" value="Copy Tooltip" id="btncopy" >
                         </div>
                     </div>
                 </div>   
@@ -362,7 +362,8 @@
         border: 1px solid green;
     }*/
     .colorpicked{
-        width: 15px;height: 15px;background: green;display: inline-block;
+        width: 20px;
+        height: 20px;background: green;display: inline-block;
         margin-right: 7px;
         cursor: pointer;
     }
@@ -511,7 +512,7 @@
     $('select').change(function(e){
         LeerCodigo();
     });
-    $('input,textarea').on('keyup',function(e){
+    $('input,#descripcion').on('keyup',function(e){
         LeerCodigo();
     });
     $('input').click(function(e){
