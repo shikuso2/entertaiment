@@ -1,0 +1,1866 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixture de Esports - 6 Equipos</title>
+    <style>
+        :root {
+            --bg-main: #121212;
+            --bg-card: #222222;
+            --bg-header: #2d2d2d;
+            --bg-vs: #1a1a1a;
+            --border-color: #333333;
+            --text-color: #e0e0e0;
+            --text-muted: #aaaaaa;
+            --winner-green: #0a361a;
+            --winner-border: #1b7339;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            justify-content: center;
+        }
+
+        .fixture-wrapper {
+            width: 100%;
+            display: flex;
+            flex-flow: row wrap; /* Pone las fechas de lado a lado y las baja si no hay espacio */
+            gap: 20px; /* Deja una separación limpia y uniforme entre cada fecha */
+            justify-content: center;
+            margin-top: 30px;
+            align-items: flex-start;
+        }
+
+        .jornada-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            width: 320px; /* Ancho fijo para cada bloque de fecha */
+            flex-shrink: 0; /* Evita que las cajas se deformen */
+        }
+
+        /* Encabezado estilo Liquipedia */
+        .jornada-header {
+            background-color: var(--bg-header);
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .jornada-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .btn-hide {
+            background-color: #3a3a3a;
+            color: var(--text-color);
+            border: 1px solid #555;
+            padding: 3px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-hide:hover {
+            background-color: #4a4a4a;
+        }
+
+        /* Filas de Partidos */
+        .partido-row {
+            display: grid;
+            grid-template-columns: 1fr 70px 1fr;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            height: 44px;
+        }
+
+        .partido-row:last-child {
+            border-bottom: none;
+        }
+
+        /* Bloques de Equipos */
+        .equipo-col {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 10px;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+        }
+
+        .equipo-col.local {
+            justify-content: flex-end;
+            text-align: right;
+        }
+
+        .equipo-col.visitante {
+            justify-content: flex-start;
+            text-align: left;
+        }
+
+        /* Nombres de equipos destacados si ganan */
+        .winner-text {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        /* Contenedor del Logo */
+        .logo-placeholder {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 8px;
+            font-size: 1.1rem; /* Usamos emojis/letras temporalmente como logos */
+        }
+
+        /* Marcador Central */
+        .marcador-box {
+            background-color: var(--bg-vs);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .score {
+            color: #ffffff;
+            font-size: 0.95rem;
+            width: 12px;
+            text-align: center;
+        }
+
+        .score-muted {
+            color: var(--text-muted);
+        }
+
+        .info-icon {
+            color: #888888;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        /* Estilos de Ganador (Fondo Verde) */
+        .winner-block {
+            background-color: var(--winner-green);
+            outline: 1px solid var(--winner-border);
+            outline-offset: -1px;
+        }
+        /*AGREGADOS*/
+        .fixturet{
+            border-collapse: collapse;
+            text-align: center;
+            min-width: 300px;
+            margin: 0 auto 20px auto;
+
+        }
+        .fixturet td{
+            border: 1px solid #414141;
+            padding: 2px 10px ;
+        }
+        .pos-fix{
+            width: 20px;
+        }
+        .stan-fix{
+            text-align: left;
+        }
+        .point-fix{
+            width: 40px;
+        }
+
+
+        /* --- AGREGA ESTO AL FINAL DE TU <style> (Media query para celulares) --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px; /* Reduce los márgenes laterales en el celular */
+            }
+            
+            .fixture-wrapper {
+                flex-direction: column; /* Alinea las fechas en una sola columna */
+                align-items: center;
+            }
+
+            .jornada-container {
+                width: 100%;
+                max-width: 360px; /* Se adapta al ancho de la pantalla del celular */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <table class="fixturet">
+        <tr>
+            <td colspan="3"><span>Standings</span></td>
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">1.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Jaimeros</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">2.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Simiolo</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">3.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Shikuso</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">4.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Doga</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">5.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Miguel</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">6.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Luizhito</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">7.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Mamawebos</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+    </table>
+
+    <div class="fixture-wrapper">
+
+        <details class="jornada-container">
+            <summary class="jornada-header">
+                <h2 class="jornada-title">Fecha 1</h2>
+            </summary>
+            
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span>Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score score-muted">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span class="">Simiolo</span>
+                </div>
+            </div>
+            
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Shikuso</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Miguel</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Miguel</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Mamawebos</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Mamawebos</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Simiolo</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Simiolo</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Shikuso</span>
+                </div>
+            </div>
+
+            <div class="partido-row" style="display: none;">
+                <div class="equipo-col local winner-block">
+                    <span class="winner-text">Falcons</span>
+                    <div class="logo-placeholder">🦅</div>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">2</span>
+                    <span class="info-icon">ⓘ</span>
+                    <span class="score score-muted">1</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <div class="logo-placeholder">🐾</div>
+                    <span>VP</span>
+                </div>
+            </div>
+        </details>
+
+        <details class="jornada-container">
+            <summary class="jornada-header">
+                <h2 class="jornada-title">Fecha 2</h2>
+            </summary>
+            
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span>Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score score-muted">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span class="">Simiolo</span>
+                </div>
+            </div>
+            
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Shikuso</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Miguel</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Miguel</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Mamawebos</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Mamawebos</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Simiolo</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Simiolo</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Shikuso</span>
+                </div>
+            </div>
+
+            <div class="partido-row" style="display: none;">
+                <div class="equipo-col local winner-block">
+                    <span class="winner-text">Falcons</span>
+                    <div class="logo-placeholder">🦅</div>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">2</span>
+                    <span class="info-icon">ⓘ</span>
+                    <span class="score score-muted">1</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <div class="logo-placeholder">🐾</div>
+                    <span>VP</span>
+                </div>
+            </div>
+        </details>
+
+        <details class="jornada-container">
+            <summary class="jornada-header">
+                <h2 class="jornada-title">Fecha 3</h2>
+            </summary>
+            
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span>Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score score-muted">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span class="">Simiolo</span>
+                </div>
+            </div>
+            
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Shikuso</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Miguel</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Miguel</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Mamawebos</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Mamawebos</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Simiolo</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Simiolo</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Shikuso</span>
+                </div>
+            </div>
+
+            <div class="partido-row" style="display: none;">
+                <div class="equipo-col local winner-block">
+                    <span class="winner-text">Falcons</span>
+                    <div class="logo-placeholder">🦅</div>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">2</span>
+                    <span class="info-icon">ⓘ</span>
+                    <span class="score score-muted">1</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <div class="logo-placeholder">🐾</div>
+                    <span>VP</span>
+                </div>
+            </div>
+        </details>
+
+        <details class="jornada-container">
+            <summary class="jornada-header">
+                <h2 class="jornada-title">Fecha 4</h2>
+            </summary>
+            
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span>Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score score-muted">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span class="">Simiolo</span>
+                </div>
+            </div>
+            
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Shikuso</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Miguel</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Miguel</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Mamawebos</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Mamawebos</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Simiolo</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Simiolo</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Shikuso</span>
+                </div>
+            </div>
+
+            <div class="partido-row" style="display: none;">
+                <div class="equipo-col local winner-block">
+                    <span class="winner-text">Falcons</span>
+                    <div class="logo-placeholder">🦅</div>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">2</span>
+                    <span class="info-icon">ⓘ</span>
+                    <span class="score score-muted">1</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <div class="logo-placeholder">🐾</div>
+                    <span>VP</span>
+                </div>
+            </div>
+        </details>
+
+
+        <details class="jornada-container">
+            <summary class="jornada-header">
+                <h2 class="jornada-title">Fecha 5</h2>
+            </summary>
+            
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span>Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score score-muted">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span class="">Simiolo</span>
+                </div>
+            </div>
+            
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Shikuso</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Miguel</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Doga</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Miguel</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Simiolo</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Luizhito</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Mamawebos</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Luizhito</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Mamawebos</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Shikuso</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Simiolo</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Mamawebos</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Jaimeros</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Miguel</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Simiolo</span>
+                </div>
+            </div>
+
+            <div class="partido-row">
+                <div class="equipo-col local">
+                    <span class="">Doga</span>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">0</span>
+                    <a class="info-icon">ⓘ</a>
+                    <span class="score score-muted">0</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <span>Shikuso</span>
+                </div>
+            </div>
+
+            <div class="partido-row" style="display: none;">
+                <div class="equipo-col local winner-block">
+                    <span class="winner-text">Falcons</span>
+                    <div class="logo-placeholder">🦅</div>
+                </div>
+                <div class="marcador-box">
+                    <span class="score">2</span>
+                    <span class="info-icon">ⓘ</span>
+                    <span class="score score-muted">1</span>
+                </div>
+                <div class="equipo-col visitante">
+                    <div class="logo-placeholder">🐾</div>
+                    <span>VP</span>
+                </div>
+            </div>
+        </details>
+
+
+        
+        
+
+
+
+
+
+
+
+    </div>
+
+</body>
+</html>
