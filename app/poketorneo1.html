@@ -210,8 +210,15 @@
         }
 
     </style>
+
+    <style>
+        
+    </style>
 </head>
 <body>
+    <div class="sum-bracket">
+        <span>sdsdsd</span>
+    </div>
     <table class="fixturet">
         <tr>
             <td colspan="3"><span>Standings</span></td>
@@ -267,7 +274,12 @@
         </tr>
     </table>
 
+    <details open>
+    <summary class="sum-bracket" >
+        <span>MATCHES</span>
+    </summary>
     <div class="fixture-wrapper">
+        
 
         <details class="jornada-container">
             <summary class="jornada-header">
@@ -1849,18 +1861,182 @@
                 </div>
             </div>
         </details>
-
-
-        
-        
-
-
-
-
-
-
-
     </div>
+    </details>
+
+    <style>
+        .sum-bracket{
+            border-bottom: 1.5px solid #7f7f7f;
+            padding: 10px;
+            overflow-x: auto;
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        .sum-bracket>span{
+            padding: 7px;
+            border: 1px solid white;
+            border-radius: 7px;
+            display: inline-flex;
+            cursor: pointer;
+        }
+        .bracket{
+            /*width: 100%;*/
+            display: grid;
+            grid-template-columns: auto 200px 30px 30px 200px 30px 30px 200px auto;
+            min-width: 740px;
+            padding: 10px;
+            color: white;
+
+        }
+        .bracket>.entry{
+            border: 1px solid #2a2c33;
+            width: 200px;
+            height: 35px;
+            background-color:  #1b1c21;
+            align-content: center;
+
+            display: grid;
+            grid-template-columns: auto 30px;
+        }
+        .bracket>div>span{
+            height: 35px;
+            line-height: 35px;
+        }
+        .bracket div>.player{
+            padding-left: 15px;
+        }
+        .bracket div>.total{
+            text-align: center;
+            border-left: 1px solid #2a2c33;
+            background-color: #2a2c33;
+        }
+
+        .b-t{
+            border-top: 2px solid #2a2c33;
+        }
+        .b-l{
+            border-left: 2px solid #2a2c33;
+        }
+        
+
+        
+    </style>
+
+
+    <details open style="overflow-y: auto;">
+        <summary class="sum-bracket"><span>BRACKET</span></summary>
+        <div class="bracket">
+            <!-- Linea 1 -->
+            <div></div>
+            <div class="entry">
+                <span class="player">Shikuso</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <!-- Linea 2 -->
+            <div></div>
+            <div class="entry">
+                <span class="player">Shikuso</span>
+                <span class="total">0</span>                  
+            </div>
+            <div class="b-t"></div>
+            <div class="b-t"></div>
+            <div class="b-t"></div>
+            <div class="b-t"></div>
+            <div class="b-l"></div>
+            <div></div>
+            <div></div>
+            <!-- Linea 3 -->
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="b-l"></div>
+            <div class="entry">
+                <span class="player">Shikuso</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <!-- Linea 4 -->
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div  class="b-l b-t"></div>
+            <div class="entry">
+                <span class="player">Shikuso</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <!-- Linea 5 -->
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="entry">
+                <span class="player">Shikuso</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <div class="b-l"></div>
+            <div></div>
+            <div></div>
+            <!-- Linea 6 -->
+            <div></div>
+            <div class="entry">
+                <span class="player">Shikuso</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <div  class="b-l b-t"></div>
+            <div class="entry">
+                <span class="player">Shikuso</span>
+                <span class="total">0</span>                  
+            </div>
+            <div class="b-t"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <!-- Linea 7 -->
+            <div></div>
+            <div class="entry">
+                <span class="player">Shikuso</span>
+                <span class="total">0</span>                  
+            </div>
+            <div class="b-t"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+
+
+        </div>
+    </details>
+    
+
+
+    
+        
+
+
+
+
+
+
+
+
 
 </body>
 </html>
