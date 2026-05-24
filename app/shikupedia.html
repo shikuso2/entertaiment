@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Torneos de Giles</title>
+</head>
+<body>
+    
+    <div class="layout-container">
+        <header class="mobile-navbar">
+            <div class="logo">Mi App</div>
+            <button class="menu-toggle">☰</button>
+        </header>
+        <aside class="sidebar">
+            <h2>ShikuPedia</h2>
+            <ul>
+                <li>Pokemon</li>
+                <ul>
+                    <li onclick="cargarweb('pokemon1')">Season 1</li>
+                </ul>
+            </ul>
+        </aside>
+
+        <iframe id="pagina" class="main-content" src="pokemon1.html" frameborder="0" allowfullscreen>
+            
+        </iframe>
+    
+    </div>
+    <style>
+        /* --- ESTILOS BASE (ESCRITORIO) --- */
+        body {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        /* Por defecto, ocultamos el menú móvil en pantallas grandes */
+        .mobile-navbar {
+            display: none; 
+        }
+
+        .layout-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 20px;
+        }
+
+        .main-content {
+            /*padding: 20px;*/
+            background-color: #f5f5f5;
+            overflow-y: auto;
+            width: 100%;
+            height: 100%;
+        }
+
+
+        /* --- ADAPTACIÓN PARA MÓVILES (Pantallas menores a 768px) --- */
+        @media (max-width: 768px) {
+        
+            .layout-container {
+                /* Cambiamos a 1 sola columna y agregamos una fila superior para el menú móvil */
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr; 
+                height: 100vh;
+            }
+
+            /* Ocultamos por completo el menú lateral izquierdo */
+            .sidebar {
+                display: none;
+            }
+
+            /* Mostramos el menú superior */
+            .mobile-navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #1a1a1a;
+                color: white;
+                padding: 15px;
+                height: 60px; /* Altura fija para el menú superior */
+                box-sizing: border-box;
+            }
+            
+            /* El contenido derecho ahora ocupa todo el ancho, pero mantiene su scroll */
+            .main-content {
+                overflow-y: auto;
+            }
+        }
+    </style>
+
+    <script>
+        function cargarweb(direccion){
+            const miIframe = document.getElementById("pagina");
+            miIframe.src = direccion+".html";
+        }
+        
+    </script>
+    
+</body>
+</html>

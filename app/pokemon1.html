@@ -1,0 +1,412 @@
+﻿<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixture</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 40px 20px;
+            justify-content: center;
+        }
+
+        
+        /* -----------------------------------------------------------*/
+        /* GROUP STAGE ---------------------------------------------- */
+        /* -----------------------------------------------------------*/
+        .fixturet{
+            border-collapse: collapse;
+            text-align: center;
+            min-width: 300px;
+            margin: 0 auto 20px auto;
+
+        }
+        .fixturet td{
+            border: 1px solid #414141;
+            padding: 2px 10px ;
+        }
+        .pos-fix{
+            width: 20px;
+        }
+        .stan-fix{
+            text-align: left;
+        }
+        .point-fix{
+            width: 40px;
+        }
+
+        /* -----------------------------------------------------------*/
+        /* MATCHES -------------------------------------------------- */
+        /* -----------------------------------------------------------*/
+        .jornada-container{
+
+        }
+
+
+        /* -----------------------------------------------------------*/
+        /* BRACKET -------------------------------------------------- */
+        /* -----------------------------------------------------------*/
+        .sum-bracket{
+            border-bottom: 1.5px solid #7f7f7f;
+            padding: 10px;
+            overflow-x: auto;
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        .sum-bracket>span{
+            padding: 7px;
+            border: 1px solid white;
+            border-radius: 7px;
+            display: inline-flex;
+            cursor: pointer;
+        }
+        .bracket{
+            /*width: 100%;*/
+            display: grid;
+            grid-template-columns: auto 200px 30px 30px 200px 30px 30px 200px auto;
+            min-width: 740px;
+            padding: 10px;
+            color: white;
+
+        }
+        .bracket>.entry{
+            border: 1px solid #2a2c33;
+            width: 200px;
+            height: 35px;
+            background-color:  #1b1c21;
+            align-content: center;
+
+            display: grid;
+            grid-template-columns: auto 30px;
+        }
+        .bracket>div>span{
+            height: 35px;
+            line-height: 35px;
+        }
+        .bracket div>.player{
+            padding-left: 15px;
+        }
+        .bracket div>.total{
+            text-align: center;
+            border-left: 1px solid #2a2c33;
+            background-color: #2a2c33;
+        }
+
+        .b-t{
+            border-top: 2px solid #2a2c33;
+        }
+        .b-l{
+            border-left: 2px solid #2a2c33;
+        }
+
+        /*mover*/
+        .jornada-container{
+            width: 320px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #333333;
+        }
+        .jornada-container>summary{
+            background-color: #2d2d2d;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333333;
+        }
+        .jornada-container>summary>h2{
+            font-size: 0.95rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            flex-grow: 1;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        .tabla-cont{
+            display: grid;
+            grid-template-columns: 1fr 70px 1fr;
+            
+        }
+        .tabla-cont>div{
+            padding: 7px 10px;
+            border-bottom: 1px solid #333333;
+        }
+        .tabla-cont>.jugador1{
+            text-align: right;
+            background-color: #222222;
+
+        }
+        .tabla-cont>.puntaje{
+            text-align: center;
+            border-left: 1px solid #333333;
+            border-right: 1px solid #333333;
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+        }
+        .tabla-cont>.jugador2{
+            text-align: left;
+            background-color: #222222;
+        }
+        .match-win{
+            background-color: #113f11 !important;
+            font-weight: bold;
+        }
+        
+
+        
+    </style>
+
+    <div class="sum-bracket">
+        <span>GROUP STAGE</span>
+    </div>
+    <table class="fixturet">
+        <tr>
+            <td colspan="3"><span>Standings</span></td>
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">1.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Jaimeros</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">2.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Simiolo</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">3.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Shikuso</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">4.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Doga</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">5.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Miguel</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">6.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Luizhito</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+        <tr class="">
+            <td class="pos-fix" style="font-weight:bolder">7.</td>
+            <td class="stan-fix"  style="text-align:left">
+                <span class="">Mamawebos</span>
+            </td>
+            <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
+        </tr>
+    </table>
+    <!---------------------------------------------------------------------------------------->
+    <!-- MATCHES ----------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------->
+    <details open style="margin-bottom: 25px;">
+        <summary class="sum-bracket" >
+            <span>MATCHES</span>
+        </summary>
+        <div class="fixture-wrapper">
+
+            <details id="jornada1" class="jornada-container" open>
+                <summary class="">
+                    <h2 class="">Fecha 1</h2>
+                </summary>
+                <!-- <div class="tabla-cont">
+                    <div class="jugador1"><span>Mamawebos</span></div>
+                    <div class="puntaje"><span class="score">0</span><a class="info-icon">ⓘ</a><span class="score">0</span></div>
+                    <div class="jugador2"><span>Simiolo</span></div>
+                </div>         -->
+            </details>
+
+
+
+
+
+
+
+            
+        </div>
+    </details>
+
+
+
+
+    <!---------------------------------------------------------------------------------------->
+    <!-- BRACKETS ---------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------->
+    <details open style="overflow-y: auto;">
+        <summary class="sum-bracket"><span>BRACKET</span></summary>
+        <div class="bracket">
+            <!-- Linea 1 -->
+            <div></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <!-- Linea 2 -->
+            <div></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div class="b-t"></div>
+            <div class="b-t"></div>
+            <div class="b-t"></div>
+            <div class="b-t"></div>
+            <div class="b-l"></div>
+            <div></div>
+            <div></div>
+            <!-- Linea 3 -->
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="b-l"></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <!-- Linea 4 -->
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div  class="b-l b-t"></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <!-- Linea 5 -->
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <div class="b-l"></div>
+            <div></div>
+            <div></div>
+            <!-- Linea 6 -->
+            <div></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <div  class="b-l b-t"></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div class="b-t"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <!-- Linea 7 -->
+            <div></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div class="b-t"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+
+
+        </div>
+    </details>
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarDatos();
+        });
+        async function cargarDatos() {
+            try {
+                const respuesta = await fetch('pokemon1.json');                
+                if (!respuesta.ok) {
+                    throw new Error(`Error HTTP! Estado: ${respuesta.status}`);
+                }                
+                const datos = await respuesta.json();
+                mostrarEnPantalla(datos);
+            } catch (error) {
+                console.error("Hubo un problema al cargar el JSON:", error);
+            }
+        }
+
+        
+        function mostrarEnPantalla(datos) {
+            datos.forEach(item => {
+                const elemento = document.createElement('div');                
+                elemento.classList.add("tabla-cont");
+                item.partidas.forEach(partida => {  
+                    const p1 = parseInt(partida.punto1);
+                    const p2 = parseInt(partida.punto2);
+                    const claseJugador1 = p1 > p2 ? 'jugador1 match-win' : 'jugador1';
+                    const claseJugador2 = p2 > p1 ? 'jugador2 match-win' : 'jugador2';
+                    elemento.innerHTML += `<div class="${claseJugador1}"><span>${partida.jugador1}</span></div>
+                    <div class="puntaje"><span class="score">${partida.punto1}</span><a class="info-icon">ⓘ</a><span class="score">${partida.punto2}</span></div>
+                    <div class="${claseJugador2}"><span>${partida.jugador2}</span></div>`;
+                });
+                if (item.fecha === "1") {
+                    const contenedor = document.getElementById('jornada1');
+                    contenedor.appendChild(elemento);
+                } else {
+                    //contenedorPrincipal.appendChild(divFecha);
+                }                
+            });
+        }
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

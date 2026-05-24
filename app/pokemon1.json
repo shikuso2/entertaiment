@@ -1,0 +1,36 @@
+﻿[
+    {
+        "fecha": "1",
+        "partidas":[
+            { "jugador1": "Mamawebos", "punto1": "0", "jugador2": "Simiolo", "punto2":"0" },
+            { "jugador1": "Luizhito", "punto1": "0", "jugador2": "Shikuso", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"0" },
+            { "jugador1": "Miguel", "punto1": "0", "jugador2": "Doga", "punto2":"1" }
+        ]
+    },
+    {
+        "fecha": "2",
+        "partidas":[
+            { "jugador1": "Mamawebos", "punto1": "0", "jugador2": "Simiolo", "punto2":"0" },
+            { "jugador1": "Mamawebos", "punto1": "0", "jugador2": "Simiolo", "punto2":"0" },
+            { "jugador1": "Mamawebos", "punto1": "0", "jugador2": "Simiolo", "punto2":"0" }
+        ]
+    }
+]
