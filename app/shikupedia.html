@@ -3,6 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="shortcut icon" href="../Imgs/mini.png" type="image/x-icon">
     <title>Torneos de Giles</title>
 </head>
 <body>
@@ -13,12 +14,15 @@
             <button class="menu-toggle">☰</button>
         </header>
         <aside class="sidebar">
-            <h2>ShikuPedia</h2>
+            <h1>ShikuPedia</h1>
             <ul>
-                <li>Pokemon</li>
+                <li class="cat-li">Miembros</li>
+                <li class="cat-li">Pokemon</li>
                 <ul>
                     <li onclick="cargarweb('pokemon1')">Season 1</li>
                 </ul>
+                <li class="cat-li">Minecraft</li>
+                <li class="cat-li">Empire Earth</li>
             </ul>
         </aside>
 
@@ -50,6 +54,31 @@
             background-color: #1a1a1a;
             color: white;
             padding: 20px;
+
+            background-color: #1a1a1a; /* Tu color de fondo oscuro actual */
+  
+  /* 1. Cargamos la imagen de fondo */
+  background-image: url('pok.png'); 
+  
+  /* 2. Evitamos que la imagen se repita en mosaico */
+  background-repeat: no-repeat;
+  
+  /* 3. LA MAGIA: La alineamos horizontalmente al centro y verticalmente ABAJO */
+  background-position: center bottom;
+  
+  /* 4. Ajustamos el tamaño para que ocupe todo el ancho del sidebar */
+  background-size: contain;
+        }
+        .sidebar h1{
+            text-align: center;
+        }
+        .sidebar>ul{
+            padding: 15px;
+        }
+        .sidebar .cat-li{
+            padding: 8px;
+            list-style-type: none;
+            text-transform: uppercase;
         }
 
         .main-content {
