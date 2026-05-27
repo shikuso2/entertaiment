@@ -387,7 +387,7 @@
                     const slug1 = `j-${partida.jugador1.toLowerCase().replace(/\s+/g, '')}`;
                     const slug2 = `j-${partida.jugador2.toLowerCase().replace(/\s+/g, '')}`;
                     elemento.innerHTML += `<div class="nombre-jugador ${slug1} ${claseJugador1}"><span>${partida.jugador1}</span></div>
-                    <div class="puntaje"><span class="score">${partida.punto1}</span><a class="info-icon"  href="${partida.youtube}">ⓘ</a><span class="score">${partida.punto2}</span></div>
+                    <div class="puntaje"><span class="score">${partida.punto1}</span><a class="info-icon" target="_blank" href="${partida.youtube}">ⓘ</a><span class="score">${partida.punto2}</span></div>
                     <div class="nombre-jugador ${slug2} ${claseJugador2}"><span>${partida.jugador2}</span></div>`;
                 });
                 if (item.fecha === "1") {
