@@ -10,8 +10,22 @@
     
     <div class="layout-container">
         <header class="mobile-navbar">
-            <div class="logo">ShikuPedia</div>
-            <button class="menu-toggle">☰</button>
+            <details id="det-minimenu">
+                <summary>
+                    <span class="logo">ShikuPedia</span>
+                    <span class="menu-toggle">☰</span>
+                </summary>
+                <ul class="minimenu">
+                    <li class="cat-li vinculo" onclick="cargarweb('miembros')">Miembros</li>
+                    <li class="cat-li">Pokemon</li>
+                    <ul>
+                        <li onclick="cargarweb('pokemon1')" class="vinculo subcat-li">Season 1</li>
+                    </ul>
+                    <li class="cat-li">Minecraft</li>
+                    <li class="cat-li">Empire Earth</li>
+                </ul>
+            </details>
+            
         </header>
         <aside id="sidemenu" class="sidebar">
             <h1>ShikuPedia</h1>
@@ -36,6 +50,12 @@
         body {
             margin: 0;
             font-family: sans-serif;
+        }
+        /*mini menu*/
+        .minimenu{
+            border-top: 1px solid white;
+            padding-top: 15px;
+            padding-left: 12px;
         }
 
         /* Por defecto, ocultamos el menú móvil en pantallas grandes */
@@ -65,7 +85,7 @@
         .sidebar>ul{
             padding: 15px;
         }
-        .sidebar .cat-li{
+        .cat-li{
             padding: 8px;
             list-style-type: none;
             text-transform: uppercase;
@@ -109,13 +129,25 @@
             /* Mostramos el menú superior */
             .mobile-navbar {
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
                 background-color: #1a1a1a;
                 color: white;
                 padding: 15px;
-                height: 60px; /* Altura fija para el menú superior */
                 box-sizing: border-box;
+            }
+            .mobile-navbar>details {
+                width: 100%;
+            }
+            .mobile-navbar>details>summary {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0px 15px;
+            }
+            .mobile-navbar>details>summary>span{
+                font-size: 1.3em;
+                font-weight: 600; /* Letra un poco más gruesa */
+                letter-spacing: 2px;
             }
             
             /* El contenido derecho ahora ocupa todo el ancho, pero mantiene su scroll */
@@ -163,6 +195,8 @@
             } else {
                 miIframe.src = direccion + ".html";
             }            
+            const elDetails = document.getElementById('det-minimenu');
+            elDetails.removeAttribute('open');
         } 
               
     </script>
