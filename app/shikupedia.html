@@ -13,7 +13,7 @@
             <div class="logo">ShikuPedia</div>
             <button class="menu-toggle">☰</button>
         </header>
-        <aside class="sidebar">
+        <aside id="sidemenu" class="sidebar">
             <h1>ShikuPedia</h1>
             <ul>
                 <li class="cat-li vinculo" onclick="cargarweb('miembros')">Miembros</li>
@@ -128,26 +128,41 @@
     <script>
         //const queryParams = window.location.search;
         const urlParams = new URLSearchParams(window.location.search);
+        const contenedor = document.getElementById('sidemenu');
         const view = urlParams.get('view');
         const perfil = urlParams.get('perfil');
         console.log(view)
+        
         if (view && view.trim() !== "") { 
             if (perfil) {
-                cargarweb(view + "?perfil=" + perfil); // Inyecta: "miembros?perfil=Luizhito"
+                cargarweb(view + "?perfil=" + perfil); 
             } else {
+                
                 cargarweb(view); 
             }
         } else { 
             cargarweb("miembros"); 
-        }
+        }        
+        
         function cargarweb(direccion){
+            switch(direccion) {
+                case "miembros":
+                    contenedor.style.backgroundImage = "url('mem.png')";
+                    break;
+                case "pokemon1": 
+                    contenedor.style.backgroundImage = "url('pok.png')";
+                    break;
+                default:
+                    contenedor.style.backgroundImage = "url('pok.png')"; 
+                    break;
+            }          
             const miIframe = document.getElementById("pagina");
             if (direccion.includes("?")) {
                 const partes = direccion.split("?");
-                miIframe.src = partes[0] + ".html?" + partes[1]; // Construye: miembros.html?perfil=Luizhito
+                miIframe.src = partes[0] + ".html?" + partes[1]; 
             } else {
                 miIframe.src = direccion + ".html";
-            }
+            }            
         } 
               
     </script>
