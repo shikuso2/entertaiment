@@ -4,29 +4,29 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="shortcut icon" href="../Imgs/mini.png" type="image/x-icon">
-    <title>Torneos de Giles</title>
+    <title>ShikuPedia</title>
 </head>
 <body>
     
     <div class="layout-container">
         <header class="mobile-navbar">
-            <div class="logo">Mi App</div>
+            <div class="logo">ShikuPedia</div>
             <button class="menu-toggle">☰</button>
         </header>
         <aside class="sidebar">
             <h1>ShikuPedia</h1>
             <ul>
-                <li class="cat-li">Miembros</li>
+                <li class="cat-li vinculo" onclick="cargarweb('miembros')">Miembros</li>
                 <li class="cat-li">Pokemon</li>
                 <ul>
-                    <li onclick="cargarweb('pokemon1')">Season 1</li>
+                    <li onclick="cargarweb('pokemon1')" class="vinculo subcat-li">Season 1</li>
                 </ul>
                 <li class="cat-li">Minecraft</li>
                 <li class="cat-li">Empire Earth</li>
             </ul>
         </aside>
 
-        <iframe id="pagina" class="main-content" src="pokemon1.html" frameborder="0" allowfullscreen>
+        <iframe id="pagina" class="main-content" src="" frameborder="0" allowfullscreen>
             
         </iframe>
     
@@ -54,20 +54,10 @@
             background-color: #1a1a1a;
             color: white;
             padding: 20px;
-
-            background-color: #1a1a1a; /* Tu color de fondo oscuro actual */
-  
-  /* 1. Cargamos la imagen de fondo */
-  background-image: url('pok.png'); 
-  
-  /* 2. Evitamos que la imagen se repita en mosaico */
-  background-repeat: no-repeat;
-  
-  /* 3. LA MAGIA: La alineamos horizontalmente al centro y verticalmente ABAJO */
-  background-position: center bottom;
-  
-  /* 4. Ajustamos el tamaño para que ocupe todo el ancho del sidebar */
-  background-size: contain;
+            background-image: url('pok.png'); 
+            background-repeat: no-repeat;            
+            background-position: center bottom;
+            background-size: contain;
         }
         .sidebar h1{
             text-align: center;
@@ -79,6 +69,17 @@
             padding: 8px;
             list-style-type: none;
             text-transform: uppercase;
+        }
+        .sidebar .subcat-li{
+            padding: 8px;
+            /*list-style-type: none;*/
+            text-transform: uppercase;
+        }
+        .vinculo{
+            cursor: pointer;
+        }
+        .vinculo:hover{
+            background-color: #2d2d2d;
         }
 
         .main-content {
@@ -125,11 +126,30 @@
     </style>
 
     <script>
+        //const queryParams = window.location.search;
+        const urlParams = new URLSearchParams(window.location.search);
+        const view = urlParams.get('view');
+        const perfil = urlParams.get('perfil');
+        console.log(view)
+        if (view && view.trim() !== "") { 
+            if (perfil) {
+                cargarweb(view + "?perfil=" + perfil); // Inyecta: "miembros?perfil=Luizhito"
+            } else {
+                cargarweb(view); 
+            }
+        } else { 
+            cargarweb("miembros"); 
+        }
         function cargarweb(direccion){
             const miIframe = document.getElementById("pagina");
-            miIframe.src = direccion+".html";
-        }
-        
+            if (direccion.includes("?")) {
+                const partes = direccion.split("?");
+                miIframe.src = partes[0] + ".html?" + partes[1]; // Construye: miembros.html?perfil=Luizhito
+            } else {
+                miIframe.src = direccion + ".html";
+            }
+        } 
+              
     </script>
     
 </body>
