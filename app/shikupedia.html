@@ -395,9 +395,9 @@
             const miIframe = document.getElementById("pagina");
             if (direccion.includes("?")) {
                 const partes = direccion.split("?");
-                miIframe.src = partes[0] + ".html?" + partes[1]; 
+                miIframe.src = partes[0] + ".html?" + partes[1]+ '&v=' + new Date().getTime(); 
             } else {
-                miIframe.src = direccion + ".html";
+                miIframe.src = direccion + ".html"+ '?v=' + new Date().getTime();
             }            
             const elDetails = document.getElementById('det-minimenu');
             elDetails.removeAttribute('open');
