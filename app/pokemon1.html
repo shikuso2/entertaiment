@@ -217,8 +217,8 @@
         </tr>
         <tr class="">
             <td class="pos-fix" style="font-weight:bolder">5.</td>
-            <td class="nombre-jugador j-miguel stan-fix"  style="text-align:left">
-                <a class="" href="miembros.html?perfil=miguel">Miguel</a>
+            <td class="nombre-jugador j-kamikaze stan-fix"  style="text-align:left">
+                <a class="" href="miembros.html?perfil=kamikaze">Kamikaze</a>
             </td>
             <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
         </tr>
@@ -368,7 +368,7 @@
         });
         async function cargarDatos() {
             try {
-                const respuesta = await fetch('pokemon1.json');                
+                const respuesta = await fetch('pokemon1.json?v=' + new Date().getTime());                
                 if (!respuesta.ok) {
                     throw new Error(`Error HTTP! Estado: ${respuesta.status}`);
                 }                
