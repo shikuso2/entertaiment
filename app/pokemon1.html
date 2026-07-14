@@ -40,6 +40,15 @@
         .point-fix{
             width: 40px;
         }
+        .posicion-1,.posicion-2{
+            background-color: #003906;
+        }
+        .posicion-3,.posicion-4{
+            background-color: #392f00;
+        }
+        .posicion-5,.posicion-6,.posicion-7{
+            background-color: #2f0000;
+        }
 
         /* -----------------------------------------------------------*/
         /* MATCHES -------------------------------------------------- */
@@ -183,11 +192,11 @@
     <div class="sum-bracket">
         <span>GROUP STAGE</span>
     </div>
-    <table class="fixturet">
+    <table id="tablaF" class="fixturet">
         <tr>
             <td colspan="3"><span>Standings</span></td>
         </tr>
-        <tr class="">
+        <!-- <tr class="">
             <td class="pos-fix" style="font-weight:bolder">1.</td>
             <td class="nombre-jugador j-jaimeros stan-fix "  style="text-align:left">
                 <a class="" href="miembros.html?perfil=jaimeros">Jaimeros</a>
@@ -235,7 +244,7 @@
                 <a class="" href="miembros.html?perfil=mamawebos">Mamawebos</a>
             </td>
             <td class="point-fix" style="font-weight:bolder;white-space:pre">0-0</td>        
-        </tr>
+        </tr> -->
     </table>
     <!---------------------------------------------------------------------------------------->
     <!-- MATCHES ----------------------------------------------------------------------------->
@@ -363,6 +372,14 @@
     </details>
 
     <script>
+        let Jaimeros = ["Jaimeros","0","0"];
+        let Simiolo = ["Simiolo","0","0"];
+        let Shikuso = ["Shikuso","0","0"];
+        let Doga = ["Doga","0","0"];
+        let Kamikaze = ["Kamikaze","0","0"];
+        let Luizhito = ["Luizhito","0","0"];
+        let Mamawebos = ["Mamawebos","0","0"];
+        let Participantes = [Jaimeros, Simiolo, Shikuso, Doga, Kamikaze, Luizhito, Mamawebos];
         document.addEventListener('DOMContentLoaded', () => {
             cargarDatos();
         });
@@ -393,15 +410,65 @@
                     elemento.innerHTML += `<div class="nombre-jugador ${slug1} ${claseJugador1}"><span>${partida.jugador1}</span></div>
                     <div class="puntaje"><span class="score">${partida.punto1}</span><a class="info-icon" target="_blank" href="${partida.youtube}">ⓘ</a><span class="score">${partida.punto2}</span></div>
                     <div class="nombre-jugador ${slug2} ${claseJugador2}"><span>${partida.jugador2}</span></div>`;
+
+                    Participantes.forEach((participante) => {
+                        if(participante[0] === partida.jugador1) {
+                            if(p1>p2){
+                                participante[1] = (parseInt(participante[1]) + 1).toString();
+                            }else if(p2>p1){
+                                participante[2] = (parseInt(participante[2]) + 1).toString();
+                            }
+                        }
+                        if(participante[0] === partida.jugador2) {
+                            if(p2>p1){
+                                participante[1] = (parseInt(participante[1]) + 1).toString();
+                            }else if(p1>p2){
+                                participante[2] = (parseInt(participante[2]) + 1).toString();
+                            }
+                        }
+                    });
+
+
+
+
                 });
                 if (item.fecha === "1") {
                     const contenedor = document.getElementById('jornada1');
                     contenedor.appendChild(elemento);
                 } else {
                     //contenedorPrincipal.appendChild(divFecha);
-                }                
+                }   
+                
+                
             });
             conectarEfectoResaltado();
+            Participantes.sort((a, b) => {
+                let esCeroA = Number(a[1]) === 0 && (Number(a[2]) || 0) === 0;
+                let esCeroB = Number(b[1]) === 0 && (Number(b[2]) || 0) === 0;
+
+                // 2. Si uno es "0-0" y el otro no, mandamos al "0-0" al final
+                if (esCeroA && !esCeroB) return 1;  // 'a' va abajo
+                if (!esCeroA && esCeroB) return -1; // 'b' va abajo
+
+                // 3. Si ninguno es "0-0" (o ambos lo son), ordenamos normalmente por el segundo dato (mayor a menor)
+                return Number(b[1]) - Number(a[1]);
+            });
+            //////////////// TABLA FINAL DE PUNTOS ////////////////////////
+            let posicion = 1;
+                Participantes.forEach((participante) => {
+                    const elemento = document.createElement('tr'); 
+                    elemento.classList.add("posicion-" + posicion);
+                    elemento.innerHTML += `
+                        <td class="pos-fix" style="font-weight:bolder">${posicion}.</td>
+                        <td class="nombre-jugador j-${participante[0].toLowerCase()} stan-fix "  style="text-align:left">
+                            <a class="" href="miembros.html?perfil=${participante[0].toLowerCase()}">${participante[0]}</a>
+                        </td>
+                        <td class="point-fix" style="font-weight:bolder;white-space:pre">${participante[1]}-${participante[2]}</td>`;
+                    const contenedor = document.getElementById('tablaF');
+                    contenedor.appendChild(elemento);
+
+                    posicion++;                    
+                });
         }
 
         function conectarEfectoResaltado() {

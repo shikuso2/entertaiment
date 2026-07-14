@@ -2,12 +2,12 @@
     {
         "fecha": "1",
         "partidas":[
-            { "jugador1": "Kamikaze", "punto1": "0", "jugador2": "Doga", "punto2":"0","youtube":"https://www.youtube.com/@shikusoentertainment" },
-            { "jugador1": "Luizhito", "punto1": "0", "jugador2": "Shikuso", "punto2":"0","youtube":"https://www.youtube.com/@shikusoentertainment" },
-            { "jugador1": "Doga", "punto1": "0", "jugador2": "Luizhito", "punto2":"0","youtube":"https://www.youtube.com/@shikusoentertainment" },
-            { "jugador1": "Kamikaze", "punto1": "0", "jugador2": "Shikuso", "punto2":"0","youtube":"https://www.youtube.com/@shikusoentertainment" },
-            { "jugador1": "Shikuso", "punto1": "0", "jugador2": "Doga", "punto2":"0","youtube":"https://www.youtube.com/@shikusoentertainment" },
-            { "jugador1": "Luizhito", "punto1": "0", "jugador2": "Kamikaze", "punto2":"0","youtube":"https://www.youtube.com/@shikusoentertainment" }
+            { "jugador1": "Kamikaze", "punto1": "0", "jugador2": "Doga", "punto2":"2","youtube":"https://youtu.be/0fwPZapwBOM" },
+            { "jugador1": "Luizhito", "punto1": "2", "jugador2": "Shikuso", "punto2":"0","youtube":"https://youtu.be/n5t_beGrVfc" },
+            { "jugador1": "Doga", "punto1": "2", "jugador2": "Luizhito", "punto2":"0","youtube":"https://youtu.be/Hvz6z9jykC4" },
+            { "jugador1": "Kamikaze", "punto1": "0", "jugador2": "Shikuso", "punto2":"2","youtube":"https://youtu.be/kWnipCa9iLk" },
+            { "jugador1": "Shikuso", "punto1": "0", "jugador2": "Doga", "punto2":"2","youtube":"https://youtu.be/zicYeKANABI" },
+            { "jugador1": "Luizhito", "punto1": "2", "jugador2": "Kamikaze", "punto2":"0","youtube":"https://youtu.be/DmVweBvMVOU" }
         ]
     },
     {
