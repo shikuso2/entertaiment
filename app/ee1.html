@@ -1,0 +1,510 @@
+﻿<!DOCTYPE html>
+<html lang='es'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixture</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 40px 20px;
+            justify-content: center;
+        }
+
+        
+        /* -----------------------------------------------------------*/
+        /* GROUP STAGE ---------------------------------------------- */
+        /* -----------------------------------------------------------*/
+        .fixturet{
+            border-collapse: collapse;
+            text-align: center;
+            min-width: 300px;
+            margin: 0 auto 20px auto;
+
+        }
+        .fixturet td{
+            border: 1px solid #414141;
+            padding: 2px 10px ;
+        }
+        .pos-fix{
+            width: 20px;
+        }
+        .stan-fix{
+            text-align: left;
+        }
+        .point-fix{
+            width: 40px;
+        }
+        .posicion-1,.posicion-2{
+            background-color: #003906;
+        }
+        .posicion-3,.posicion-4{
+            background-color: #392f00;
+        }
+        .posicion-5,.posicion-6,.posicion-7{
+            background-color: #2f0000;
+        }
+
+        /* -----------------------------------------------------------*/
+        /* MATCHES -------------------------------------------------- */
+        /* -----------------------------------------------------------*/        
+        .jornada-container{
+            width: 320px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #333333;
+        }
+        .jornada-container>summary{
+            background-color: #2d2d2d;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333333;
+        }
+        .jornada-container>summary>h2{
+            font-size: 0.95rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            flex-grow: 1;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        .tabla-cont{
+            display: grid;
+            grid-template-columns: 1fr 70px 1fr;
+            
+        }
+        .tabla-cont>div{
+            padding: 7px 10px;
+            border-bottom: 1px solid #333333;
+        }
+        .tabla-cont>.jugador1{
+            text-align: right;
+            background-color: #222222;
+
+        }
+        .tabla-cont>.puntaje{
+            text-align: center;
+            border-left: 1px solid #333333;
+            border-right: 1px solid #333333;
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+        }
+        .info-icon{
+            color: #b4bdff;
+    text-decoration: none;
+        }
+        .tabla-cont>.jugador2{
+            text-align: left;
+            background-color: #222222;
+        }
+        .fixture-wrapper{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 10px;
+        }
+        .match-win{
+            background-color: #113f11 !important;
+            font-weight: bold;
+        }
+        /* -----------------------------------------------------------*/
+        /* BRACKET -------------------------------------------------- */
+        /* -----------------------------------------------------------*/
+        .sum-bracket{
+            border-bottom: 1.5px solid #7f7f7f;
+            padding: 10px;
+            overflow-x: auto;
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        .sum-bracket>span{
+            padding: 7px;
+            border: 1px solid white;
+            border-radius: 7px;
+            display: inline-flex;
+            cursor: pointer;
+        }
+        .bracket{
+            /*width: 100%;*/
+            display: grid;
+            grid-template-columns: auto 200px 30px 30px 200px 30px 30px 200px auto;
+            min-width: 740px;
+            padding: 10px;
+            color: white;
+
+        }
+        .bracket>.entry{
+            border: 1px solid #2a2c33;
+            width: 200px;
+            height: 35px;
+            background-color:  #1b1c21;
+            align-content: center;
+
+            display: grid;
+            grid-template-columns: auto 30px;
+        }
+        .bracket>div>span{
+            height: 35px;
+            line-height: 35px;
+        }
+        .bracket div>.player{
+            padding-left: 15px;
+        }
+        .bracket div>.total{
+            text-align: center;
+            border-left: 1px solid #2a2c33;
+            background-color: #2a2c33;
+        }
+        .b-t{
+            border-top: 2px solid #2a2c33;
+        }
+        .b-l{
+            border-left: 2px solid #2a2c33;
+        }
+        /**/
+        .nombre-jugador {
+            cursor: pointer;
+            transition: all 0.1s ease-in-out; 
+            /*border-radius: 4px;*/
+        }
+
+        .resaltado {
+            box-shadow: inset 0 0 0 1px rgb(255, 255, 255); 
+        }  
+        /*FIX ------------*/   
+        .fixturet td a{
+            display: block;
+            margin: -2px -10px;
+            padding: 2px 10px;
+            text-decoration: none;
+            color: white;
+
+        }
+        .detalles{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .redes{
+            text-align: center;
+            width: 100%;
+        }
+        .redes a{
+            display: inline-block;
+            margin: 0 10px;
+            max-width: 15%;
+            width: 60px;
+        }
+        .redes img{
+            width: 100%;
+        }
+    </style>
+    <!---------------------------------------------------------------------------------------->
+    <!-- MATCHES ----------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------->
+    <h1 style="text-align: center;text-transform: uppercase;color: #10bd77;">Empire Earth War 1</h1>    
+    <div class="detalles">
+        <div>
+            <img src="img/resource/ee1.png" alt="">
+        </div>
+        <div style="width: 500px;">
+            <p>Este encuentro fue hecho para recordar las aventuras de los miembros en Empire Earth. rajadas, enfados, tiradas de cable y no compañerismo pueden ocurrir en cualquier momento.</p>
+        </div>
+    </div>
+    <!---------------------------------------------------------------------------------------->
+    <!-- MATCHES ----------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------->
+    <div class="sum-bracket">
+        <span>GROUP STAGE</span>
+    </div>
+    <table id="tablaF" class="fixturet">
+        <tr>
+            <td colspan="3"><span>Standings</span></td>
+        </tr>        
+    </table>
+    <!---------------------------------------------------------------------------------------->
+    <!-- MATCHES ----------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------->
+    <details open style="margin-bottom: 25px;">
+        <summary class="sum-bracket" >
+            <span>MATCHES</span>
+        </summary>
+        <div class="fixture-wrapper">
+                      
+        </div>
+    </details>
+    <!---------------------------------------------------------------------------------------->
+    <!-- BRACKETS ---------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------->
+    <details open style="overflow-y: auto;">
+        <summary class="sum-bracket"><span>BRACKET</span></summary>
+        <div class="bracket">
+            <!-- Linea 1 -->
+            <div></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <!-- Linea 2 -->
+            <div></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div class="b-t"></div>
+            <div class="b-t"></div>
+            <div class="b-t"></div>
+            <div class="b-t"></div>
+            <div class="b-l"></div>
+            <div></div>
+            <div></div>
+            <!-- Linea 3 -->
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="b-l"></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <!-- Linea 4 -->
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div  class="b-l b-t"></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <!-- Linea 5 -->
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <div class="b-l"></div>
+            <div></div>
+            <div></div>
+            <!-- Linea 6 -->
+            <div></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div></div>
+            <div  class="b-l b-t"></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div class="b-t"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <!-- Linea 7 -->
+            <div></div>
+            <div class="entry">
+                <span class="player">----</span>
+                <span class="total">0</span>                  
+            </div>
+            <div class="b-t"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+
+
+        </div>
+    </details>
+    <!---------------------------------------------------------------------------------------->
+    <!-- REDES ------------------------------------------------------------------------------->
+    <!---------------------------------------------------------------------------------------->
+    <div class="sum-bracket">
+        <span>SIGUENOS</span>
+    </div>    
+    <div class="redes">
+        <a href="https://kick.com/shikuso" target="_blank">
+            <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/kick.png" alt="">
+        </a>
+        <a href="https://www.twitch.tv/shikuso3" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/3991/3991943.png" alt="">
+        </a>
+        <a href="https://www.youtube.com/@shikusoentertainment" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/4096/4096116.png" alt="">
+        </a>
+        <a href="https://discord.gg/JSGwHZHvzR" target="_blank">
+            <img src="https://images.icon-icons.com/2108/PNG/512/discord_icon_130958.png" alt="">
+        </a>
+
+    </div>
+
+    <script>
+        let Zharko = ["Zharko","0","0"];
+        let Simiolo = ["Simiolo","0","0"];
+        let Shikuso = ["Shikuso","0","0"];
+        let Kamikaze = ["Kamikaze","0","0"];
+        let Luizhito = ["Luizhito","0","0"];
+        let Mamawebos = ["Mamawebos","0","0"];
+        let Participantes = [Zharko, Simiolo, Shikuso, Kamikaze, Luizhito, Mamawebos];
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarDatos();
+        });
+        async function cargarDatos() {
+            try {
+                const respuesta = await fetch('ee1.json?v=' + new Date().getTime());                
+                if (!respuesta.ok) {
+                    throw new Error(`Error HTTP! Estado: ${respuesta.status}`);
+                }                
+                const datos = await respuesta.json();
+                mostrarEnPantalla(datos);
+            } catch (error) {
+                console.error("Hubo un problema al cargar el JSON:", error);
+            }
+        }
+        
+        function mostrarEnPantalla(datos) {
+            datos.forEach(item => {
+                const elemento = document.createElement('div');                
+                elemento.classList.add("tabla-cont");
+                item.partidas.forEach(partida => {  
+                    const p1 = parseInt(partida.punto1);
+                    const p2 = parseInt(partida.punto2);
+                    const claseJugador1 = p1 > p2 ? 'jugador1 match-win' : 'jugador1';
+                    const claseJugador2 = p2 > p1 ? 'jugador2 match-win' : 'jugador2';
+                    const slug1 = `j-${partida.jugador1.toLowerCase().replace(/\s+/g, '')}`;
+                    const slug2 = `j-${partida.jugador2.toLowerCase().replace(/\s+/g, '')}`;
+                    elemento.innerHTML += `<div class="nombre-jugador ${slug1} ${claseJugador1}"><span>${partida.jugador1}</span></div>
+                    <div class="puntaje"><span class="score">${partida.punto1}</span><a class="info-icon" target="_blank" hrsef="${partida.youtube}">ⓘ</a><span class="score">${partida.punto2}</span></div>
+                    <div class="nombre-jugador ${slug2} ${claseJugador2}"><span>${partida.jugador2}</span></div>`;
+
+                    Participantes.forEach((participante) => {
+                        if(participante[0] === partida.jugador1) {
+                            if(p1>p2){
+                                participante[1] = (parseInt(participante[1]) + 1).toString();
+                            }else if(p2>p1){
+                                participante[2] = (parseInt(participante[2]) + 1).toString();
+                            }
+                        }
+                        if(participante[0] === partida.jugador2) {
+                            if(p2>p1){
+                                participante[1] = (parseInt(participante[1]) + 1).toString();
+                            }else if(p1>p2){
+                                participante[2] = (parseInt(participante[2]) + 1).toString();
+                            }
+                        }
+                    });
+
+
+
+
+                });
+
+
+
+
+
+                    const contenedor = document.createElement('details'); 
+                    contenedor.classList.add("jornada-container");
+                    contenedor.open = true;
+                    contenedor.innerHTML = `
+                        <summary class="">
+                            <h2 class="">${item.fecha}</h2>
+                        </summary>
+                    `;
+
+                    
+
+
+
+                    contenedor.appendChild(elemento);
+
+                    const fixt = document.getElementsByClassName('fixture-wrapper')[0];
+                    fixt.appendChild(contenedor);
+                
+                
+            });
+            conectarEfectoResaltado();
+            Participantes.sort((a, b) => {
+                let esCeroA = Number(a[1]) === 0 && (Number(a[2]) || 0) === 0;
+                let esCeroB = Number(b[1]) === 0 && (Number(b[2]) || 0) === 0;
+
+                // 2. Si uno es "0-0" y el otro no, mandamos al "0-0" al final
+                if (esCeroA && !esCeroB) return 1;  // 'a' va abajo
+                if (!esCeroA && esCeroB) return -1; // 'b' va abajo
+
+                // 3. Si ninguno es "0-0" (o ambos lo son), ordenamos normalmente por el segundo dato (mayor a menor)
+                return Number(b[1]) - Number(a[1]);
+            });
+            //////////////// TABLA FINAL DE PUNTOS ////////////////////////
+            let posicion = 1;
+                Participantes.forEach((participante) => {
+                    const elemento = document.createElement('tr'); 
+                    elemento.classList.add("posicion-" + posicion);
+                    elemento.innerHTML += `
+                        <td class="pos-fix" style="font-weight:bolder">${posicion}.</td>
+                        <td class="nombre-jugador j-${participante[0].toLowerCase()} stan-fix "  style="text-align:left">
+                            <a class="" href="miembros.html?perfil=${participante[0].toLowerCase()}">${participante[0]}</a>
+                        </td>
+                        <td class="point-fix" style="font-weight:bolder;white-space:pre">${participante[1]}-${participante[2]}</td>`;
+                    const contenedor = document.getElementById('tablaF');
+                    contenedor.appendChild(elemento);
+
+                    posicion++;                    
+                });
+        }
+
+        function conectarEfectoResaltado() {
+            const todosLosNombres = document.querySelectorAll('.nombre-jugador');
+            todosLosNombres.forEach(span => {
+                span.addEventListener('mouseenter', (e) => {
+                    const claseUnica = e.target.classList[1];
+                    document.querySelectorAll(`.${claseUnica}`).forEach(coincidencia => {
+                        coincidencia.classList.add('resaltado');
+                    });
+                });
+                span.addEventListener('mouseleave', (e) => {
+                    const claseUnica = e.target.classList[1];
+                    document.querySelectorAll(`.${claseUnica}`).forEach(coincidencia => {
+                        coincidencia.classList.remove('resaltado');
+                    });
+                });
+            });
+        }
+    </script>
+    
+</body>
+</html>

@@ -23,6 +23,9 @@
                     </ul>
                     <li class="cat-li">Minecraft</li>
                     <li class="cat-li">Empire Earth</li>
+                    <ul>
+                        <li onclick="cargarweb('ee1')" class="vinculo subcat-li">War 1</li>
+                    </ul>
                 </ul>
             </details>
             
@@ -37,6 +40,9 @@
                 </ul>
                 <li class="cat-li">Minecraft</li>
                 <li class="cat-li">Empire Earth</li>
+                <ul>
+                    <li onclick="cargarweb('ee1')" class="vinculo subcat-li">War 1</li>
+                </ul>
             </ul>
         </aside>
 
@@ -381,12 +387,15 @@
         }        
         
         function cargarweb(direccion){
-            switch(direccion) {
-                case "miembros":
+            switch(true) {
+                case direccion.includes("miembros"):
                     contenedor.style.backgroundImage = "url('mem.png')";
                     break;
-                case "pokemon1": 
+                case direccion.includes("pokemon"):
                     contenedor.style.backgroundImage = "url('pok.png')";
+                    break;
+                case direccion.includes("ee"):                    
+                    contenedor.style.backgroundImage = "url('ee.png')";
                     break;
                 default:
                     contenedor.style.backgroundImage = "url('pok.png')"; 
