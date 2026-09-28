@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../menu.css">
+</head>
+<style>
+    .cuerpo{        
+        max-width: 1000px;
+        align-items: center;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .sum-bracket {
+        border-bottom: 1.5px solid #7f7f7f;
+        padding: 10px;
+        /*overflow-x: auto;*/
+        list-style: none;
+        margin-bottom: 25px;
+        color: white;
+    }
+    .sum-bracket>span {
+        padding: 7px;
+        border: 1px solid white;
+        border-radius: 7px;
+        display: inline-flex;
+        cursor: pointer;
+    }
+    .grupos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+    .fixturet {
+        border-collapse: collapse;
+        text-align: center;
+        min-width: 300px;
+        margin: 0 auto 20px auto;
+        background-color: #1f1f1fab;
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+    .fixturet>tr>td {
+        border: 1px solid #414141;
+        padding: 5px 10px;
+    }
+    .tr-titulo {
+        padding: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border:inherit
+    }
+    .posicion-1 {
+        background-color: #49ad2f93;
+    }
+
+    #contenedorMatches {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+
+    .tabla-match{
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto 25px auto;
+        border-collapse: collapse;
+        color: white;
+    }
+    .tabla-match tr td {
+        border: 1px solid #414141;
+        padding: 5px 10px;
+    }
+
+    .col-nombre-izq { text-align: left; text-transform: uppercase; width: 150px;}
+    .col-nombre-der { text-align: right; text-transform: uppercase; width: 150px; }
+    .col-puntos { width: 40px; text-align: center; font-weight: bold; }
+    .header-equipo {width: 50%; 
+        font-weight: bold; 
+        text-transform: uppercase; 
+        font-size: 1.1em; 
+        padding: 5px; text-align: center; border: 1px solid #414141; }
+    
+    /* Colores para los encabezados de los equipos */
+    .bg-amarillo { background-color: #ffeb3b; color: black; }
+    .bg-azul     { background-color: #2196f3; color: white; }
+    .bg-blanco   { background-color: #ffffff; color: black; }
+    .bg-negro    { background-color: #000000; color: white; }
+    .bg-rojo     { background-color: #f44336; color: white; }
+</style>
+<body>
+    <menu>
+        <div class="submenu">
+            <li><a href="2026-3.html">2026-3</a></li>
+            <li><a href="2026-4.html">2026-4</a></li>
+        </div>
+        <div class="menu">
+            <li><a href="../index.html">INICIO</a></li>
+            <li><a href="../participantes.html">participantes</a></li>
+            <li><a id="alternar">AÑO</a></li>
+            <li><a href="../hof.html">HoF</a></li>
+        </div>
+    </menu>
+    <script>
+        document.getElementById('alternar').addEventListener('click', function() {
+            const submenu = document.querySelector('.submenu');
+            if (submenu.style.display === 'grid') {
+                submenu.style.display = 'none';
+            } else {
+                submenu.style.display = 'grid';
+            }
+        });
+    </script>
+    <div class="cuerpo">
+        <!---------------------------------------------------------------------------------------->
+        <!-- GRUPOS ----------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------->
+        <details open style="margin-bottom: 25px;">
+            <summary class="sum-bracket" >
+                <span>GRUPOS</span>
+            </summary>
+            <div class="grupos">
+                <table id="tablaAmarillo" class="fixturet">
+                    <tr>
+                        <td colspan="3" class="tr-titulo" style="background-color: #ffeb3b;color: black;">
+                            <span>Amarillo</span>
+                        </td>
+                    </tr>        
+                </table>
+                <table id="tablaAzul" class="fixturet">
+                    <tr>
+                        <td colspan="3" class="tr-titulo" style="background-color: #2196f3;color: white;">
+                            <span>Azul</span>
+                        </td>
+                    </tr>        
+                </table>
+                <table id="tablaBlanco" class="fixturet">
+                    <tr>
+                        <td colspan="3" class="tr-titulo" style="background-color: #ffffff;color: black;">
+                            <span>Blanco</span>
+                        </td>
+                    </tr>        
+                </table>
+                <table id="tablaNegro" class="fixturet">
+                    <tr>
+                        <td colspan="3" class="tr-titulo" style="background-color: #000000;color: white;">
+                            <span>Negro</span>
+                        </td>
+                    </tr>
+                </table>
+                <table id="tablaRojo" class="fixturet">
+                    <tr>
+                        <td colspan="3" class="tr-titulo" style="background-color: #f44336;color: white;">
+                            <span>Rojo</span>
+                        </td>
+                    </tr>        
+                </table>
+            </div>
+        </details>
+        <!---------------------------------------------------------------------------------------->
+        <!-- MATCHES ----------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------->
+        <details open style="margin-bottom: 25px;">
+            <summary class="sum-bracket" >
+                <span>MATCHES</span>
+            </summary>
+            <div id="contenedorMatches">
+
+            </div>
+        </details>
+
+    </div>
+
+    <div style="height: 100px;"></div>
+</body>
+<script>
+    let amarillo = {  joel: 0,  aldo: 0,  edhit: 0,  pablo: 0 };
+    let azul = {  vlady: 0,  vicky: 0,  santiago: 0,  extra: 0 };
+    let blanco = {  juan: 0,  jhon: 0,  erika: 0,  extra: 0 };
+    let negro = {  luis: 0,  tito: 0,  roxana: 0,  extra: 0 };
+    let rojo = {  matias: 0,  tomi: 0,  milen: 0,  tomas: 0 };
+
+    const mapaJugadores = {};
+    const equipos = { amarillo, azul, blanco, negro, rojo };
+
+    for (let [nombreEquipo, jugadores] of Object.entries(equipos)) {
+        for (let jugador in jugadores) {
+            mapaJugadores[jugador] = nombreEquipo;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+            cargarDatos();
+    });
+    async function cargarDatos() {
+        try {
+            const respuesta = await fetch('20264.json?v=' + new Date().getTime());                
+            if (!respuesta.ok) {
+                throw new Error(`Error HTTP! Estado: ${respuesta.status}`);
+            }                
+            const datos = await respuesta.json();
+            mostrarEnPantalla(datos);
+        } catch (error) {
+            console.error("Hubo un problema al cargar el JSON:", error);
+        }
+    }
+    function mostrarEnPantalla(datos) {
+        datos.forEach(item => {
+            item.partidas.forEach(partida => {
+                Object.entries(partida).forEach(([jugador, puntos]) => {
+                    if (amarillo.hasOwnProperty(jugador)) {
+                        amarillo[jugador] += puntos;
+                    }
+                });
+            });
+        });
+        console.log(ordenarObjeto(amarillo));
+
+
+
+
+
+
+        llenarTabla('tablaAmarillo', amarillo);
+        llenarTabla('tablaAzul', azul);
+        llenarTabla('tablaBlanco', blanco);
+        llenarTabla('tablaNegro', negro);
+        llenarTabla('tablaRojo', rojo);
+
+        renderizarMatches(datos);
+    }
+    function ordenarObjeto(objeto) {
+        return Object.fromEntries(
+            Object.entries(objeto).sort((a, b) => b[1] - a[1])
+        );
+    }
+    function llenarTabla(idTabla, equipo) {
+        const contenedor = document.getElementById(idTabla);
+        if (!contenedor) return;
+        const participantes = Object.entries(equipo).sort((a, b) => b[1] - a[1]);
+        let posicion = 1;
+        participantes.forEach(([nombre, puntos]) => {
+            const elemento = document.createElement('tr');
+            elemento.classList.add("posicion-" + posicion);            
+            elemento.innerHTML = `
+                <td class="pos-fix" style="font-weight:bolder">${posicion}.</td>
+                <td class="nombre-jugador j-${nombre.toLowerCase()} stan-fix" style="text-align:left">
+                    <a class="" href="miembros.html?perfil=${nombre.toLowerCase()}">${nombre}</a>
+                </td>
+                <td class="point-fix" style="font-weight:bolder;white-space:pre">${puntos} pts</td>
+            `;            
+            contenedor.appendChild(elemento);
+            posicion++;
+        });
+    }
+
+
+
+
+
+    function renderizarMatches(datos) {
+        const contenedor = document.getElementById('contenedorMatches');
+        contenedor.innerHTML = '';
+        let espacio=0;
+
+        datos.forEach((cancha, indexCancha) => {
+            cancha.partidas.forEach((partida, indexPartida) => {
+                const equiposEnPartida = {};
+                espacio++;               
+
+                // Agrupar los jugadores por su equipo en esta partida
+                Object.entries(partida).forEach(([jugador, puntos]) => {
+                    const equipo = mapaJugadores[jugador] || 'desconocido';
+                    if (!equiposEnPartida[equipo]) {
+                        equiposEnPartida[equipo] = [];
+                    }
+                    equiposEnPartida[equipo].push({ nombre: jugador, puntos: puntos });
+                });
+
+                const nombresEquipos = Object.keys(equiposEnPartida);
+
+                if (nombresEquipos.length >= 2) {
+                    const eq1 = nombresEquipos[0];
+                    const eq2 = nombresEquipos[1];
+
+                    const jugadoresEq1 = equiposEnPartida[eq1];
+                    const jugadoresEq2 = equiposEnPartida[eq2];
+
+                    // Tomamos el máximo número de filas para renderizar parejo ambos lados
+                    const maxFilas = Math.max(jugadoresEq1.length, jugadoresEq2.length);
+
+                    let tablaHTML = `
+                        <table class="tabla-match">
+                            <thead>
+                                <tr>
+                                    <th colspan="2" class="header-equipo bg-${eq1}">${eq1.toUpperCase()}</th>
+                                    <th colspan="2" class="header-equipo bg-${eq2}">${eq2.toUpperCase()}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    
+
+                    for (let i = 0; i < maxFilas; i++) {
+                        const j1 = jugadoresEq1[i] || { nombre: '', puntos: '' };
+                        const j2 = jugadoresEq2[i] || { nombre: '', puntos: '' };
+
+                        tablaHTML += `
+                            <tr>
+                                <td class="col-nombre-izq">${j1.nombre}</td>
+                                <td class="col-puntos">${j1.puntos !== '' ? j1.puntos : ''}</td>
+                                <td class="col-puntos">${j2.puntos !== '' ? j2.puntos : ''}</td>
+                                <td class="col-nombre-der">${j2.nombre}</td>
+                            </tr>
+                        `;
+                    }
+
+                    tablaHTML += `
+                            </tbody>
+                        </table>
+                    `;
+                    if(espacio==10){
+                        tablaHTML += `<br><a>`;
+                    }
+
+                    contenedor.innerHTML += tablaHTML;
+                }
+            });
+        });
+    }
+</script>
+</html>
