@@ -13,6 +13,11 @@
         padding: 20px;
         margin-left: auto;
         margin-right: auto;
+        background-color: #1f1f1f94;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        margin-top: 10px;
+        border-radius: 10px;
     }
     .sum-bracket {
         border-bottom: 1.5px solid #7f7f7f;
@@ -125,6 +130,7 @@
         });
     </script>
     <div class="cuerpo">
+        <h1 style="text-align: center;font-weight: bolder; font-size: 2em;color: white;">2026-4</h1>
         <!---------------------------------------------------------------------------------------->
         <!-- GRUPOS ----------------------------------------------------------------------------->
         <!---------------------------------------------------------------------------------------->
@@ -182,9 +188,14 @@
             </div>
         </details>
 
+        <div style="text-shadow: 1px 1px 0 #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000; padding: 15px;width: 100%;text-align: center;color: white;text-decoration: underline;font-weight: bolder;font-size: 1.2em;">
+            <a download href="fixture20264.docx">DESCARGAR FIXTURE 2026-4</a>
+        </div>
+
     </div>
 
-    <div style="height: 100px;"></div>
+    <div style="height: 100px;">        
+    </div>
 </body>
 <script>
     let amarillo = {  joel: 0,  aldo: 0,  edhit: 0,  pablo: 0 };
@@ -221,17 +232,15 @@
         datos.forEach(item => {
             item.partidas.forEach(partida => {
                 Object.entries(partida).forEach(([jugador, puntos]) => {
-                    if (amarillo.hasOwnProperty(jugador)) {
-                        amarillo[jugador] += puntos;
-                    }
+                    if (amarillo.hasOwnProperty(jugador)) amarillo[jugador] += puntos;
+                    else if (azul.hasOwnProperty(jugador))     azul[jugador] += puntos;
+                    else if (blanco.hasOwnProperty(jugador))   blanco[jugador] += puntos;
+                    else if (negro.hasOwnProperty(jugador))    negro[jugador] += puntos;
+                    else if (rojo.hasOwnProperty(jugador))     rojo[jugador] += puntos;
                 });
             });
         });
         console.log(ordenarObjeto(amarillo));
-
-
-
-
 
 
         llenarTabla('tablaAmarillo', amarillo);
@@ -258,7 +267,7 @@
             elemento.innerHTML = `
                 <td class="pos-fix" style="font-weight:bolder">${posicion}.</td>
                 <td class="nombre-jugador j-${nombre.toLowerCase()} stan-fix" style="text-align:left">
-                    <a class="" href="miembros.html?perfil=${nombre.toLowerCase()}">${nombre}</a>
+                    <a class="" href="../participantes.html#${nombre.toLowerCase()}">${nombre}</a>
                 </td>
                 <td class="point-fix" style="font-weight:bolder;white-space:pre">${puntos} pts</td>
             `;            
@@ -273,15 +282,15 @@
 
     function renderizarMatches(datos) {
         const contenedor = document.getElementById('contenedorMatches');
+        if (!contenedor) return;
         contenedor.innerHTML = '';
-        let espacio=0;
 
-        datos.forEach((cancha, indexCancha) => {
-            cancha.partidas.forEach((partida, indexPartida) => {
+        datos.forEach((cancha) => {
+            let posicion = 1;
+            cancha.partidas.forEach((partida) => {
                 const equiposEnPartida = {};
-                espacio++;               
 
-                // Agrupar los jugadores por su equipo en esta partida
+                // Agrupar jugadores por su equipo
                 Object.entries(partida).forEach(([jugador, puntos]) => {
                     const equipo = mapaJugadores[jugador] || 'desconocido';
                     if (!equiposEnPartida[equipo]) {
@@ -299,20 +308,34 @@
                     const jugadoresEq1 = equiposEnPartida[eq1];
                     const jugadoresEq2 = equiposEnPartida[eq2];
 
-                    // Tomamos el máximo número de filas para renderizar parejo ambos lados
+                    // Suma de puntos por equipo
+                    const totalEq1 = jugadoresEq1.reduce((sum, j) => sum + Number(j.puntos || 0), 0);
+                    const totalEq2 = jugadoresEq2.reduce((sum, j) => sum + Number(j.puntos || 0), 0);
+
+                    // Determinar si hay ganador en cada lado
+                    const esGanador1 = totalEq1 > totalEq2;
+                    const esGanador2 = totalEq2 > totalEq1;
+
+                    // Clases para aplicar texto dorado al ganador
+                    const claseTexto1 = esGanador1 ? 'texto-ganador' : '';
+                    const claseTexto2 = esGanador2 ? 'texto-ganador' : '';
+
                     const maxFilas = Math.max(jugadoresEq1.length, jugadoresEq2.length);
 
                     let tablaHTML = `
-                        <table class="tabla-match">
+                        <table class="fixturet tabla-match">
                             <thead>
                                 <tr>
-                                    <th colspan="2" class="header-equipo bg-${eq1}">${eq1.toUpperCase()}</th>
-                                    <th colspan="2" class="header-equipo bg-${eq2}">${eq2.toUpperCase()}</th>
+                                    <th colspan="2" class="header-equipo bg-${eq1}">
+                                        ${eq1.toUpperCase()} (${totalEq1})
+                                    </th>
+                                    <th colspan="2" class="header-equipo bg-${eq2}">
+                                        ${eq2.toUpperCase()} (${totalEq2})
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                     `;
-                    
 
                     for (let i = 0; i < maxFilas; i++) {
                         const j1 = jugadoresEq1[i] || { nombre: '', puntos: '' };
@@ -320,10 +343,10 @@
 
                         tablaHTML += `
                             <tr>
-                                <td class="col-nombre-izq">${j1.nombre}</td>
-                                <td class="col-puntos">${j1.puntos !== '' ? j1.puntos : ''}</td>
-                                <td class="col-puntos">${j2.puntos !== '' ? j2.puntos : ''}</td>
-                                <td class="col-nombre-der">${j2.nombre}</td>
+                                <td class="col-nombre-izq ${claseTexto1}">${j1.nombre}</td>
+                                <td class="col-puntos ${claseTexto1}">${j1.puntos !== '' ? j1.puntos : ''}</td>
+                                <td class="col-puntos ${claseTexto2}">${j2.puntos !== '' ? j2.puntos : ''}</td>
+                                <td class="col-nombre-der ${claseTexto2}">${j2.nombre}</td>
                             </tr>
                         `;
                     }
@@ -332,14 +355,20 @@
                             </tbody>
                         </table>
                     `;
-                    if(espacio==10){
-                        tablaHTML += `<br><a>`;
+                    if(posicion === 11){
+                        contenedor.innerHTML += `<a><a>`;
                     }
 
                     contenedor.innerHTML += tablaHTML;
+                    posicion++;
                 }
             });
         });
     }
 </script>
+<style>
+    .texto-ganador {
+    color: #ffeb3b !important;
+}
+</style>
 </html>

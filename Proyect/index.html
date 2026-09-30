@@ -18,9 +18,19 @@
         <div class="menu">
             <li><a href="index.html">INICIO</a></li>
             <li><a href="participantes.html">participantes</a></li>
-            <li><a >AÑO</a></li>
+            <li><a id="alternar">AÑO</a></li>
             <li><a href="hof.html">HoF</a></li>
         </div>
     </menu>
+    <script>
+        document.getElementById('alternar').addEventListener('click', function() {
+            const submenu = document.querySelector('.submenu');
+            if (submenu.style.display === 'grid') {
+                submenu.style.display = 'none';
+            } else {
+                submenu.style.display = 'grid';
+            }
+        });
+    </script>
 </body>
 </html>

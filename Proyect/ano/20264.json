@@ -2,28 +2,26 @@
     {
         "cancha": "1",
         "partidas":[
-            { "juan": 0, "jhon": 0, "erika": 0, "matias":0,"tomi":1,"milen":0 },
-            { "vlady": 0, "vicky": 0, "santiago": 0, "joel":0,"aldo":1,"edhit":0 },
-	        { "matias":0,"tomi":1,"milen":0, "luis":0,"tito":1,"roxana":0 },
-	        { "juan":0,"jhon":1,"erika":0, "vlady": 0, "vicky": 0, "santiago": 0 },
-            { "joel":0,"aldo":1,"edhit":0, "luis":0,"tito":1,"roxana":0 },
-            { "matias":0,"tomi":1,"milen":0, "vlady": 0, "vicky": 0, "santiago": 0 },
-            { "vlady": 0, "vicky": 0, "santiago": 0, "luis":0,"tito":1,"roxana":0 },
-            { "joel":0,"aldo":1,"edhit":0, "juan":0,"jhon":1,"erika":0 },
-            { "juan":0,"jhon":1,"erika":0, "luis":0,"tito":1,"roxana":0 },
-            { "joel":0,"aldo":1,"edhit":0, "matias":0,"tomi":1,"milen":0 },
-
+            { "juan": 1, "jhon": 0, "erika": 0, "matias":0,"tomi":0,"milen":0 },
+            { "vlady": 0, "vicky": 0, "santiago": 0, "joel":0,"aldo":0,"edhit":0 },
+	        { "matias":0,"tomi":0,"milen":0, "luis":0,"tito":0,"roxana":0 },
+	        { "juan":0,"jhon":0,"erika":0, "vlady": 0, "vicky": 0, "santiago": 0 },
+            { "joel":0,"aldo":0,"edhit":0, "luis":0,"tito":0,"roxana":0 },
+            { "matias":0,"tomi":0,"milen":0, "vlady": 0, "vicky": 0, "santiago": 0 },
+            { "vlady": 0, "vicky": 0, "santiago": 0, "luis":0,"tito":0,"roxana":0 },
+            { "joel":0,"aldo":0,"edhit":0, "juan":0,"jhon":0,"erika":0 },
+            { "juan":0,"jhon":0,"erika":0, "luis":0,"tito":0,"roxana":0 },
+            { "joel":0,"aldo":0,"edhit":0, "matias":0,"tomi":0,"milen":0 },
             {"matias":0,"tomi":0,"milen":0,"juan":0,"jhon":0,"erika":0},
-            {"joel":0,"aldo":1,"edhit":0,"vlady": 0, "vicky": 0, "santiago": 0},
-            {"luis":0,"tito":1,"roxana":0,"matias":0,"tomi":0,"milen":0},
+            {"joel":0,"aldo":0,"edhit":0,"vlady": 0, "vicky": 0, "santiago": 0},
+            {"luis":0,"tito":0,"roxana":0,"matias":0,"tomi":0,"milen":0},
             {"vlady": 0, "vicky": 0, "santiago": 0,"juan":0,"jhon":0,"erika":0},
             {"luis":0,"tito":0,"roxana":0,"joel":0,"aldo":0,"edhit":0},
             {"vlady": 0, "vicky": 0, "santiago": 0,"matias":0,"tomi":0,"milen":0},
             {"luis":0,"tito":0,"roxana":0,"vlady": 0, "vicky": 0, "santiago": 0},
             {"juan":0,"jhon":0,"erika":0,"joel":0,"aldo":0,"edhit":0},
             {"luis":0,"tito":0,"roxana":0,"juan":0,"jhon":0,"erika":0},
-            {"matias":0,"tomi":0,"milen":0,"joel":0,"aldo":0,"edhit":0}
-            
+            {"matias":0,"tomi":0,"milen":0,"joel":0,"aldo":0,"edhit":0}            
         ]
     }
 ]

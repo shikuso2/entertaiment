@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Participantes</title>
+  <link rel="stylesheet" href="menu.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .container {
+        overflow-x: hidden;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 100px; /* Espacio para poder hacer scroll cómodo */
+        width: 100%;
+        max-width: 1000px;
+        align-items: center;
+        padding: 20px 20px 300px 20px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #1f1f1f94;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        margin-top: 10px;
+        border-radius: 10px;
+    }
+
+    .profile-card {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding: 0px 15px;
+      border-radius: 12px;
+      background: #1e1e1e;
+
+      will-change: transform, filter, opacity;
+      backface-visibility: hidden;
+      
+      /* Estado por defecto: Blanco y Negro y más chico */
+      transform: scale(0.85);
+      filter: grayscale(100%);
+      opacity: 0.5;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                  filter 0.4s ease, 
+                  opacity 0.4s ease;
+    }
+
+    /* Alternar orden (imagen a la derecha en impares) */
+    .profile-card:nth-child(even) {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
+    /* Estado EN FOCU/SCROLL: A color y grande */
+    .profile-card.active {
+      transform: scale(1.05);
+      filter: grayscale(0%);
+      opacity: 1;
+      background: #ffffff00;
+      /*box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);*/
+    }
+
+    .profile-img {
+      width: 130px;
+      height: 130px;
+      border-radius: 12px;
+      object-fit: cover;
+      will-change: transform, object-position;
+      transform: scale(0.7); /* Reducido cuando está inactivo */
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                  object-position 0.4s ease;
+      object-position: top center;
+    }
+
+    .profile-card.active .profile-img {
+        width: 50%;
+        height: 50%;
+        max-height: 500px;
+        object-position: center center;
+        transform: scale(1);
+    }
+
+    .profile-info {
+      flex: 1;
+    }
+
+    .profile-name {
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      transition: font-size 0.4s ease;
+    }
+
+    .profile-card.active .profile-name {
+      font-size: 6.5vw;
+      color: #4facfe;
+    }
+
+    .profile-card.active {
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+    <menu>
+        <div class="submenu">
+            <li><a href="ano/2026-3.html">2026-3</a></li>
+            <li><a href="ano/2026-4.html">2026-4</a></li>
+        </div>
+        <div class="menu">
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="participantes.html">participantes</a></li>
+            <li><a id="alternar">AÑO</a></li>
+            <li><a href="hof.html">HoF</a></li>
+        </div>
+    </menu>
+    <script>
+        document.getElementById('alternar').addEventListener('click', function() {
+            const submenu = document.querySelector('.submenu');
+            if (submenu.style.display === 'grid') {
+                submenu.style.display = 'none';
+            } else {
+                submenu.style.display = 'grid';
+            }
+        });
+    </script>
+
+  <div class="container">
+    <h1 style="text-align: center;    font-weight: bolder;    font-size: 2.5em;">Participantes</h1>
+    <p style="max-width: 65%;align: justify;font-size: 1.3rem;margin-top: -50px;">Las categorias estan evaluadas de la siguiente manera: 
+      rendimiento en los anteriores encuentros, habilidades, y desempeño en el torneo. 
+      La categoria A es la mas alta, seguida de la B y luego la C.<br>
+      <span style="font-size: 1.1rem; color: #3a668f;">Las fotos son referenciales y temporales hasta tener las oficiales</span></p>
+    
+    <div class="profile-card" id="edhit">
+      <img class="profile-img" src="img/Aldo.webp" alt="Erika">
+      <div class="profile-info">
+        <h2 class="profile-name">Aldo</h2>
+        <p>categoria: B</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="erika">
+      <img class="profile-img" src="img/Edhit.webp" alt="Luis">
+      <div class="profile-info">
+        <h2 class="profile-name">Edhit</h2>
+        <p>categoria: C</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="jhon">
+      <img class="profile-img" src="img/Erika.webp" alt="Santiago">
+      <div class="profile-info">
+        <h2 class="profile-name">Erika</h2>
+        <p>categoria: C</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="joel">
+      <img class="profile-img" src="img/Jhon.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Jhon</h2>
+        <p>categoria: B</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="jorge">
+      <img class="profile-img" src="img/Joel.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Joel</h2>
+        <p>categoria: A</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="juan">
+      <img class="profile-img" src="img/Jorge.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Jorge</h2>
+        <p>categoria: A</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="luis">
+      <img class="profile-img" src="img/Juan.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Juan</h2>
+        <p>categoria: A</p>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <img class="profile-img" src="img/Luis.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Luis</h2>
+        <p>categoria: A</p>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <img class="profile-img" src="img/Matias.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Matias</h2>
+        <p>categoria: A</p>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <img class="profile-img" src="img/Milen.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Milen</h2>
+        <p>categoria: C</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="roxana">
+      <img class="profile-img" src="img/Pablo.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Pablo</h2>
+        <p>categoria: C</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="santiago">
+      <img class="profile-img" src="img/Roxana.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Roxana</h2>
+        <p>categoria: C</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="tito">
+      <img class="profile-img" src="img/Santiago.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Santiago</h2>
+        <p>categoria: C</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="tomas">
+      <img class="profile-img" src="img/Tito.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Tito</h2>
+        <p>categoria: B</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="tomi">
+      <img class="profile-img" src="img/Tomas.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Tomas</h2>
+        <p>categoria: C</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="vicky">
+      <img class="profile-img" src="img/Tomi.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Tomi</h2>
+        <p>categoria: B</p>
+      </div>
+    </div>
+
+    <div class="profile-card" id="vlady">
+      <img class="profile-img" src="img/Vicky.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Vicky</h2>
+        <p>categoria: B</p>
+      </div>
+    </div>
+
+    <div class="profile-card">
+      <img class="profile-img" src="img/Vlady.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Vlady</h2>
+        <p>categoria: A</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Detecta cuándo cada elemento pasa por el centro de la pantalla al hacer scroll
+    const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      } else {
+        entry.target.classList.remove('active');
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '-25% 0px -25% 0px', // Ocupa la franja central estable de la pantalla
+    threshold: 0.6 // Requiere un 30% de visibilidad dentro del margen
+  });
+
+  document.querySelectorAll('.profile-card').forEach(card => {
+    observer.observe(card);
+  });
+  </script>
+
+</body>
+</html>

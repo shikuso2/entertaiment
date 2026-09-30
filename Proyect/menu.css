@@ -24,7 +24,7 @@ menu{
     align-items: center;
     flex-direction: column;
     position: fixed;
-    bottom: 0;
+    bottom: 15px;
     z-index: 20;
 }
 menu li{
@@ -38,6 +38,12 @@ menu li a{
     display: inline-flex;
     color: white;
     cursor: pointer;
+    text-shadow: 
+    1px 1px 0 #000000,
+   -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+   -1px  1px 0 #000000;
+    font-weight: bold;
 }
 .toggle-input:checked ~ .submenu {
   display: grid;
@@ -50,12 +56,12 @@ menu li a{
     background-color: #0b46e956;
     width: 90%;
     margin: 0px 10px;
-    padding: 0px 10px;
+    padding: 10px 10px;
     background: rgba(5, 5, 5, 0.295);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 .menu{
@@ -67,7 +73,7 @@ menu li a{
     background: rgba(255, 255, 255, 0.17);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
