@@ -3,16 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Torneo de Básquet 2026-4</title>
     <link rel="stylesheet" href="menu.css">
+    <style>
+        .cuerpo {        
+            max-width: 1000px;
+            align-items: center;
+            padding: 20px;
+            margin: 10px auto 0 auto;
+            background-color: rgba(31, 31, 31, 0.58);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            border-radius: 10px;
+            color: #fff;
+            text-align: center;            
+        }
+        .tarjeta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 950px;
+            margin: 0 auto 35px auto;
+            background: linear-gradient(135deg, rgba(30, 30, 35, 0.9) 0%, rgba(20, 20, 24, 0.95) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        .alerta-verde {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(73, 173, 47, 0.2);
+            border: 1px solid #49ad2f;
+            color: #72ef53;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        .punto-rec {
+            width: 8px;
+            height: 8px;
+            background-color: #72ef53;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #72ef53;
+            animation: pulseAnim 1.5s infinite;
+        }
+        .titulo {
+            font-size: clamp(2.1rem, 5vw, 4rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            background: linear-gradient(180deg, #ffffff 0%, #bbbbbb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .descripcion-hero {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: #aaa;
+            max-width: 650px;
+            margin: 0 auto 30px auto;
+        }
+        .contador-grid {
+            display: flex;
+            justify-content: center;
+            gap: 9px;
+            margin-bottom: 35px;
+        }
+        .bloque-tiempo {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 12px 18px;
+            border-radius: 12px;
+            min-width: 75px;
+        }
+        .valor-tiempo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #ffeb3b;
+            display: block;
+            line-height: 1;
+        }
+        .etiqueta-tiempo {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #888;
+            margin-top: 4px;
+            display: block;
+        }
+        .tarjeta-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            background: #2196f3;
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+        }
+        .btn:hover, .btn-primary:hover {
+            background: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.6);
+        }
+        .btn-hof {
+            background: #ffeb3b;
+            color: #000;
+            box-shadow: none;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: rgba(8, 8, 8, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #888;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .hof-card {
+            background: linear-gradient(135deg, rgba(255, 235, 59, 0.08) 0%, rgba(30, 30, 35, 0.6) 100%);
+            border: 1px solid rgba(255, 235, 59, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;    
+            margin-bottom: 60px;        
+        }
+        .hof-info {
+            flex: 1;
+            min-width: 250px;
+            text-align: left;
+        }
+        .hof-badge {
+            color: #ffeb3b;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .hof-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+        .hof-desc {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+        @keyframes pulseAnim {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.3); }
+        }
+        @media (max-width: 768px) {
+            .tarjeta { padding: 35px 20px; }
+        }
+    </style>
 </head>
-<style>
-    
-</style>
 <body>
     <menu>
         <div class="submenu">
-            <li><a href="ano/2026-3.html">2026-3</a></li>
+            <li><a href="#">2026-3</a></li>
             <li><a href="ano/2026-4.html">2026-4</a></li>
         </div>
         <div class="menu">
@@ -22,15 +218,107 @@
             <li><a href="hof.html">HoF</a></li>
         </div>
     </menu>
+
+    <div class="cuerpo">
+        <div class="tarjeta">
+            <div class="alerta-verde">
+                <span class="punto-rec"></span>
+                Torneo 2026-4 muy cerca
+            </div>
+            <h1 class="titulo">Torneo de basquet 2026-4</h1>
+            <p class="descripcion-hero">
+                La cuarta edición del torneo está a la vuelta de la esquina, y promete ser aún más emocionante que las anteriores.
+                En esta ocasión los equipos fueron armados para tener equilibrio entre los jugadores y así todos puedan tener la oportunidad de salir victoriosos.
+            </p>
+            <div class="contador-grid" id="bloquesContador">
+                <div class="bloque-tiempo">
+                    <span class="valor-tiempo" id="dias">00</span>
+                    <span class="etiqueta-tiempo">Días</span>
+                </div>
+                <div class="bloque-tiempo">
+                    <span class="valor-tiempo" id="horas">00</span>
+                    <span class="etiqueta-tiempo">Horas</span>
+                </div>
+                <div class="bloque-tiempo">
+                    <span class="valor-tiempo" id="minutos">00</span>
+                    <span class="etiqueta-tiempo">Min</span>
+                </div>
+                <div class="bloque-tiempo">
+                    <span class="valor-tiempo" id="segundos">00</span>
+                    <span class="etiqueta-tiempo">Seg</span>
+                </div>
+            </div>
+            <div class="tarjeta-actions">
+                <a href="ano/2026-4.html" class="btn">ver matches</a>
+                <a href="participantes.html" class="btn">ver participantes</a>
+            </div>
+        </div>
+
+        <section>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Equipos Equiparados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">17+</div>
+                    <div class="stat-label">Jugadores Activos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24</div>
+                    <div class="stat-label">Partidas Jugadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3v3</div>
+                    <div class="stat-label">Formato</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="hof-card">
+                <div class="hof-info">
+                    <span class="hof-badge">Salón de la Fama</span>
+                    <h2 class="hof-title">Campeones de otras ediciones</h2>
+                    <p class="hof-desc">
+                        En esta sala encontrarás los equipos que han dejado su huella en la historia de nuestro torneo, destacando por su habilidad, estrategia y espíritu competitivo.
+                    </p>
+                </div>
+                <div>
+                    <a href="hof.html" class="btn btn-hof">
+                        Explorar Hall of Fame
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
     <script>
-        document.getElementById('alternar').addEventListener('click', function() {
+        document.getElementById('alternar').addEventListener('click', () => {
             const submenu = document.querySelector('.submenu');
-            if (submenu.style.display === 'grid') {
-                submenu.style.display = 'none';
-            } else {
-                submenu.style.display = 'grid';
-            }
+            submenu.style.display = (submenu.style.display === 'grid') ? 'none' : 'grid';
         });
+
+        const fechaObjetivo = new Date("2026-11-01T07:15:00").getTime();
+        const elDias = document.getElementById('dias');
+        const elHoras = document.getElementById('horas');
+        const elMin = document.getElementById('minutos');
+        const elSeg = document.getElementById('segundos');
+        const elContador = document.getElementById('bloquesContador');
+
+        function actualizarContador() {
+            const dif = fechaObjetivo - Date.now();
+
+            if (dif <= 0) {
+                if (elContador) elContador.style.display = 'none';
+                return;
+            }
+            elDias.textContent = String(Math.floor(dif / 86400000)).padStart(2, '0');
+            elHoras.textContent = String(Math.floor((dif % 86400000) / 3600000)).padStart(2, '0');
+            elMin.textContent = String(Math.floor((dif % 3600000) / 60000)).padStart(2, '0');
+            elSeg.textContent = String(Math.floor((dif % 60000) / 1000)).padStart(2, '0');
+        }
+        actualizarContador();
+        setInterval(actualizarContador, 1000);
     </script>
 </body>
 </html>

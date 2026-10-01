@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Torneo de Básquet</title>
+    <link rel="stylesheet" href="menu.css">
+    <style>        
+
+        .cuerpo {        
+            max-width: 1000px;
+            align-items: center;
+            padding: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #1f1f1f94;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <menu>
+        <div class="submenu">
+            <li><a href="ano/2026-3.html">2026-3</a></li>
+            <li><a href="ano/2026-4.html">2026-4</a></li>
+        </div>
+        <div class="menu">
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="participantes.html">participantes</a></li>
+            <li><a id="alternar">AÑO</a></li>
+            <li><a href="hof.html">HoF</a></li>
+        </div>
+    </menu>
+
+    <div class="cuerpo">
+        
+        
+
+    </div>
+
+    <script>
+        document.getElementById('alternar').addEventListener('click', function() {
+            const submenu = document.querySelector('.submenu');
+            submenu.style.display = (submenu.style.display === 'grid') ? 'none' : 'grid';
+        });
+    </script>
+</body>
+</html>
