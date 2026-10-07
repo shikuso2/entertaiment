@@ -1,0 +1,28 @@
+﻿[
+    {
+        "cancha": "1",
+        "partidas":[
+            { "luis": 1, "vlady": 2, "santiago": 0, "juan":0,"jhon":0,"vicky":0 },
+            { "tito": 0, "tomi": 1, "roxana": 0, "aldo":1,"joel":1,"pablo":1 },
+	        { "juan":1,"jhon":2,"vicky":0, "jorge":0,"matias":0,"erika":0 },
+	        { "luis":1,"vlady":1,"santiago":1, "tito": 0, "tomi": 0, "roxana": 0 },
+            { "aldo":0,"joel":1,"edhit":0, "jorge":0,"matias":2,"erika":1 },
+            { "juan":2,"jhon":0,"vicky":1, "tito": 0, "tomi": 0, "roxana": 0 },
+            { "tito": 0, "tomi": 0, "roxana": 0, "jorge":1,"matias":1,"erika":1 },
+            { "joel":0,"aldo":0,"edhit":0, "luis":1,"vlady":1,"santiago":1 },
+            { "luis":2,"vlady":1,"santiago":0, "jorge":2,"matias":0,"erika":0 },
+            { "joel":0,"aldo":0,"edhit":0, "juan":1,"jhon":1,"vicky":1 },
+
+            {"tito":0,"tomi":2,"roxana":1,"aldo":1,"joel":0,"edhit":1},
+            {"luis":0,"vlady":1,"santiago":0,"juan": 2, "jhon": 1, "vicky": 0},
+            {"luis":0,"vlady":3,"santiago":0,"tito":0,"tomi":0,"roxana":0},
+            {"juan":1, "jhon": 0, "vicky": 0,"jorge":3,"matias":0,"erika":0},
+            {"juan":0,"jhon":1,"vicky":1,"tito":1,"tomi":1,"extra1":1},
+            {"aldo": 0, "joel": 0, "pablo": 1,"jorge":0,"matias":3,"erika":0},
+            {"aldo":0,"joel":1,"edhit":0,"luis": 1, "vlady": 1, "santiago": 1},
+            {"tito":0,"tomi":1,"roxana":0,"jorge":1,"matias":2,"erika":0},
+            {"aldo":0,"joel":0,"edhit":0,"juan":1,"jhon":1,"vicky":1},
+            {"luis":1,"vlady":1,"santiago":0,"jorge":2,"matias":1,"erika":0}            
+        ]
+    }
+]

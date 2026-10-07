@@ -128,7 +128,7 @@
         });
     </script>
     <div class="cuerpo">
-        <h1  class="hof-titulo">Torneo 2026-4</h1>
+        <h1  class="hof-titulo">Torneo 2026-2</h1>
         <!---------------------------------------------------------------------------------------->
         <!-- GRUPOS ----------------------------------------------------------------------------->
         <!---------------------------------------------------------------------------------------->
@@ -196,11 +196,11 @@
     </div>
 </body>
 <script>
-    let amarillo = {  joel: 0,  aldo: 0,  edhit: 0,  pablo: 0 };
-    let azul = {  vlady: 0,  vicky: 0,  santiago: 0,  extra: 0 };
-    let blanco = {  juan: 0,  jhon: 0,  erika: 0,  extra: 0 };
-    let negro = {  luis: 0,  tito: 0,  roxana: 0,  extra: 0 };
-    let rojo = {  matias: 0,  tomi: 0,  milen: 0,  tomas: 0 };
+    let amarillo = {  tito: 0,  tomi: 0,  roxana: 0,  extra1: 0 };
+    let azul = {  luis: 0,  vlady: 0,  santiago: 0,  extra: 0 };
+    let blanco = {  juan: 0,  jhon: 0,  vicky: 0,  extra: 0 };
+    let negro = {  aldo: 0,  joel: 0,  edhit: 0,  pablo: 0 };
+    let rojo = {  jorge: 0,  matias: 0,  erika: 0,  extra: 0 };
 
     const mapaJugadores = {};
     const equipos = { amarillo, azul, blanco, negro, rojo };
@@ -216,7 +216,7 @@
     });
     async function cargarDatos() {
         try {
-            const respuesta = await fetch('20264.json?v=' + new Date().getTime());                
+            const respuesta = await fetch('20262.json?v=' + new Date().getTime());                
             if (!respuesta.ok) {
                 throw new Error(`Error HTTP! Estado: ${respuesta.status}`);
             }                
