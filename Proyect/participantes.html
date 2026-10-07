@@ -18,15 +18,9 @@
     }
 
     .container {
-        overflow-x: hidden;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 100px; /* Espacio para poder hacer scroll cómodo */
-        width: 100%;
         max-width: 1000px;
         align-items: center;
-        padding: 20px 20px 300px 20px;
+        padding: 20px;
         margin-left: auto;
         margin-right: auto;
         background-color: #1f1f1f94;
@@ -34,6 +28,21 @@
         -webkit-backdrop-filter: blur(2px);
         margin-top: 10px;
         border-radius: 10px;
+        
+    }
+    .cara {
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 100px; 
+        max-width: 1000px;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #1f1f1f94;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        margin-top: 10px;
     }
 
     .profile-card {
@@ -43,11 +52,8 @@
       padding: 0px 15px;
       border-radius: 12px;
       background: #1e1e1e;
-
       will-change: transform, filter, opacity;
-      backface-visibility: hidden;
-      
-      /* Estado por defecto: Blanco y Negro y más chico */
+      backface-visibility: hidden;      
       transform: scale(0.85);
       filter: grayscale(100%);
       opacity: 0.5;
@@ -56,13 +62,11 @@
                   opacity 0.4s ease;
     }
 
-    /* Alternar orden (imagen a la derecha en impares) */
     .profile-card:nth-child(even) {
       flex-direction: row-reverse;
       text-align: right;
     }
 
-    /* Estado EN FOCU/SCROLL: A color y grande */
     .profile-card.active {
       transform: scale(1.05);
       filter: grayscale(0%);
@@ -77,7 +81,7 @@
       border-radius: 12px;
       object-fit: cover;
       will-change: transform, object-position;
-      transform: scale(0.7); /* Reducido cuando está inactivo */
+      transform: scale(0.7); 
       transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
                   object-position 0.4s ease;
       object-position: top center;
@@ -140,7 +144,8 @@
 
   <div class="container">
     <h1 class="hof-titulo">Participantes</h1>
-    <p style="max-width: 65%;align: justify;font-size: 1.3rem;margin-top: -50px;">Las categorias estan evaluadas de la siguiente manera: 
+    <div class="cara"> 
+    <p style="width: 100%;text-align: justify;font-size: 1.2rem;padding:15px;">Las categorias estan evaluadas de la siguiente manera: 
       rendimiento en los anteriores encuentros, habilidades, y desempeño en el torneo. 
       La categoria A es la mas alta, seguida de la B y luego la C.<br>
       <span style="font-size: 1.1rem; color: #3a668f;">Las fotos son referenciales y temporales hasta tener las oficiales</span></p>
@@ -289,6 +294,9 @@
       </div>
     </div>
 
+    <div style="height: 100px;"></div>
+
+    </div>
   </div>
 
   <script>

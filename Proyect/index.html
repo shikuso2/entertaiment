@@ -202,6 +202,9 @@
         }
         @media (max-width: 768px) {
             .tarjeta { padding: 35px 20px; }
+            .cara { padding: 0px; border-top-left-radius: 23px; border-top-right-radius: 23px; }
+            .stats-grid {    padding: 0px 40px;}
+            .hof-card { margin: 0px 25px 25px 25px; }
         }
     </style>
 </head>
@@ -221,6 +224,8 @@
     </menu>
 
     <div class="cuerpo">
+        <div class="cara"> 
+
         <div class="tarjeta">
             <div class="alerta-verde">
                 <span class="punto-rec"></span>
@@ -292,6 +297,8 @@
                 </div>
             </div>
         </section>
+
+        </div>
     </div>
     <script>
         document.getElementById('alternar').addEventListener('click', () => {

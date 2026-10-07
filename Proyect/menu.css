@@ -27,6 +27,18 @@ body{
     margin-bottom: 8px;
     text-align: center;
 }
+.cara {
+    width: 100%;
+    background: linear-gradient(180deg, #161a22a6 0%, #0d0e12 100%);
+    border: 2px solid #3d4352;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    padding: 25px 20px 20px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
 @media (max-width: 598px) {
     body {
         background-image: url("https://i.etsystatic.com/46050293/r/il/174b19/6814486264/il_1140xN.6814486264_1fzb.jpg");
