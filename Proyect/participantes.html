@@ -34,7 +34,7 @@
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
-        gap: 150px; 
+        gap: 20px; 
         max-width: 1000px;
         align-items: center;
         margin-left: auto;
@@ -49,7 +49,7 @@
       display: flex;
       align-items: center;
       gap: 1px;
-      padding: 0px 15px;
+      padding: 70px 15px;
       border-radius: 12px;
       background: #1e1e1e;
       will-change: transform, filter, opacity;
@@ -110,7 +110,7 @@
     }
 
     .profile-card.active .profile-name {
-      font-size: 5vw;
+      font-size: 2.5vw;
       color: #4facfe;
     }
 
@@ -120,6 +120,9 @@
     @media (max-width: 768px) {
       .profile-card.active {
         max-width: 86%;
+      }
+      .profile-card.active .profile-name {
+        font-size: 5vw;
       }
     }
   </style>
@@ -319,7 +322,7 @@
       </div>
     </div>
 
-    <div style="height: 100px;"></div>
+    <div style="height: 150px;"></div>
 
     </div>
   </div>
@@ -341,7 +344,7 @@
   }, {
     root: null,
     rootMargin: '-30% 0px -30% 0px', // -35% 0px -35% 0px Ocupa la franja central estable de la pantalla
-    threshold: 0.4 // 0.4 Requiere un 30% de visibilidad dentro del margen
+    threshold: 0.45 // 0.4 Requiere un 30% de visibilidad dentro del margen
   });
 
   document.querySelectorAll('.profile-card').forEach(card => {
