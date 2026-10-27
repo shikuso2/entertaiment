@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hall of Fame - Torneo de Básquet</title>
+    <link rel="stylesheet" href="menu.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .cuerpo {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            max-width: 1000px;
+            align-items: center;
+            padding: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #1f1f1f94;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            margin-top: 10px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+        }       
+        .cara {
+            width: 100%;
+            background: linear-gradient(180deg, #161a22a6 0%, #0d0e12 100%);
+            border: 2px solid #3d4352;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            padding: 25px 20px 20px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+        .hof-titulo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #e2e8f0;
+            text-transform: uppercase;
+            font-family: 'Georgia', serif;
+            margin-bottom: 8px;
+        }
+        .apartado {
+            width: 100%;
+            text-align: left;
+            margin: 20px 0 10px 0;
+        }
+        .texto {
+            text-align: justify;
+            padding-left: 15px;
+        }
+        .lista {
+            list-style-type: disc;
+            padding-left: 40px;
+        }
+        
+        @media (max-width: 600px) {
+            .hof-titulo { font-size: 1.8rem; letter-spacing: 2px; }
+            .titulo-campeones { font-size: 1.4rem; }
+            .badge-tag { font-size: 0.6rem; padding: 2px 5px; }
+            .detalle-marcador { font-size: 0.65rem; padding: 4px 8px; }
+            .jugador-box{height: 200px;}
+            .jugador-box.mvp{height: 228px;}
+            .jugadores-container{gap: 0px;}
+        }
+    </style>
+</head>
+<body>
+    <menu>
+        <div class="submenu">
+            <li><a href="ano/2026-2.html">2026-2</a></li>
+            <li><a href="#">2026-3</a></li>
+            <li><a href="ano/2026-4.html">2026-4</a></li>
+        </div>
+        <div class="menu">
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="participantes.html">participantes</a></li>
+            <li><a id="alternar">AÑO</a></li>
+            <li><a href="hof.html">HoF</a></li>
+        </div>
+    </menu>
+
+    <div class="cuerpo">
+        <h1 class="hof-titulo">Hall of Fame</h1>
+
+        <div class="cara">  
+            <h3>BASES DEL TORNEO DEL BALONCESTO 2026</h3>
+            <h4 class="apartado">1. FORMATO</h4>
+            <p class="texto">Todos contra todos, 2 rondas, 2 canchas en simultáneo. Clasifican 4: 1° vs 2° final, 3° vs 4° por el tercer lugar.</p>
+            <h4 class="apartado">2. EQUIPOS</h4>
+            <p class="texto">3 titulares + 1 suplente (opcional). Obligatorio mínimo 1 mujer o menor de 13 a 17 años.</p>
+            <h4 class="apartado">3. FASE DE GRUPOS</h4>
+            <p class="texto">A 3 canastas o 10 min máximo. 1 canasta = 1 punto. Si empatan a los 10 min, gana el que anota primero.</p>
+            <h4 class="apartado">4. FINALES</h4>
+            <p class="texto">Fuera del área 2 pts, dentro 1 pt.</p>
+            <ul class="texto lista">
+                <li>3er Lugar: a 5 puntos, sin tiempo, por 2 de ventaja.</li>
+                <li>Final: a 10 puntos, sin tiempo, por 2 de ventaja.</li>
+            </ul>
+            <h4 class="apartado">5. REGLAS DE JUEGO</h4>
+            <p class="texto">Saque, falta y pelota fuera desde el medio. Defensa debe salir del área tras recuperar y tras canasta. Retención máxima 15 segundos.</p>
+            <h4 class="apartado">6. FALTAS</h4>
+            <ul class="texto lista">
+                <li>Rondas: 3 faltas = 1 tiro libre de 1 punto.</li>
+                <li>3er Lugar: 4 faltas = 1 tiro libre de 1 punto.</li>
+                <li>Final: 5 faltas = 1 tiro libre de 1 punto.</li>
+            </ul>
+            <h4 class="apartado">7. ÁRBITRO Y CAMBIOS</h4>
+            <p class="texto">Solo el capitán habla con el árbitro. Sin árbitro, arbitra el equipo que descansa. Cambios: 1 en rondas, 2 en 3er lugar, 3 en final.</p>
+            <h4 class="apartado">8. PUNTAJE Y DESEMPATE</h4>
+            <p class="texto">Victoria 3 pts. Desempate por diferencia de canastas.</p>
+            <h4 class="apartado">9. PUNTUALIDAD Y WALKOVER</h4>
+            <p class="texto">Llegar 10 min antes. Tolerancia 10 min con sanción progresiva:
+                <ul class="texto lista">
+                    <li>3 min tarde: 0-1</li>
+                    <li>6 min: 0-2</li>
+                    <li>10 min: 0-3 y fin del partido.</li>
+                </ul>
+            <p>No se presta jugador de otro equipo, sí del público si cumple Art. 2.</p>
+                
+            <h4 class="apartado">10. CONDUCTA Y PREMIACIÓN</h4>
+            <p class="texto">Juego limpio obligatorio. Premios: Campeón, Subcampeón, 3er Lugar y Máximo Anotador.</p>
+            
+  
+           
+
+
+
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('alternar').addEventListener('click', () => {
+            const submenu = document.querySelector('.submenu');
+            submenu.style.display = (submenu.style.display === 'grid') ? 'none' : 'grid';
+        });
+    </script>
+</body>
+</html>

@@ -34,7 +34,7 @@
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
-        gap: 100px; 
+        gap: 150px; 
         max-width: 1000px;
         align-items: center;
         margin-left: auto;
@@ -48,27 +48,28 @@
     .profile-card {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 1px;
       padding: 0px 15px;
       border-radius: 12px;
       background: #1e1e1e;
       will-change: transform, filter, opacity;
       backface-visibility: hidden;      
-      transform: scale(0.85);
+      transform: scale(0.8);
       filter: grayscale(100%);
       opacity: 0.5;
-      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                  filter 0.4s ease, 
-                  opacity 0.4s ease;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                  filter 0.3s ease, 
+                  opacity 0.3s ease;
     }
 
     .profile-card:nth-child(even) {
       flex-direction: row-reverse;
-      text-align: right;
+      /*text-align: right;*/
     }
 
     .profile-card.active {
-      transform: scale(1.05);
+      max-width: 60%;
+      transform: scale(1.3);
       filter: grayscale(0%);
       opacity: 1;
       background: #ffffff00;
@@ -82,8 +83,8 @@
       object-fit: cover;
       will-change: transform, object-position;
       transform: scale(0.7); 
-      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
-                  object-position 0.4s ease;
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), 
+                  object-position 0.3s ease;
       object-position: top center;
     }
 
@@ -104,16 +105,21 @@
       font-weight: bold;
       text-transform: uppercase;
       margin-bottom: 8px;
-      transition: font-size 0.4s ease;
+      transition: font-size 0.3s ease;
     }
 
     .profile-card.active .profile-name {
-      font-size: 6.5vw;
+      font-size: 5vw;
       color: #4facfe;
     }
 
     .profile-card.active {
       color: #ddd;
+    }
+    @media (max-width: 768px) {
+      .profile-card.active {
+        max-width: 86%;
+      }
     }
   </style>
 </head>
@@ -148,149 +154,167 @@
     <p style="width: 100%;text-align: justify;font-size: 1.2rem;padding:15px;">Las categorias estan evaluadas de la siguiente manera: 
       rendimiento en los anteriores encuentros, habilidades, y desempeño en el torneo. 
       La categoria A es la mas alta, seguida de la B y luego la C.<br>
-      <span style="font-size: 1.1rem; color: #3a668f;">Las fotos son referenciales y temporales hasta tener las oficiales</span></p>
+      <span style="font-size: 1.1rem; color: #3a668f;" id="aldo">Las fotos son referenciales y temporales hasta tener las oficiales</span></p>
     
-    <div class="profile-card" id="edhit">
+    <div class="profile-card" id="edhit" data-name="aldo">
       <img class="profile-img" src="img/Aldo.webp" alt="Erika">
       <div class="profile-info">
         <h2 class="profile-name">Aldo</h2>
-        <p>categoria: B</p>
+        <p>Categoria: B</p>
+        <span>Puntos: </span><span id="puntos-aldo">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="erika">
+    <div class="profile-card" id="erika" data-name="edhit">
       <img class="profile-img" src="img/Edhit.webp" alt="Luis">
       <div class="profile-info">
         <h2 class="profile-name">Edhit</h2>
-        <p>categoria: C</p>
+        <p>Categoria: C</p>
+        <span>Puntos: </span><span id="puntos-edhit">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="jhon">
+    <div class="profile-card" id="jhon" data-name="erika">
       <img class="profile-img" src="img/Erika.webp" alt="Santiago">
       <div class="profile-info">
         <h2 class="profile-name">Erika</h2>
-        <p>categoria: C</p>
+        <p>Categoria: C</p>
+        <span>Puntos: </span><span id="puntos-erika">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="joel">
+    <div class="profile-card" id="joel" data-name="jhon">
       <img class="profile-img" src="img/Jhon.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Jhon</h2>
-        <p>categoria: B</p>
+        <p>Categoria: B</p>
+        <span>Puntos: </span><span id="puntos-jhon">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="jorge">
+    <div class="profile-card" id="jorge" data-name="joel">
       <img class="profile-img" src="img/Joel.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Joel</h2>
-        <p>categoria: A</p>
+        <p>Categoria: A</p>
+        <span>Puntos: </span><span id="puntos-joel">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="juan">
+    <div class="profile-card" id="juan" data-name="jorge">
       <img class="profile-img" src="img/Jorge.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Jorge</h2>
-        <p>categoria: A</p>
+        <p>Categoria: A</p>
+        <span>Puntos: </span><span id="puntos-jorge">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="luis">
+    <div class="profile-card" id="luis" data-name="juan">
       <img class="profile-img" src="img/Juan.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Juan</h2>
-        <p>categoria: A</p>
+        <p>Categoria: A</p>
+        <span>Puntos: </span><span id="puntos-juan">0</span>
       </div>
     </div>
 
-    <div class="profile-card">
+    <div class="profile-card" id="matias" data-name="luis">
       <img class="profile-img" src="img/Luis.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Luis</h2>
-        <p>categoria: A</p>
+        <p>Categoria: A</p>
+        <span>Puntos: </span><span id="puntos-luis">0</span>
       </div>
     </div>
 
-    <div class="profile-card">
+    <div class="profile-card" id="milen" data-name="matias">
       <img class="profile-img" src="img/Matias.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Matias</h2>
-        <p>categoria: A</p>
+        <p>Categoria: A</p>
+        <span>Puntos: </span><span id="puntos-matias">0</span>
       </div>
     </div>
 
-    <div class="profile-card">
+    <div class="profile-card" id="pablo" data-name="milen">
       <img class="profile-img" src="img/Milen.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Milen</h2>
-        <p>categoria: C</p>
+        <p>Categoria: C</p>
+        <span>Puntos: </span><span id="puntos-milen">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="roxana">
+    <div class="profile-card" id="roxana" data-name="pablo">
       <img class="profile-img" src="img/Pablo.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Pablo</h2>
-        <p>categoria: C</p>
+        <p>Categoria: C</p>
+        <span>Puntos: </span><span id="puntos-pablo">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="santiago">
+    <div class="profile-card" id="santiago" data-name="roxana">
       <img class="profile-img" src="img/Roxana.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Roxana</h2>
-        <p>categoria: C</p>
+        <p>Categoria: C</p>
+        <span>Puntos: </span><span id="puntos-roxana">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="tito">
+    <div class="profile-card" id="tito" data-name="santiago">
       <img class="profile-img" src="img/Santiago.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Santiago</h2>
-        <p>categoria: C</p>
+        <p>Categoria: C</p>
+        <span>Puntos: </span><span id="puntos-santiago">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="tomas">
+    <div class="profile-card" id="tomas" data-name="tito">
       <img class="profile-img" src="img/Tito.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Tito</h2>
-        <p>categoria: B</p>
+        <p>Categoria: B</p>
+        <span>Puntos: </span><span id="puntos-tito">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="tomi">
+    <div class="profile-card" id="tomi" data-name="tomas">
       <img class="profile-img" src="img/Tomas.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Tomas</h2>
-        <p>categoria: C</p>
+        <p>Categoria: C</p>
+        <span>Puntos: </span><span id="puntos-tomas">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="vicky">
+    <div class="profile-card" id="vicky" data-name="tomi">
       <img class="profile-img" src="img/Tomi.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Tomi</h2>
-        <p>categoria: B</p>
+        <p>Categoria: A</p>
+        <span>Puntos: </span><span id="puntos-tomi">0</span>
       </div>
     </div>
 
-    <div class="profile-card" id="vlady">
+    <div class="profile-card" id="vlady" data-name="vicky">
       <img class="profile-img" src="img/Vicky.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Vicky</h2>
-        <p>categoria: B</p>
+        <p>Categoria: B</p>
+        <span>Puntos: </span><span id="puntos-vicky">0</span>
       </div>
     </div>
 
-    <div class="profile-card">
+    <div class="profile-card" data-name="vlady">
       <img class="profile-img" src="img/Vlady.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Vlady</h2>
-        <p>categoria: A</p>
+        <p>Categoria: A</p>
+        <span>Puntos: </span><span id="puntos-vlady">0</span>
       </div>
     </div>
 
@@ -300,24 +324,94 @@
   </div>
 
   <script>
-    // Detecta cuándo cada elemento pasa por el centro de la pantalla al hacer scroll
     const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
+        let name= entry.target.dataset.name;
+        document.getElementById(name).scrollIntoView({
+          //behavior: 'smooth', 
+          block: 'start'  
+        });
       } else {
         entry.target.classList.remove('active');
       }
     });
   }, {
     root: null,
-    rootMargin: '-35% 0px -35% 0px', // Ocupa la franja central estable de la pantalla
-    threshold: 0.4 // Requiere un 30% de visibilidad dentro del margen
+    rootMargin: '-30% 0px -30% 0px', // -35% 0px -35% 0px Ocupa la franja central estable de la pantalla
+    threshold: 0.4 // 0.4 Requiere un 30% de visibilidad dentro del margen
   });
 
   document.querySelectorAll('.profile-card').forEach(card => {
     observer.observe(card);
   });
+
+
+  //Canastas
+  //const botonGuardar = document.querySelector('[data-accion="guardar"]');
+  const archivosJson = [
+      'ano/20262.json',
+      'ano/20264.json'
+  ];
+  let puntosPorJugadorGlobal = {}; // Variable global para almacenar los puntos por jugador
+  async function obtenerPuntosTotalesDeTodosLosArchivos(archivos) {
+    let puntosPorJugador = {};
+
+    try {
+        // 1. Cargar todos los archivos JSON en paralelo
+        const promesas = archivos.map(async (archivo) => {
+            const respuesta = await fetch(archivo);
+            if (!respuesta.ok) throw new Error(`No se pudo cargar el archivo: ${archivo}`);
+            return await respuesta.json();
+        });
+
+        // Esperar a que se resuelvan todas las peticiones
+        const resultadosArray = await Promise.all(promesas);
+
+        // 2. Recorrer la estructura de cada JSON cargado
+        resultadosArray.forEach(datosJson => {
+            datosJson.forEach(item => { // Recorre las canchas
+                item.partidas.forEach(partida => { // Recorre cada partida
+                    Object.entries(partida).forEach(([jugador, puntos]) => {
+                        // Opcional: Acumular por jugador sumando todas las fechas
+                        if (!puntosPorJugador[jugador]) {
+                            puntosPorJugador[jugador] = 0;
+                        }
+                        puntosPorJugador[jugador] += puntos;
+                    });
+                });
+            });
+        });
+
+        console.log("Puntos acumulados por jugador (todas las fechas):", puntosPorJugadorGlobal);
+        puntosPorJugadorGlobal = puntosPorJugador; // Actualiza la variable global
+        //return puntosTotalesGlobales;
+    } catch (error) {
+        console.error("Error al procesar los archivos JSON:", error);
+    }
+  }
+  function actualizarSpans(equipo) {
+      Object.entries(equipo).forEach(([jugador, puntos]) => {
+          const span = document.getElementById(`puntos-${jugador.toLowerCase()}`);
+          if (span) {
+              span.textContent = puntos; 
+          }
+      });
+  }
+
+  // Ejecutar la función
+  document.addEventListener('DOMContentLoaded', async () => {
+      await obtenerPuntosTotalesDeTodosLosArchivos(archivosJson);
+      actualizarSpans(puntosPorJugadorGlobal);
+  });
+
+
+
+
+
+
+
   </script>
 
 </body>
