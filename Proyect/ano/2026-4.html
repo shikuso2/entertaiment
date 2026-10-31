@@ -125,6 +125,20 @@
         color: #2196f3;
         text-decoration: underline;
     }
+    .cancha{
+        color: white;
+        width: 100%;
+        font-size: 1.5rem;
+        padding: 0 0 15px 0;
+        margin-left: 52.5%;
+    }
+    @media (max-width: 600px){
+        .cancha{
+            padding: 0;
+            margin: 0;
+        }
+        
+    }
 </style>
 <body>
     <menu>
@@ -216,6 +230,7 @@
                 <span>MATCHES</span>
             </summary>
             <div id="contenedorMatches">
+                <span class="cancha">CANCHA 2</span><a></a>
 
             </div>
         </details>
@@ -234,7 +249,7 @@
     let amarillo = {  joel: 0,  aldo: 0,  edhit: 0,  pablo: 0 };
     let azul = {  vlady: 0,  vicky: 0,  santiago: 0,  extra: 0 };
     let blanco = {  juan: 0,  jhon: 0,  erika: 0,  extra: 0 };
-    let negro = {  luis: 0,  tito: 0,  roxana: 0,  extra: 0 };
+    let negro = {  jorge: 0,  tito: 0,  roxana: 0,  extra: 0 };
     let rojo = {  matias: 0,  tomi: 0,  milen: 0,  tomas: 0 };
 
     const mapaJugadores = {};
@@ -316,7 +331,7 @@
     function renderizarMatches(datos) {
         const contenedor = document.getElementById('contenedorMatches');
         if (!contenedor) return;
-        contenedor.innerHTML = '';
+        contenedor.innerHTML = '<span class="cancha">CANCHA 1</span><a>';
 
         datos.forEach((cancha) => {
             let posicion = 1;
@@ -389,7 +404,7 @@
                         </table>
                     `;
                     if(posicion === 11){
-                        contenedor.innerHTML += `<a><a>`;
+                        contenedor.innerHTML += `<span class="cancha">CANCHA 2</span><a>`;
                     }
 
                     contenedor.innerHTML += tablaHTML;
