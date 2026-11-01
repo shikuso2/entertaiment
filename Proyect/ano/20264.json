@@ -18,7 +18,7 @@
             { "matias":0,"tomi":1,"tomas":1, "vlady": 0, "vicky": 1, "santiago": 2 },            
             { "jorge":3,"aldo":0,"milen":0, "juan":1,"jhon":0,"erika":0 },            
             { "jorge":2,"aldo":0,"milen":0, "matias":0,"tomi":3,"tomas":0 },
-            { "matias":0,"tomi":0,"milen":0,"juan":0,"jhon":2,"erika":1 },            
+            { "matias":0,"tomi":0,"tomas":0,"juan":0,"jhon":2,"erika":1 },        
             { "luis":3,"tito":0,"roxana":0,"matias":0,"tomi":1,"tomas":1 },            
             { "luis":1,"tito":1,"roxana":0,"jorge":3,"aldo":0,"milen":0 },            
             { "luis":1,"tito":0,"roxana":0,"vlady": 0, "vicky": 1, "santiago": 2 },            
