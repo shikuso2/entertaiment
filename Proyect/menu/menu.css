@@ -1,0 +1,109 @@
+﻿*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+body{
+    background: #000000;
+    background-image: url("https://i.etsystatic.com/46050293/r/il/174b19/6814486264/il_1140xN.6814486264_1fzb.jpg");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100dvh;
+    background-size: cover;
+}
+.hof-titulo {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #e2e8f0;
+    text-transform: uppercase;
+    font-family: 'Georgia', serif;
+    margin-bottom: 8px;
+    text-align: center;
+}
+.cara {
+    width: 100%;
+    background: linear-gradient(180deg, #161a22a6 0%, #0d0e12 100%);
+    border: 2px solid #3d4352;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    padding: 25px 20px 20px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+@media (max-width: 598px) {
+    body {
+        background-image: url("https://i.etsystatic.com/46050293/r/il/174b19/6814486264/il_1140xN.6814486264_1fzb.jpg");
+        background-size: stretch;
+    }
+}
+menu{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    bottom: 15px;
+    z-index: 20;
+}
+menu li{
+    list-style: none;
+}
+menu li a{
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    margin: 10px;
+    display: inline-flex;
+    color: white;
+    cursor: pointer;
+    text-shadow: 
+    1px 1px 0 #000000,
+   -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+   -1px  1px 0 #000000;
+    font-weight: bold;
+}
+.toggle-input:checked ~ .submenu {
+  display: grid;
+}
+.submenu{
+    display: none;
+    justify-items: center;
+    grid-auto-flow: column;
+    justify-content: center;
+    background-color: #0b46e956;
+    width: 90%;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    background: rgba(5, 5, 5, 0.295);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.menu{
+    max-width: 90%;
+    margin: 10px;
+    padding: 0px 10px;
+    display: flex;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.17);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}

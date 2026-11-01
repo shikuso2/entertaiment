@@ -1,0 +1,138 @@
+﻿.cuerpo{        
+        max-width: 1000px;
+        align-items: center;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #1f1f1f94;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+        margin-top: 10px;
+        border-radius: 10px;
+    }
+    .sum-bracket {
+        border-bottom: 1.5px solid #7f7f7f;
+        padding: 10px;
+        /*overflow-x: auto;*/
+        list-style: none;
+        margin-bottom: 25px;
+        color: white;
+    }
+    .sum-bracket>span {
+        padding: 7px;
+        border: 1px solid white;
+        border-radius: 7px;
+        display: inline-flex;
+        cursor: pointer;
+    }
+    .grupos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+    .fixturet {
+        border-collapse: collapse;
+        text-align: center;
+        min-width: 300px;
+        margin: 0 auto 20px auto;
+        background-color: #1f1f1fab;
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    
+    .fixturet>tr>td {
+        border: 1px solid #414141;
+        padding: 5px 10px;
+    }
+    .tr-titulo {
+        padding: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border:inherit
+    }
+    .posicion-1 {
+        background-color: #49ad2f93;
+    }
+
+    #contenedorMatches {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+
+    .tabla-match{
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto 25px auto;
+        border-collapse: collapse;
+        color: white;
+    }
+    .tabla-match tr td {
+        border: 1px solid #414141;
+        padding: 5px 10px;
+    }
+
+    .col-nombre-izq { text-align: left; text-transform: uppercase; width: 150px;}
+    .col-nombre-der { text-align: right; text-transform: uppercase; width: 150px; }
+    .col-puntos { width: 40px; text-align: center; font-weight: bold; }
+    .header-equipo {width: 50%; 
+        font-weight: bold; 
+        text-transform: uppercase; 
+        font-size: 1.1em; 
+        padding: 5px; text-align: center; border: 1px solid #414141; }
+    
+    /* Colores para los encabezados de los equipos */
+    .bg-amarillo { background-color: #ffeb3b; color: black; }
+    .bg-azul     { background-color: #2196f3; color: white; }
+    .bg-blanco   { background-color: #ffffff; color: black; }
+    .bg-negro    { background-color: #000000; color: white; }
+    .bg-rojo     { background-color: #f44336; color: white; }
+
+    .entrada{
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        gap: 20px;
+        padding: 10px;
+    }
+    .entrada>img{
+        max-height: 250px;
+        max-width: 30%;
+        filter: drop-shadow(0 0 0px #ffd700) drop-shadow(0 0 3px #b8860b);
+    }
+    .entrada>p{
+        color: white;
+        text-align: left;
+        font-size: 1.1rem;
+        margin: auto 0;
+    }
+    .entrada>p a{
+        color: #2196f3;
+        text-decoration: underline;
+    }
+    .cancha{
+        color: white;
+        width: 100%;
+        font-size: 1.5rem;
+        padding: 0 0 15px 0;
+        margin-left: 52.5%;
+    }
+    .lower-n{
+        text-transform: capitalize;
+    }
+    .texto-ganador {
+        color: #ffeb3b !important;
+    }
+    @media (max-width: 600px){
+        .cancha{
+            padding: 0;
+            margin: 0;
+        }
+        
+    }

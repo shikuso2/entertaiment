@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Torneo de Básquet 2026-4</title>
-    <link rel="stylesheet" href="menu.css">
     <style>
         .cuerpo {        
             max-width: 1000px;
@@ -209,20 +208,6 @@
     </style>
 </head>
 <body>
-    <menu>
-        <div class="submenu">
-            <li><a href="ano/2026-2.html">2026-2</a></li>
-            <li><a href="#">2026-3</a></li>
-            <li><a href="ano/2026-4.html">2026-4</a></li>
-        </div>
-        <div class="menu">
-            <li><a href="index.html">INICIO</a></li>
-            <li><a href="participantes.html">participantes</a></li>
-            <li><a id="alternar">AÑO</a></li>
-            <li><a href="hof.html">HoF</a></li>
-        </div>
-    </menu>
-
     <div class="cuerpo">
         <div class="cara"> 
 
@@ -301,11 +286,7 @@
 
         </div>
     </div>
-    <script>
-        document.getElementById('alternar').addEventListener('click', () => {
-            const submenu = document.querySelector('.submenu');
-            submenu.style.display = (submenu.style.display === 'grid') ? 'none' : 'grid';
-        });
+    <script>        
 
         const fechaObjetivo = new Date("2026-11-01T07:15:00").getTime();
         const elDias = document.getElementById('dias');
@@ -328,6 +309,16 @@
         }
         actualizarContador();
         setInterval(actualizarContador, 1000);
+
+        /////////////////////////////////////////////////////////////////////
+    // CARGA DE DEPENDENCIAS ////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////    
+    const script = document.createElement('script');
+    script.src = 'menu/menu.js?v=' + Date.now();
+    script.type = 'text/javascript';
+    // Opcional: añade defer o async si necesitas que no bloquee el renderizado
+    script.defer = true;   
+    document.head.appendChild(script);
     </script>
 </body>
 </html>
