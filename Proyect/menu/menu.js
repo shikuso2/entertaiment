@@ -4,11 +4,11 @@ const nivelesDeProfundidad = segmentos.length;
 let nivel="";
 let subnivel="";
 
-if (nivelesDeProfundidad === 2) {
+if (nivelesDeProfundidad === 3) {
     console.log("Estás en la raíz exacta.");
     nivel="";
     subnivel="ano/";
-} else if (nivelesDeProfundidad === 3){
+} else if (nivelesDeProfundidad === 4){
     nivel="../";
     subnivel="";
     console.log(`Estás a ${nivelesDeProfundidad} niveles de profundidad de la raíz.`);
