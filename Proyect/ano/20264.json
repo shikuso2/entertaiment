@@ -2,7 +2,7 @@
     {
         "cancha": "1",
         "partidas":[
-            { "juan": 1, "jhon": 1, "erika": 0, "matias":1,"tomi":1,"milen":0 },
+            { "juan": 1, "jhon": 1, "erika": 0, "matias":1,"tomi":1,"tomas":0 },
             { "matias":1,"tomi":1,"tomas":1, "luis":0,"tito":0,"roxana":0 },
             { "jorge":3,"aldo":0,"milen":0, "luis":2,"tito":0,"roxana":0 },
             { "vlady": 1, "vicky": 2, "santiago": 0, "luis":0,"tito":0,"roxana":0 },
@@ -15,7 +15,7 @@
 
             { "vlady": 0, "vicky": 0, "santiago": 0, "jorge":2,"aldo":1,"milen":0 },
 	        { "juan":2,"jhon":1,"erika":0, "vlady": 1, "vicky": 0, "santiago": 0 },            
-            { "matias":0,"tomi":1,"tomas":1, "vlady": 0, "vicky": 1, "santiago": 2 },            
+            { "lili":0,"tomi":1,"tomas":1, "vlady": 0, "vicky": 1, "santiago": 2 },            
             { "jorge":3,"aldo":0,"milen":0, "juan":1,"jhon":0,"erika":0 },            
             { "jorge":2,"aldo":0,"milen":0, "matias":0,"tomi":3,"tomas":0 },
             { "matias":0,"tomi":0,"tomas":0,"juan":0,"jhon":2,"erika":1 },        

@@ -2,17 +2,25 @@
 const segmentos = window.location.pathname.split('/').filter(Boolean);
 const nivelesDeProfundidad = segmentos.length;
 let nivel="";
-let subnivel="";
+let subnivel="ano/";
 
-if (nivelesDeProfundidad === 3) {
-    console.log("Estás en la raíz exacta.");
-    nivel="";
-    subnivel="ano/";
-} else if (nivelesDeProfundidad === 4){
+
+const partes = window.location.pathname.split('/').filter(Boolean);
+const ultimoElemento = partes[partes.length - 1];
+if (ultimoElemento && ultimoElemento.includes('.')) {
+    partes.pop();
+}
+const ultimoSubdirectorio = partes[partes.length - 1] || 'inicio'; 
+
+console.log(ultimoSubdirectorio);
+
+
+if (ultimoSubdirectorio == "ano") {
     nivel="../";
     subnivel="";
-    console.log(`Estás a ${nivelesDeProfundidad} niveles de profundidad de la raíz.`);
-    console.log("Carpetas/Páginas actuales:", segmentos);
+} else {    
+    nivel="";
+    subnivel="ano/";
 }
 menu.innerHTML=`
                 <div class="submenu">

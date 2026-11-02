@@ -21,10 +21,15 @@
                 </p>
                 
             </div>
+            <div>
+                <a href="#grupos" class="btn-nav">GRUPOS</a>
+                <a href="#matches" class="btn-nav">MATCHES</a>
+                <a href="#galeria" class="btn-nav">GALERIA</a>
+            </div>
         <!---------------------------------------------------------------------------------------->
         <!-- GRUPOS ----------------------------------------------------------------------------->
         <!---------------------------------------------------------------------------------------->
-        <details open style="margin-bottom: 25px;">
+        <details open style="margin-bottom: 25px;"  id="grupos">
             <summary class="sum-bracket" >
                 <span>GRUPOS</span>
             </summary>
@@ -69,7 +74,7 @@
         <!---------------------------------------------------------------------------------------->
         <!-- MATCHES ----------------------------------------------------------------------------->
         <!---------------------------------------------------------------------------------------->
-        <details open style="margin-bottom: 25px;">
+        <details open style="margin-bottom: 25px;"  id="matches">
             <summary class="sum-bracket" >
                 <span>MATCHES</span>
             </summary>
@@ -82,19 +87,52 @@
         <div style="text-shadow: 1px 1px 0 #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000; padding: 15px;width: 100%;text-align: center;color: white;text-decoration: underline;font-weight: bolder;font-size: 1.2em;">
             <a download href="fixture20264.docx">DESCARGAR FIXTURE 2026-4</a>
         </div>
+        <!---------------------------------------------------------------------------------------->
+        <!-- GALERIA ----------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------->
+        <details open style="margin-bottom: 25px;"  id="galeria">
+            <summary class="sum-bracket" >
+                <span>GALERIA</span>
+            </summary>
+            <div class="galeria">
+                <img src="20264/Grupo1.webp" alt="Foto 1">
+                <img src="20264/Win1.webp" alt="Foto 2">
+                <img src="20264/Win2.webp" alt="Foto 3">
+                <img src="20264/Game1.webp" alt="Foto 4">
+                <img src="20264/Game2.webp" alt="Foto 5">
+                <img src="20264/Game3.webp" alt="Foto 6">
+                <img src="20264/Game4.webp" alt="Foto 7">
+                <img src="20264/Game5.webp" alt="Foto 8">
+                <img src="20264/Game6.webp" alt="Foto 9">
+                <img src="20264/Game7.webp" alt="Foto 10">
+                <img src="20264/Game8.webp" alt="Foto 11">
+                <img src="20264/Game9.webp" alt="Foto 12">
+                <img src="20264/Game10.webp" alt="Foto 13">
+                <img src="20264/Game11.webp" alt="Foto 14">
+                <img src="20264/Game12.webp" alt="Foto 15">
+                <img src="20264/Game13.webp" alt="Foto 16">
+
+
+            </div>
+            
+        </details>
 
     </div>
 
     <div style="height: 100px;">  
     </div>      
     </div>
+
+    <div class="modal" id="modal">
+                <img id="imagen-maximizada" src="" alt="Foto en tamaño grande">
+            </div>
 </body>
 <script>
     let amarillo = {  jorge: 0,  aldo: 0,  milen: 0,  extra: 0 };
     let azul = {  vlady: 0,  vicky: 0,  santiago: 0,  extra: 0 };
     let blanco = {  juan: 0,  jhon: 0,  erika: 0,  extra: 0 };
     let negro = {  luis: 0,  tito: 0,  roxana: 0,  extra: 0 };
-    let rojo = {  matias: 0,  tomi: 0,  extra: 0,  tomas: 0 };
+    let rojo = {  matias: 0,  tomi: 0,  lili: 0,  tomas: 0 };
 
     const mapaJugadores = {};
     const equipos = { amarillo, azul, blanco, negro, rojo };
@@ -257,6 +295,22 @@
             });
         });
     }
+    ///////////////////////////////////////////////////////////////////
+    const modal = document.getElementById('modal');
+    const imagenMaximizada = document.getElementById('imagen-maximizada');
+
+    // Al hacer click en cualquier foto de la galería
+    document.querySelectorAll('.galeria img').forEach(img => {
+      img.addEventListener('click', () => {
+        imagenMaximizada.src = img.src; // Copia la ruta de la imagen
+        modal.style.display = 'flex';   // Muestra la ventana modal
+      });
+    });
+
+    // Al hacer click en cualquier parte de la pantalla oscura, se cierra
+    modal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
 
     /////////////////////////////////////////////////////////////////////
     // CARGA DE DEPENDENCIAS ////////////////////////////////////////////

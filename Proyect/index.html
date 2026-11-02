@@ -195,6 +195,48 @@
             color: #ccc;
             font-size: 0.95rem;
         }
+        .tarjeta2{
+            justify-content: space-between;
+            flex-direction: row;
+        }
+        .img-portada {
+            max-width: 100%;
+            height: 100%;
+            max-height: 433px;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+        }
+        .tarjeta-info {
+            position: absolute;
+            top: 45%;
+            text-align: center;
+            width: calc(100% - 60px);
+                                
+
+        }
+        .tarjeta-info>h3 {
+            /* clamp(mínimo, valor_preferido, máximo) */
+            font-size: clamp(1.2rem, 4vw, 2.5rem);
+            font-weight: 900;
+            color: #ffeb3b;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px #ffeb3b, 0 0 20px #050505;  
+        }
+        .tarjeta-info>span {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            color: #1c97df;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .tarjeta-info>p {
+            max-width: 90%;
+            width: 456px;
+            margin: auto;
+            text-shadow: 0 0 5px #030303, 0 0 20px #05050546; 
+            margin-bottom: 20px;
+        }
+
+
         @keyframes pulseAnim {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.4; transform: scale(1.3); }
@@ -204,12 +246,28 @@
             .cara { padding: 0px; border-top-left-radius: 23px; border-top-right-radius: 23px; }
             .stats-grid {    padding: 0px 40px;}
             .hof-card { margin: 0px 25px 25px 25px; }
+            .tarjeta2{padding-bottom: 241px;}
+            .img-portada { max-height: 234px; }
+            .tarjeta-info { width: calc(100% - 40px);top: 48%; }
         }
     </style>
 </head>
 <body>
     <div class="cuerpo">
         <div class="cara"> 
+            <div class="tarjeta tarjeta2">
+                <img src="img/portada1.webp" alt="" class="img-portada">
+                <img src="img/portada2.webp" alt="" class="img-portada">
+                <div class="tarjeta-info">
+                    <h3>Torneo 2026-4</h3>
+                    <span>FINAL DE TEMPORADA</span>
+                    <p>El 01 de noviembre de 2026 se llevo a cabo en la cancha oficial, el cuarto y ultimo torneo cuatrimestral del año.</p>
+                    <div class="tarjeta-actions">
+                        <a href="ano/2026-4.html" class="btn">resultados</a>
+                        <a href="ano/2026-4.html#galeria" class="btn">recordar</a>
+                    </div>
+                </div>
+            </div>
 
         <div class="tarjeta" style="display: none;">
             <div class="alerta-verde">
