@@ -25,7 +25,7 @@ if (ultimoSubdirectorio == "ano") {
 menu.innerHTML=`
                 <div class="submenu">
                     <li><a href="${subnivel}2026-2.html">2026-2</a></li>
-                    <li><a href="#">2026-3</a></li>
+                    <li><a href="${subnivel}2026-3.html">2026-3</a></li>
                     <li><a href="${subnivel}2026-4.html">2026-4</a></li>            
                 </div>
                 <div class="menu">

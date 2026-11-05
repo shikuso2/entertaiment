@@ -111,6 +111,12 @@
                 <img src="20264/Game11.webp" alt="Foto 14">
                 <img src="20264/Game12.webp" alt="Foto 15">
                 <img src="20264/Game13.webp" alt="Foto 16">
+                <img src="20264/Game14.webp" alt="Foto 17">
+                <img src="20264/Game16.webp" alt="Foto 19">
+                <img src="20264/Game17.webp" alt="Foto 20">
+                <img src="20264/Game18.webp" alt="Foto 21">
+                <img src="20264/Game19.webp" alt="Foto 22">
+                <img src="20264/Game20.webp" alt="Foto 23">
 
 
             </div>
@@ -148,7 +154,7 @@
     });
     async function cargarDatos() {
         try {
-            const respuesta = await fetch('20264.json?v=' + new Date().getTime());                
+            const respuesta = await fetch('datos/20264.json?v=' + new Date().getTime());                
             if (!respuesta.ok) {
                 throw new Error(`Error HTTP! Estado: ${respuesta.status}`);
             }                

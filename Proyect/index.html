@@ -369,14 +369,14 @@
         setInterval(actualizarContador, 1000);
 
         /////////////////////////////////////////////////////////////////////
-    // CARGA DE DEPENDENCIAS ////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////    
-    const script = document.createElement('script');
-    script.src = 'menu/menu.js?v=' + Date.now();
-    script.type = 'text/javascript';
-    // Opcional: añade defer o async si necesitas que no bloquee el renderizado
-    script.defer = true;   
-    document.head.appendChild(script);
+        // CARGA DE DEPENDENCIAS ////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////    
+        const script = document.createElement('script');
+        script.src = 'menu/menu.js?v=' + Date.now();
+        script.type = 'text/javascript';
+        // Opcional: añade defer o async si necesitas que no bloquee el renderizado
+        script.defer = true;   
+        document.head.appendChild(script);
     </script>
 </body>
 </html>

@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    
+    <div class="cuerpo">
+        <h1  class="hof-titulo">Torneo 2026-3</h1>
+        <div class="cara"> 
+        <!---------------------------------------------------------------------------------------->
+        <!-- DESCRIPCION ----------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------->
+            <div class="entrada">
+                <img src="../img/copa20264.webp" alt="copa">
+                <p>En esta ocasión los equipos fueron armados para tener equilibrio entre los jugadores y así todos puedan tener la oportunidad de salir victoriosos.
+                    <br><br><span>se respetan las <a href="../rules.html">reglas</a> establecidas.</span>
+                </p>
+                
+            </div>
+            <div>
+                <a href="#grupos" class="btn-nav">GRUPOS</a>
+                <a href="#matches" class="btn-nav">MATCHES</a>
+                <a href="#galeria" class="btn-nav">GALERIA</a>
+            </div>
+        <!---------------------------------------------------------------------------------------->
+        <!-- GRUPOS ----------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------->
+        <details open style="margin-bottom: 25px;"  id="grupos">
+            <summary class="sum-bracket" >
+                <span>GRUPOS</span>
+            </summary>
+            <div class="grupos">
+                <table id="tablaAmarillo" class="fixturet">
+                    <tr>
+                        <td colspan="3" class="tr-titulo" style="background-color: #ffeb3b;color: black;">
+                            <span>Amarillo</span>
+                        </td>
+                    </tr>        
+                </table>
+                <table id="tablaAzul" class="fixturet">
+                    <tr>
+                        <td colspan="3" class="tr-titulo" style="background-color: #2196f3;color: white;">
+                            <span>Azul</span>
+                        </td>
+                    </tr>        
+                </table>
+                <table id="tablaBlanco" class="fixturet">
+                    <tr>
+                        <td colspan="3" class="tr-titulo" style="background-color: #ffffff;color: black;">
+                            <span>Blanco</span>
+                        </td>
+                    </tr>        
+                </table>
+                <table id="tablaNegro" class="fixturet">
+                    <tr>
+                        <td colspan="3" class="tr-titulo" style="background-color: #000000;color: white;">
+                            <span>Negro</span>
+                        </td>
+                    </tr>
+                </table>
+                <table id="tablaRojo" class="fixturet">
+                    <tr>
+                        <td colspan="3" class="tr-titulo" style="background-color: #f44336;color: white;">
+                            <span>Rojo</span>
+                        </td>
+                    </tr>        
+                </table>
+            </div>
+        </details>
+        <!---------------------------------------------------------------------------------------->
+        <!-- MATCHES ----------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------->
+        <details open style="margin-bottom: 25px;"  id="matches">
+            <summary class="sum-bracket" >
+                <span>MATCHES</span>
+            </summary>
+            <div id="contenedorMatches">
+                <span class="cancha">CANCHA 2</span><a></a>
+
+            </div>
+        </details>
+
+        <div style="display: none; text-shadow: 1px 1px 0 #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000; padding: 15px;width: 100%;text-align: center;color: white;text-decoration: underline;font-weight: bolder;font-size: 1.2em;">
+            <a download href="fixture20264.docx">DESCARGAR FIXTURE 2026-4</a>
+        </div>
+        <!---------------------------------------------------------------------------------------->
+        <!-- GALERIA ----------------------------------------------------------------------------->
+        <!---------------------------------------------------------------------------------------->
+        <details open style="margin-bottom: 25px;"  id="galeria">
+            <summary class="sum-bracket" >
+                <span>GALERIA</span>
+            </summary>
+            <div class="galeria">
+                <img src="20263/Grupo1.webp" alt="Foto 1">
+                <img src="20263/Game1.webp" alt="Foto 2">
+                <img src="20263/Grupo2.webp" alt="Foto 3">
+                <img src="20263/Game2.webp" alt="Foto 4">
+
+
+            </div>
+            
+        </details>
+
+    </div>
+
+    <div style="height: 100px;">  
+    </div>      
+    </div>
+
+    <div class="modal" id="modal">
+                <img id="imagen-maximizada" src="" alt="Foto en tamaño grande">
+            </div>
+</body>
+<script>
+    let amarillo = {  tito: 0,  tomi: 0,  roxana: 0,  extra: 0 };
+    let azul = {  luis: 0,  juan: 0,  vicky: 0,  kevin: 0 };
+    let blanco = {  jorge: 0,  matias: 0,  santiago: 0,  extra: 0 };
+    let negro = {  aldo: 0,  joel: 0,  edhit: 0,  pablo: 0 };
+    let rojo = {  vlady: 0,  jhon: 0,  erika: 0,  extra: 0 };
+
+    const mapaJugadores = {};
+    const equipos = { amarillo, azul, blanco, negro, rojo };
+
+    for (let [nombreEquipo, jugadores] of Object.entries(equipos)) {
+        for (let jugador in jugadores) {
+            mapaJugadores[jugador] = nombreEquipo;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+            cargarDatos();
+    });
+    async function cargarDatos() {
+        try {
+            const respuesta = await fetch('datos/20263.json?v=' + new Date().getTime());                
+            if (!respuesta.ok) {
+                throw new Error(`Error HTTP! Estado: ${respuesta.status}`);
+            }                
+            const datos = await respuesta.json();
+            mostrarEnPantalla(datos);
+        } catch (error) {
+            console.error("Hubo un problema al cargar el JSON:", error);
+        }
+    }
+    function mostrarEnPantalla(datos) {
+        datos.forEach(item => {
+            item.partidas.forEach(partida => {
+                Object.entries(partida).forEach(([jugador, puntos]) => {
+                    if (amarillo.hasOwnProperty(jugador)) amarillo[jugador] += puntos;
+                    else if (azul.hasOwnProperty(jugador))     azul[jugador] += puntos;
+                    else if (blanco.hasOwnProperty(jugador))   blanco[jugador] += puntos;
+                    else if (negro.hasOwnProperty(jugador))    negro[jugador] += puntos;
+                    else if (rojo.hasOwnProperty(jugador))     rojo[jugador] += puntos;
+                });
+            });
+        });
+        console.log(ordenarObjeto(amarillo));
+
+
+        llenarTabla('tablaAmarillo', amarillo);
+        llenarTabla('tablaAzul', azul);
+        llenarTabla('tablaBlanco', blanco);
+        llenarTabla('tablaNegro', negro);
+        llenarTabla('tablaRojo', rojo);
+
+        renderizarMatches(datos);
+    }
+    function ordenarObjeto(objeto) {
+        return Object.fromEntries(
+            Object.entries(objeto).sort((a, b) => b[1] - a[1])
+        );
+    }
+    function llenarTabla(idTabla, equipo) {
+        const contenedor = document.getElementById(idTabla);
+        if (!contenedor) return;
+        const participantes = Object.entries(equipo).sort((a, b) => b[1] - a[1]);
+        let posicion = 1;
+        participantes.forEach(([nombre, puntos]) => {
+            const elemento = document.createElement('tr');
+            elemento.classList.add("posicion-" + posicion);            
+            elemento.innerHTML = `
+                <td class="pos-fix" style="font-weight:bolder">${posicion}.</td>
+                <td class="nombre-jugador j-${nombre.toLowerCase()} stan-fix" style="text-align:left">
+                    <a class="lower-n" href="../participantes.html#${nombre.toLowerCase()}">${nombre}</a>
+                </td>
+                <td class="point-fix" style="font-weight:bolder;white-space:pre">${puntos} pts</td>
+            `;            
+            contenedor.appendChild(elemento);
+            posicion++;
+        });
+    }
+
+
+
+
+
+    function renderizarMatches(datos) {
+        const contenedor = document.getElementById('contenedorMatches');
+        if (!contenedor) return;
+        contenedor.innerHTML = '<span class="cancha">CANCHA 1</span><a>';
+
+        datos.forEach((cancha) => {
+            let posicion = 1;
+            cancha.partidas.forEach((partida) => {
+                const equiposEnPartida = {};
+
+                // Agrupar jugadores por su equipo
+                Object.entries(partida).forEach(([jugador, puntos]) => {
+                    const equipo = mapaJugadores[jugador] || 'desconocido';
+                    if (!equiposEnPartida[equipo]) {
+                        equiposEnPartida[equipo] = [];
+                    }
+                    equiposEnPartida[equipo].push({ nombre: jugador, puntos: puntos });
+                });
+
+                const nombresEquipos = Object.keys(equiposEnPartida);
+
+                if (nombresEquipos.length >= 2) {
+                    const eq1 = nombresEquipos[0];
+                    const eq2 = nombresEquipos[1];
+
+                    const jugadoresEq1 = equiposEnPartida[eq1];
+                    const jugadoresEq2 = equiposEnPartida[eq2];
+
+                    // Suma de puntos por equipo
+                    const totalEq1 = jugadoresEq1.reduce((sum, j) => sum + Number(j.puntos || 0), 0);
+                    const totalEq2 = jugadoresEq2.reduce((sum, j) => sum + Number(j.puntos || 0), 0);
+
+                    // Determinar si hay ganador en cada lado
+                    const esGanador1 = totalEq1 > totalEq2;
+                    const esGanador2 = totalEq2 > totalEq1;
+
+                    // Clases para aplicar texto dorado al ganador
+                    const claseTexto1 = esGanador1 ? 'texto-ganador' : '';
+                    const claseTexto2 = esGanador2 ? 'texto-ganador' : '';
+
+                    const maxFilas = Math.max(jugadoresEq1.length, jugadoresEq2.length);
+
+                    let tablaHTML = `
+                        <table class="fixturet tabla-match">
+                            <thead>
+                                <tr>
+                                    <th colspan="2" class="header-equipo bg-${eq1}">
+                                        ${eq1.toUpperCase()} (${totalEq1})
+                                    </th>
+                                    <th colspan="2" class="header-equipo bg-${eq2}">
+                                        ${eq2.toUpperCase()} (${totalEq2})
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+
+                    for (let i = 0; i < maxFilas; i++) {
+                        const j1 = jugadoresEq1[i] || { nombre: '', puntos: '' };
+                        const j2 = jugadoresEq2[i] || { nombre: '', puntos: '' };
+
+                        tablaHTML += `
+                            <tr>
+                                <td class="col-nombre-izq ${claseTexto1}">${j1.nombre}</td>
+                                <td class="col-puntos ${claseTexto1}">${j1.puntos !== '' ? j1.puntos : ''}</td>
+                                <td class="col-puntos ${claseTexto2}">${j2.puntos !== '' ? j2.puntos : ''}</td>
+                                <td class="col-nombre-der ${claseTexto2}">${j2.nombre}</td>
+                            </tr>
+                        `;
+                    }
+
+                    tablaHTML += `
+                            </tbody>
+                        </table>
+                    `;
+                    if(posicion === 11){
+                        contenedor.innerHTML += `<span class="cancha">CANCHA 2</span><a>`;
+                    }
+
+                    contenedor.innerHTML += tablaHTML;
+                    posicion++;
+                }
+            });
+        });
+    }
+    ///////////////////////////////////////////////////////////////////
+    const modal = document.getElementById('modal');
+    const imagenMaximizada = document.getElementById('imagen-maximizada');
+
+    // Al hacer click en cualquier foto de la galería
+    document.querySelectorAll('.galeria img').forEach(img => {
+      img.addEventListener('click', () => {
+        imagenMaximizada.src = img.src; // Copia la ruta de la imagen
+        modal.style.display = 'flex';   // Muestra la ventana modal
+      });
+    });
+
+    // Al hacer click en cualquier parte de la pantalla oscura, se cierra
+    modal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    /////////////////////////////////////////////////////////////////////
+    // CARGA DE DEPENDENCIAS ////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'fixture.css?v=' + Date.now();
+    document.head.appendChild(link);
+    
+    const script = document.createElement('script');
+    script.src = '../menu/menu.js?v=' + Date.now();
+    script.type = 'text/javascript';
+    // Opcional: añade defer o async si necesitas que no bloquee el renderizado
+    script.defer = true;   
+    document.head.appendChild(script);
+
+
+</script>
+</html>

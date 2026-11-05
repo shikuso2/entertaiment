@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Participantes</title>
-  <link rel="stylesheet" href="menu.css">
   <style>
     * {
       box-sizing: border-box;
@@ -210,29 +209,6 @@
   </style>
 </head>
 <body>
-    <menu>
-        <div class="submenu">
-            <li><a href="ano/2026-2.html">2026-2</a></li>
-            <li><a href="#">2026-3</a></li>
-            <li><a href="ano/2026-4.html">2026-4</a></li>
-        </div>
-        <div class="menu">
-            <li><a href="index.html">INICIO</a></li>
-            <li><a href="participantes.html">participantes</a></li>
-            <li><a id="alternar">AÑO</a></li>
-            <li><a href="hof.html">HoF</a></li>
-        </div>
-    </menu>
-    <script>
-        document.getElementById('alternar').addEventListener('click', function() {
-            const submenu = document.querySelector('.submenu');
-            if (submenu.style.display === 'grid') {
-                submenu.style.display = 'none';
-            } else {
-                submenu.style.display = 'grid';
-            }
-        });
-    </script>
 
   <div class="container">
     <h1 class="hof-titulo">Participantes</h1>
@@ -255,7 +231,7 @@
       <img class="profile-img" src="img/Edhit.webp" alt="Luis">
       <div class="profile-info">
         <h2 class="profile-name">Edhit</h2>
-        <p>Categoria: C</p>
+        <p>Categoria: Sub-C</p>
         <span>Puntos: </span><span id="puntos-edhit">0</span>
       </div>
     </div>
@@ -282,7 +258,7 @@
       <img class="profile-img" src="img/Joel.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Joel</h2>
-        <p>Categoria: A</p>
+        <p>Categoria: Sub-B</p>
         <span>Puntos: </span><span id="puntos-joel">0</span>
       </div>
     </div>
@@ -296,12 +272,21 @@
       </div>
     </div>
 
-    <div class="profile-card" id="luis" data-name="juan">
+    <div class="profile-card" id="lili" data-name="juan">
       <img class="profile-img" src="img/Juan.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Juan</h2>
         <p>Categoria: A</p>
         <span>Puntos: </span><span id="puntos-juan">0</span>
+      </div>
+    </div>
+
+    <div class="profile-card" id="luis" data-name="lili">
+      <img class="profile-img" src="img/Lili.webp" alt="Jhon">
+      <div class="profile-info">
+        <h2 class="profile-name">Lili</h2>
+        <p>Categoria: Sub-C</p>
+        <span>Puntos: </span><span id="puntos-lili">0</span>
       </div>
     </div>
 
@@ -327,7 +312,7 @@
       <img class="profile-img" src="img/Milen.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Milen</h2>
-        <p>Categoria: C</p>
+        <p>Categoria: Sub-C</p>
         <span>Puntos: </span><span id="puntos-milen">0</span>
       </div>
     </div>
@@ -336,7 +321,7 @@
       <img class="profile-img" src="img/Pablo.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Pablo</h2>
-        <p>Categoria: C</p>
+        <p>Categoria: Sub-C</p>
         <span>Puntos: </span><span id="puntos-pablo">0</span>
       </div>
     </div>
@@ -345,7 +330,7 @@
       <img class="profile-img" src="img/Roxana.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Roxana</h2>
-        <p>Categoria: C</p>
+        <p>Categoria: Sub-C</p>
         <span>Puntos: </span><span id="puntos-roxana">0</span>
       </div>
     </div>
@@ -354,7 +339,7 @@
       <img class="profile-img" src="img/Santiago.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Santiago</h2>
-        <p>Categoria: C</p>
+        <p>Categoria: Sub-B</p>
         <span>Puntos: </span><span id="puntos-santiago">0</span>
       </div>
     </div>
@@ -363,7 +348,7 @@
       <img class="profile-img" src="img/Tito.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Tito</h2>
-        <p>Categoria: B</p>
+        <p>Categoria: Sub-B</p>
         <span>Puntos: </span><span id="puntos-tito">0</span>
       </div>
     </div>
@@ -381,7 +366,7 @@
       <img class="profile-img" src="img/Tomi.webp" alt="Jhon">
       <div class="profile-info">
         <h2 class="profile-name">Tomi</h2>
-        <p>Categoria: A</p>
+        <p>Categoria: Sub-A</p>
         <span>Puntos: </span><span id="puntos-tomi">0</span>
       </div>
     </div>
@@ -455,8 +440,9 @@
   //Canastas
   //const botonGuardar = document.querySelector('[data-accion="guardar"]');
   const archivosJson = [
-      'ano/20262.json',
-      'ano/20264.json'
+      'ano/datos/20262.json',
+      'ano/datos/20263.json',
+      'ano/datos/20264.json'
   ];
   let puntosPorJugadorGlobal = {}; // Variable global para almacenar los puntos por jugador
   async function obtenerPuntosTotalesDeTodosLosArchivos(archivos) {
@@ -509,6 +495,17 @@
       await obtenerPuntosTotalesDeTodosLosArchivos(archivosJson);
       actualizarSpans(puntosPorJugadorGlobal);
   });
+
+
+  /////////////////////////////////////////////////////////////////////
+        // CARGA DE DEPENDENCIAS ////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////    
+        const script = document.createElement('script');
+        script.src = 'menu/menu.js?v=' + Date.now();
+        script.type = 'text/javascript';
+        // Opcional: añade defer o async si necesitas que no bloquee el renderizado
+        script.defer = true;   
+        document.head.appendChild(script);
 
 
 
