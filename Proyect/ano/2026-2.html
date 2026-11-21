@@ -21,9 +21,10 @@
                 </p>
                 
             </div>
-            <div>
+            <div class="btns-nav">
                 <a href="#grupos" class="btn-nav">GRUPOS</a>
                 <a href="#matches" class="btn-nav">MATCHES</a>
+                <a href="#posiciones" class="btn-nav">POSICIONES</a>
                 <a href="#galeria" class="btn-nav">GALERIA</a>
             </div>
         <!---------------------------------------------------------------------------------------->
@@ -81,6 +82,30 @@
             <div id="contenedorMatches">
                 <span class="cancha">CANCHA 2</span><a></a>
 
+            </div>
+        </details>
+        <!---------------------------------------------------------------------------------------->
+        <!-- TABLA DE POSICIONES POR EQUIPO ------------------------------------------------------>
+        <!---------------------------------------------------------------------------------------->
+        <details open style="margin-bottom: 25px;" id="posiciones">
+            <summary class="sum-bracket">
+                <span>POSICIONES</span>
+            </summary>
+            <div class="contenedor-posiciones">
+                <table class="tabla-posiciones" id="tablaPosiciones">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>EQUIPO</th>
+                            <th>PJ</th>
+                            <th>PG</th>
+                            <th>PP</th>
+                            <th>DIF</th>
+                            <th>PTS</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
             </div>
         </details>
 
@@ -179,6 +204,7 @@
         llenarTabla('tablaNegro', negro);
         llenarTabla('tablaRojo', rojo);
 
+        renderizarTablaPosiciones(datos);
         renderizarMatches(datos);
     }
     function ordenarObjeto(objeto) {
@@ -293,6 +319,96 @@
                     posicion++;
                 }
             });
+        });
+    }
+    function renderizarTablaPosiciones(datos) {
+        const tbody = document.querySelector('#tablaPosiciones tbody');
+        if (!tbody) return;
+
+        // Inicializar estadísticas para cada equipo registrado
+        const stats = {};
+        Object.keys(equipos).forEach((nombreEquipo) => {
+            stats[nombreEquipo] = {
+                equipo: nombreEquipo,
+                pj: 0,
+                pg: 0,
+                pp: 0,
+                puntosFavor: 0,
+                puntosContra: 0,
+                pts: 0
+            };
+        });
+
+        // Recorrer partidas y calcular PJ, PG, PP, DIF y PTS por equipo
+        datos.forEach((cancha) => {
+            cancha.partidas.forEach((partida) => {
+                const puntosPorEquipo = {};
+
+                Object.entries(partida).forEach(([jugador, puntos]) => {
+                    const eq = mapaJugadores[jugador];
+                    if (!eq || !stats[eq]) return;
+                    puntosPorEquipo[eq] = (puntosPorEquipo[eq] || 0) + Number(puntos || 0);
+                });
+
+                const participantes = Object.entries(puntosPorEquipo);
+                if (participantes.length >= 2) {
+                    const [eq1, pts1] = participantes[0];
+                    const [eq2, pts2] = participantes[1];
+
+                    stats[eq1].pj += 1;
+                    stats[eq2].pj += 1;
+
+                    stats[eq1].puntosFavor += pts1;
+                    stats[eq1].puntosContra += pts2;
+                    stats[eq2].puntosFavor += pts2;
+                    stats[eq2].puntosContra += pts1;
+
+                    // Suma los puntos anotados al total PTS (ajusta aquí si usas otro criterio de puntaje)
+                    stats[eq1].pts += pts1;
+                    stats[eq2].pts += pts2;
+
+                    if (pts1 > pts2) {
+                        stats[eq1].pg += 1;
+                        stats[eq2].pp += 1;
+                    } else if (pts2 > pts1) {
+                        stats[eq2].pg += 1;
+                        stats[eq1].pp += 1;
+                    }
+                }
+            });
+        });
+
+        // Ordenar por PTS (mayor a menor) y luego por diferencia de puntos
+        const ranking = Object.values(stats).sort((a, b) => {
+            if (b.pts !== a.pts) return b.pts - a.pts;
+            const difA = a.puntosFavor - a.puntosContra;
+            const difB = b.puntosFavor - b.puntosContra;
+            return difB - difA;
+        });
+
+        tbody.innerHTML = '';
+
+        ranking.forEach((fila, index) => {
+            const posicion = index + 1;
+            const dif = fila.puntosFavor - fila.puntosContra;
+            const difTexto = dif > 0 ? `+${dif}` : `${dif}`;
+            const tr = document.createElement('tr');
+
+            if (posicion === 1) {
+                tr.classList.add('lider-equipo');
+            }
+
+            tr.innerHTML = `
+                <td>${posicion}</td>
+                <td class="col-equipo">${fila.equipo}</td>
+                <td>${fila.pj}</td>
+                <td>${fila.pg}</td>
+                <td>${fila.pp}</td>
+                <td>${difTexto}</td>
+                <td class="col-pts">${fila.pts}</td>
+            `;
+
+            tbody.appendChild(tr);
         });
     }
     ///////////////////////////////////////////////////////////////////

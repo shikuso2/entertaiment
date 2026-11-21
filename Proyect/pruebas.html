@@ -3,314 +3,522 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hall of Fame - Torneo de Básquet</title>
-    <link rel="stylesheet" href="menu.css">
+    <title>Generador de Fixture - 5 Equipos</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-        }
-        .cuerpo {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-
-            max-width: 1000px;
-            align-items: center;
-            padding: 20px;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #1f1f1f94;
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
-            margin-top: 10px;
-            border-radius: 10px;
-            text-align: center;
-            color: white;
-        }       
-        .hof-card {
-            width: 100%;
-            background: linear-gradient(180deg, #161a22a6 0%, #0d0e12 100%);
-            border: 2px solid #3d4352;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-            padding: 25px 20px 20px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 50px;
-        }
-        .hof-titulo {
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            color: #e2e8f0;
-            text-transform: uppercase;
-            font-family: 'Georgia', serif;
-            margin-bottom: 8px;
-        }
-        .hof-subtitulo {
-            display: inline-block;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid #555;
+            background-color: #121212;
             color: #ffffff;
-            padding: 4px 16px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-        }
-        .escenario-podio {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            margin-top: 10px;
-            margin-bottom: 50px;
+            font-family: Arial, sans-serif;
+            padding: 20px;
         }
 
-        .jugadores-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: 15px;
-            width: 100%;
-            max-width: 600px;
-            z-index: 2;
-            margin-bottom: -5px;
+        .contenedor {
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .jugador-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 30%;
-        }
-
-        .jugador-box.mvp {
-            width: 38%;
-            z-index: 3;
-        }
-
-        .jugador-img {
-            width: 100%;
-            height: auto;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            display: block;
-            object-fit: cover;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
-        }
-        .gradas-podio {
-            width: 100%;
-            max-width: 620px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            gap: 0px;
-            z-index: 2;
-        }
-        .escalon {
-            background: linear-gradient(180deg, #2a2e39 0%, #171920 100%);
-            border: 1px solid #444a5a;
-            border-bottom: none;
-            border-radius: 4px 4px 0 0;
-            padding: 8px 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-        }
-        .escalon.lateral {
-            width: 30%;
-            height: 35px;
-        }
-        .escalon.centro {
-            width: 38%;
-            height: 48px;
-            background: linear-gradient(180deg, #383e4d 0%, #1f232d 100%);
-            border-color: #5c6478;
-        }
-        .badge-tag {
-            background: #d4af37;
-            color: #000000;
-            font-size: 0.75rem;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 3px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-            width: 90%;
-        }
-        .escalon.lateral .badge-tag {
-            background: #e2e8f0;
-            color: #1a202c;
-        }
-        .base-podio {
-            width: 100%;
-            max-width: 620px;
-            background: linear-gradient(180deg, #1c2029 0%, #111318 100%);
-            border: 1px solid #3d4352;
-            border-radius: 6px;
-            padding: 12px 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
-            z-index: 2;
-            border-top: inherit;
-        }
-        .titulo-campeones {
-            font-size: 2.1rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: transparent;
-            -webkit-text-stroke: 1px rgb(243, 229, 33);
-        }
-        .detalle-marcador {
-            display: inline-block;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid #333;
-            color: #a0aec0;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 5px 15px;
-            border-radius: 4px;
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
             letter-spacing: 1px;
             text-transform: uppercase;
-            width: 100%;
+            color: #ffeb3b;
         }
-        @media (max-width: 600px) {
-            .hof-titulo { font-size: 1.8rem; letter-spacing: 2px; }
-            .titulo-campeones { font-size: 1.4rem; }
-            .badge-tag { font-size: 0.6rem; padding: 2px 5px; }
-            .detalle-marcador { font-size: 0.65rem; padding: 4px 8px; }
+
+        /* Panel de Configuración */
+        .panel-config {
+            background-color: #1f1f1fab;
+            border: 1px solid #414141;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(5px);
+        }
+
+        .inputs-equipos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .campo-equipo {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .campo-equipo label {
+            font-size: 0.8rem;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        .campo-equipo input {
+            background-color: #2a2a2a;
+            border: 1px solid #555;
+            border-radius: 6px;
+            color: white;
+            padding: 8px 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .controles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+        }
+
+        .opciones-formato {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.9rem;
+        }
+
+        .botones {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        .btn-generar {
+            background-color: #49ad2f;
+            color: white;
+        }
+
+        .btn-mezclar {
+            background-color: #2196f3;
+            color: white;
+        }
+
+        /* Layout principal: Fixture + Tabla */
+        .grid-torneo {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .grid-torneo {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tarjetas de Jornadas */
+        .jornada-card {
+            background-color: #1f1f1fab;
+            border: 1px solid #414141;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+
+        .jornada-header {
+            background-color: #2a2a2a;
+            padding: 10px 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #414141;
+        }
+
+        .badge-libre {
+            font-size: 0.8rem;
+            background-color: #333;
+            border: 1px solid #555;
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: #ccc;
+        }
+
+        .partido-fila {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto 1fr;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            border-bottom: 1px solid #2e2e2e;
+        }
+
+        .partido-fila:last-child {
+            border-bottom: none;
+        }
+
+        .equipo-tag {
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Colores institucionales */
+        .color-amarillo { background-color: #ffeb3b; color: #000; }
+        .color-azul     { background-color: #2196f3; color: #fff; }
+        .color-blanco   { background-color: #ffffff; color: #000; }
+        .color-negro    { background-color: #000000; color: #fff; border: 1px solid #555; }
+        .color-rojo     { background-color: #f44336; color: #fff; }
+        .color-default  { background-color: #444444; color: #fff; }
+
+        .input-score {
+            width: 48px;
+            padding: 6px;
+            text-align: center;
+            background-color: #121212;
+            border: 1px solid #555;
+            border-radius: 5px;
+            color: #ffeb3b;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .vs-texto {
+            color: #888;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Tabla de Posiciones */
+        .tabla-posiciones {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1f1f1fab;
+            border: 1px solid #414141;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .tabla-posiciones th, .tabla-posiciones td {
+            padding: 10px 8px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            font-size: 0.9rem;
+        }
+
+        .tabla-posiciones th {
+            background-color: #2a2a2a;
+            color: #aaa;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
+
+        .tabla-posiciones td.col-eq {
+            text-align: left;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .lider {
+            background-color: rgba(73, 173, 47, 0.2);
         }
     </style>
 </head>
 <body>
-    <menu>
-        <div class="submenu">
-            <li><a href="#">2026-3</a></li>
-            <li><a href="ano/2026-4.html">2026-4</a></li>
+
+<div class="contenedor">
+    <h1>Generador de Fixture (5 Equipos)</h1>
+
+    <!-- PANEL DE CONFIGURACIÓN -->
+    <div class="panel-config">
+        <div class="inputs-equipos" id="inputsEquipos">
+            <div class="campo-equipo">
+                <label>Equipo 1</label>
+                <input type="text" class="nombre-eq" value="Amarillo">
+            </div>
+            <div class="campo-equipo">
+                <label>Equipo 2</label>
+                <input type="text" class="nombre-eq" value="Azul">
+            </div>
+            <div class="campo-equipo">
+                <label>Equipo 3</label>
+                <input type="text" class="nombre-eq" value="Blanco">
+            </div>
+            <div class="campo-equipo">
+                <label>Equipo 4</label>
+                <input type="text" class="nombre-eq" value="Negro">
+            </div>
+            <div class="campo-equipo">
+                <label>Equipo 5</label>
+                <input type="text" class="nombre-eq" value="Rojo">
+            </div>
         </div>
-        <div class="menu">
-            <li><a href="index.html">INICIO</a></li>
-            <li><a href="participantes.html">participantes</a></li>
-            <li><a id="alternar">AÑO</a></li>
-            <li><a href="hof.html">HoF</a></li>
-        </div>
-    </menu>
 
-    <div class="cuerpo">
-        <h1 class="hof-titulo">Hall of Fame</h1>
-
-        <div class="hof-card">      
-            <div class="hof-subtitulo">Edición: Torneo 2026</div>
-
-            <div class="escenario-podio"> 
-                <div class="jugadores-container">
-                    <div class="jugador-box">
-                        <img src="img/Juan.webp" alt="Elite Champion" class="jugador-img">
-                    </div>
-                    <div class="jugador-box mvp">
-                        <img src="img/Luis.webp" alt="MVP" class="jugador-img">
-                    </div>
-                    <div class="jugador-box">
-                        <img src="img/Vicky.webp" alt="Rising Star" class="jugador-img">
-                    </div>
-                </div>
-                <div class="gradas-podio">
-                    <div class="escalon lateral">
-                        <span class="badge-tag">campeon Elite</span>
-                    </div>
-                    <div class="escalon centro">
-                        <span class="badge-tag">MVP</span>
-                    </div>
-                    <div class="escalon lateral">
-                        <span class="badge-tag">campeon Elite</span>
-                    </div>
-                </div>
-                <div class="base-podio">
-                    <div class="titulo-campeones">Campeones 2026-3</div>
-                    <div class="detalle-marcador">
-                        Torneo 27 de Febrero - Final (Negro vs Blanco)
-                    </div>
-                </div>
+        <div class="controles">
+            <div class="opciones-formato">
+                <label>
+                    <input type="checkbox" id="idaYVuelta"> Ida y Vuelta (10 Jornadas)
+                </label>
             </div>
-
-            <div class="escenario-podio"> 
-                <div class="jugadores-container">
-                    <div class="jugador-box">
-                        <img src="img/Matias.webp" alt="Elite Champion" class="jugador-img">
-                    </div>
-                    <div class="jugador-box mvp">
-                        <img src="img/Jorge.webp" alt="MVP" class="jugador-img">
-                    </div>
-                    <div class="jugador-box">
-                        <img src="img/Erika.webp" alt="Rising Star" class="jugador-img">
-                    </div>
-                </div>
-                <div class="gradas-podio">
-                    <div class="escalon lateral">
-                        <span class="badge-tag">campeon Elite</span>
-                    </div>
-                    <div class="escalon centro">
-                        <span class="badge-tag">MVP</span>
-                    </div>
-                    <div class="escalon lateral">
-                        <span class="badge-tag">campeon Elite</span>
-                    </div>
-                </div>
-                <div class="base-podio">
-                    <div class="titulo-campeones">Campeones 2026-2</div>
-                    <div class="detalle-marcador">
-                        Torneo 26 de Abril - Final (Negro vs Blanco)
-                    </div>
-                </div>
+            <div class="botones">
+                <button class="btn-mezclar" onclick="generarFixture(true)">🔀 Mezclar Sorteo</button>
+                <button class="btn-generar" onclick="generarFixture(false)">⚙️ Generar Fixture</button>
             </div>
-
-
-            <div class="escenario-podio"> 
-                <div class="jugadores-container">
-                    <div class="jugador-box">
-                        <img src="img/Matias.webp" alt="Elite Champion" class="jugador-img">
-                    </div>
-                    <div class="jugador-box mvp">
-                        <img src="img/Jorge.webp" alt="MVP" class="jugador-img">
-                    </div>
-                    <div class="jugador-box">
-                        <img src="img/Erika.webp" alt="Rising Star" class="jugador-img">
-                    </div>
-                </div>
-                <div class="gradas-podio">
-                    <div class="escalon lateral">
-                        <span class="badge-tag">campeon Elite</span>
-                    </div>
-                    <div class="escalon centro">
-                        <span class="badge-tag">MVP</span>
-                    </div>
-                    <div class="escalon lateral">
-                        <span class="badge-tag">campeon Elite</span>
-                    </div>
-                </div>
-                <div class="base-podio">
-                    <div class="titulo-campeones">Campeones 2026-1</div>
-                    <div class="detalle-marcador">
-                        Torneo 26 de Abril - Final (Negro vs Blanco)
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 
-    <script>
-        document.getElementById('alternar').addEventListener('click', () => {
-            const submenu = document.querySelector('.submenu');
-            submenu.style.display = (submenu.style.display === 'grid') ? 'none' : 'grid';
+    <!-- CONTENIDO: JORNADAS Y POSICIONES -->
+    <div class="grid-torneo">
+        <div id="contenedorJornadas"></div>
+
+        <div>
+            <table class="tabla-posiciones">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th style="text-align:left;">Equipo</th>
+                        <th>PJ</th>
+                        <th>PG</th>
+                        <th>PP</th>
+                        <th>DIF</th>
+                        <th>PTS</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoPosiciones"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    let fixtureActual = [];
+    let listaEquipos = [];
+
+    // Asigna clase CSS si coincide con los colores clásicos del torneo
+    function obtenerClaseColor(nombre) {
+        const limpio = nombre.trim().toLowerCase();
+        const colores = ['amarillo', 'azul', 'blanco', 'negro', 'rojo'];
+        return colores.includes(limpio) ? `color-${limpio}` : 'color-default';
+    }
+
+    // Algoritmo Round-Robin (Sistema de todos contra todos con equipo fantasma para impares)
+    function calcularRoundRobin(equipos, idaYVuelta) {
+        const lista = [...equipos, 'DESCANSA']; // Agregamos el 6to elemento ficticio
+        const numEquipos = lista.length; // 6
+        const totalJornadasIda = numEquipos - 1; // 5 jornadas
+        const jornadas = [];
+
+        let rotacion = [...lista];
+
+        for (let r = 0; r < totalJornadasIda; r++) {
+            const partidos = [];
+            let libre = null;
+
+            for (let i = 0; i < numEquipos / 2; i++) {
+                const eq1 = rotacion[i];
+                const eq2 = rotacion[numEquipos - 1 - i];
+
+                if (eq1 === 'DESCANSA') {
+                    libre = eq2;
+                } else if (eq2 === 'DESCANSA') {
+                    libre = eq1;
+                } else {
+                    // Alternar localía en cada fecha para mayor equidad
+                    if (r % 2 === 0) {
+                        partidos.push({ local: eq1, visita: eq2, ptsLocal: '', ptsVisita: '' });
+                    } else {
+                        partidos.push({ local: eq2, visita: eq1, ptsLocal: '', ptsVisita: '' });
+                    }
+                }
+            }
+
+            jornadas.push({ numero: r + 1, partidos, libre });
+
+            // Rotar elementos dejando fijo el índice 0
+            const ultimo = rotacion.pop();
+            rotacion.splice(1, 0, ultimo);
+        }
+
+        // Si es ida y vuelta, duplicamos invirtiendo local y visita
+        if (idaYVuelta) {
+            const jornadasVuelta = jornadas.map((j, idx) => ({
+                numero: totalJornadasIda + idx + 1,
+                libre: j.libre,
+                partidos: j.partidos.map(p => ({
+                    local: p.visita,
+                    visita: p.local,
+                    ptsLocal: '',
+                    ptsVisita: ''
+                }))
+            }));
+            return [...jornadas, ...jornadasVuelta];
+        }
+
+        return jornadas;
+    }
+
+    function generarFixture(aleatorio = false) {
+        const inputs = document.querySelectorAll('.nombre-eq');
+        listaEquipos = Array.from(inputs).map((inp, i) => inp.value.trim() || `Equipo ${i + 1}`);
+
+        if (aleatorio) {
+            // Mezcla Fisher-Yates
+            for (let i = listaEquipos.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [listaEquipos[i], listaEquipos[j]] = [listaEquipos[j], listaEquipos[i]];
+            }
+        }
+
+        const idaYVuelta = document.getElementById('idaYVuelta').checked;
+        fixtureActual = calcularRoundRobin(listaEquipos, idaYVuelta);
+
+        renderizarJornadas();
+        actualizarTablaPosiciones();
+    }
+
+    function renderizarJornadas() {
+        const contenedor = document.getElementById('contenedorJornadas');
+        contenedor.innerHTML = '';
+
+        fixtureActual.forEach((jornada, idxJornada) => {
+            let partidosHTML = '';
+
+            jornada.partidos.forEach((p, idxPartido) => {
+                partidosHTML += `
+                    <div class="partido-fila">
+                        <span class="equipo-tag ${obtenerClaseColor(p.local)}">${p.local}</span>
+                        <input type="number" min="0" class="input-score" placeholder="-"
+                            value="${p.ptsLocal}"
+                            onchange="registrarMarcador(${idxJornada}, ${idxPartido}, 'local', this.value)">
+                        <span class="vs-texto">VS</span>
+                        <input type="number" min="0" class="input-score" placeholder="-"
+                            value="${p.ptsVisita}"
+                            onchange="registrarMarcador(${idxJornada}, ${idxPartido}, 'visita', this.value)">
+                        <span class="equipo-tag ${obtenerClaseColor(p.visita)}">${p.visita}</span>
+                    </div>
+                `;
+            });
+
+            contenedor.innerHTML += `
+                <div class="jornada-card">
+                    <div class="jornada-header">
+                        <span>JORNADA ${jornada.numero}</span>
+                        <span class="badge-libre">Libre: <strong>${jornada.libre}</strong></span>
+                    </div>
+                    ${partidosHTML}
+                </div>
+            `;
         });
-    </script>
+    }
+
+    function registrarMarcador(idxJornada, idxPartido, lado, valor) {
+        const val = valor === '' ? '' : parseInt(valor, 10);
+        if (lado === 'local') {
+            fixtureActual[idxJornada].partidos[idxPartido].ptsLocal = val;
+        } else {
+            fixtureActual[idxJornada].partidos[idxPartido].ptsVisita = val;
+        }
+        actualizarTablaPosiciones();
+    }
+
+    function actualizarTablaPosiciones() {
+        // Inicializar estadísticas
+        const stats = {};
+        listaEquipos.forEach(eq => {
+            stats[eq] = { nombre: eq, pj: 0, pg: 0, pp: 0, pf: 0, pc: 0, pts: 0 };
+        });
+
+        // Recorrer partidos jugados (formato básquet: 2 pts ganado, 1 pt perdido)
+        fixtureActual.forEach(jornada => {
+            jornada.partidos.forEach(p => {
+                if (p.ptsLocal !== '' && p.ptsVisita !== '' && !isNaN(p.ptsLocal) && !isNaN(p.ptsVisita)) {
+                    const loc = stats[p.local];
+                    const vis = stats[p.visita];
+
+                    loc.pj++;
+                    vis.pj++;
+                    loc.pf += p.ptsLocal;
+                    loc.pc += p.ptsVisita;
+                    vis.pf += p.ptsVisita;
+                    vis.pc += p.ptsLocal;
+
+                    if (p.ptsLocal > p.ptsVisita) {
+                        loc.pg++;
+                        loc.pts += 2;
+                        vis.pp++;
+                        vis.pts += 1;
+                    } else if (p.ptsVisita > p.ptsLocal) {
+                        vis.pg++;
+                        vis.pts += 2;
+                        loc.pp++;
+                        loc.pts += 1;
+                    } else {
+                        // En caso de empate
+                        loc.pts += 1;
+                        vis.pts += 1;
+                    }
+                }
+            });
+        });
+
+        // Ordenar por Puntos y luego por Diferencia de puntos (PF - PC)
+        const ordenados = Object.values(stats).sort((a, b) => {
+            if (b.pts !== a.pts) return b.pts - a.pts;
+            return (b.pf - b.pc) - (a.pf - a.pc);
+        });
+
+        const tbody = document.getElementById('cuerpoPosiciones');
+        tbody.innerHTML = '';
+
+        ordenados.forEach((eq, index) => {
+            const dif = eq.pf - eq.pc;
+            const difTexto = dif > 0 ? `+${dif}` : dif;
+            tbody.innerHTML += `
+                <tr class="${index === 0 && eq.pj > 0 ? 'lider' : ''}">
+                    <td><strong>${index + 1}</strong></td>
+                    <td class="col-eq">${eq.nombre}</td>
+                    <td>${eq.pj}</td>
+                    <td>${eq.pg}</td>
+                    <td>${eq.pp}</td>
+                    <td>${difTexto}</td>
+                    <td><strong>${eq.pts}</strong></td>
+                </tr>
+            `;
+        });
+    }
+
+    // Inicializar al cargar la página
+    generarFixture(false);
+
+    /////////////////////////////////////////////////////////////////////
+        // CARGA DE DEPENDENCIAS ////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////    
+        const script = document.createElement('script');
+        script.src = 'menu/menu.js?v=' + Date.now();
+        script.type = 'text/javascript';
+        // Opcional: añade defer o async si necesitas que no bloquee el renderizado
+        script.defer = true;   
+        document.head.appendChild(script);
+</script>
+
+
 </body>
 </html>
