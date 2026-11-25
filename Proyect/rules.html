@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hall of Fame - Torneo de Básquet</title>
+    <title>Reglamento - Torneo de Básquet</title>
     <link rel="stylesheet" href="menu.css">
     <style>
         body {
@@ -66,6 +66,26 @@
             list-style-type: disc;
             padding-left: 40px;
         }
+        .indice {
+            text-align: left;
+            border: 2px solid #3d4352;
+            border-radius: 5px;
+            background-color: #161a22a6;
+            padding: 15px 10px 10px 35px;
+            margin:20px auto;
+            font-weight: bold;
+            letter-spacing: 1px;
+            max-width: 400px;
+            box-shadow: 0 2px 40px rgba(0, 0, 0, 0.8);            
+        }
+        .indice ul {
+            padding-left: 0;
+            list-style-type: decimal;            
+        }
+        .indice li {
+            margin-bottom: 5px;
+            color: #cd6f18;
+        }
         
         @media (max-width: 600px) {
             .hof-titulo { font-size: 1.8rem; letter-spacing: 2px; }
@@ -98,43 +118,95 @@
 
         <div class="cara">  
             <h3>BASES DEL TORNEO DEL BALONCESTO 2026</h3>
-            <h4 class="apartado">1. FORMATO</h4>
-            <p class="texto">Todos contra todos, 2 rondas, 2 canchas en simultáneo. Clasifican 4: 1° vs 2° final, 3° vs 4° por el tercer lugar.</p>
-            <h4 class="apartado">2. EQUIPOS</h4>
-            <p class="texto">3 titulares + 1 suplente (opcional). Obligatorio mínimo 1 mujer o menor de 13 a 17 años.</p>
-            <h4 class="apartado">3. FASE DE GRUPOS</h4>
-            <p class="texto">A 3 canastas o 10 min máximo. 1 canasta = 1 punto. Si empatan a los 10 min, gana el que anota primero.</p>
-            <h4 class="apartado">4. FINALES</h4>
-            <p class="texto">Fuera del área 2 pts, dentro 1 pt.</p>
-            <ul class="texto lista">
-                <li>3er Lugar: a 5 puntos, sin tiempo, por 2 de ventaja.</li>
-                <li>Final: a 10 puntos, sin tiempo, por 2 de ventaja.</li>
-            </ul>
-            <h4 class="apartado">5. REGLAS DE JUEGO</h4>
-            <p class="texto">Saque, falta y pelota fuera desde el medio. Defensa debe salir del área tras recuperar y tras canasta. Retención máxima 15 segundos.</p>
-            <h4 class="apartado">6. FALTAS</h4>
-            <ul class="texto lista">
-                <li>Rondas: 3 faltas = 1 tiro libre de 1 punto.</li>
-                <li>3er Lugar: 4 faltas = 1 tiro libre de 1 punto.</li>
-                <li>Final: 5 faltas = 1 tiro libre de 1 punto.</li>
-            </ul>
-            <h4 class="apartado">7. ÁRBITRO Y CAMBIOS</h4>
-            <p class="texto">Solo el capitán habla con el árbitro. Sin árbitro, arbitra el equipo que descansa. Cambios: 1 en rondas, 2 en 3er lugar, 3 en final.</p>
-            <h4 class="apartado">8. PUNTAJE Y DESEMPATE</h4>
-            <p class="texto">Victoria 3 pts. Desempate por diferencia de canastas.</p>
-            <h4 class="apartado">9. PUNTUALIDAD Y WALKOVER</h4>
-            <p class="texto">Llegar 10 min antes. Tolerancia 10 min con sanción progresiva:
-                <ul class="texto lista">
-                    <li>3 min tarde: 0-1</li>
-                    <li>6 min: 0-2</li>
-                    <li>10 min: 0-3 y fin del partido.</li>
+
+            <div class="indice">
+                <ul>
+                    <li><a href="#formato">FORMATO</a></li>
+                    <li><a href="#equipos">EQUIPOS</a></li>
+                    <li><a href="#fase-de-grupos">FASE DE GRUPOS</a></li>
+                    <li><a href="#finales">FINALES</a></li>
+                    <li><a href="#reglas-de-juego">REGLAS DE JUEGO</a></li>
+                    <li><a href="#faltas">FALTAS</a></li>
+                    <li><a href="#arbitro-y-cambios">ÁRBITRO Y CAMBIOS</a></li>
+                    <li><a href="#disciplina">DISCIPLINA</a></li>
+                    <li><a href="#puntualidad-y-walkover">PUNTUALIDAD Y WALKOVER</a></li>
                 </ul>
-            <p>No se presta jugador de otro equipo, sí del público si cumple Art. 2.</p>
-                
-            <h4 class="apartado">10. CONDUCTA Y PREMIACIÓN</h4>
-            <p class="texto">Juego limpio obligatorio. Premios: Campeón, Subcampeón, 3er Lugar y Máximo Anotador.</p>
+            </div>
             
-  
+            <h4 class="apartado" id="formato">1. FORMATO</h4>
+            <p class="texto">El torneo fue establecido con el formato 3v3 con las reglas oficiales de la nba pero contando con algunas modificaciones para priorizar la competencia limpia, justa y entretenida. 
+                <br><br>Se juegan dos encuentros en simultaneo para agilizar la duración del evento.</p>
+            
+            <h4 class="apartado" id="equipos">2. EQUIPOS</h4>
+            <p class="texto">Los equipos serán inscritos con un mínimo de 3 jugadores y máximo de 4 jugadores (Mayores de 13 años),  teniendo como plazo una semana antes del evento (priorizando los 3 jugadores principales) . 
+                <br><br>Todos los equipos en cancha (al momento de jugar un encuentro) tienen el limite de un jugador de categoría A, un sub-A o un B. El resto puede ser cualquier clasificación no mencionada. 
+                <br><br>Al llegar el día del evento, o al iniciar un encuentro, si un equipo no esta completo o no posee su cuarto jugador puede reclutar a alguno de los invitados libres (sin equipo), respetando las restricciones y limitaciones, para que sea de su equipo oficialmente para todo el torneo (dejando de ser un invitado libre). Si aun así no logra completarse el equipo de 3 jugadores, el equipo será disuelto y todos sus encuentros serán dados como victoria para sus contrincantes.  De igual forma los jugadores pasan a ser invitados libres.</p>
+            
+            <h4 class="apartado" id="fase-de-grupos">3. FASE DE GRUPOS</h4>
+            <p class="texto">Los encuentros tienen una duración de 10 minutos como máximo, aquel equipo con mas puntos sale victorioso. 
+                <br><br>Las canastas valen 1 punto sin importar la posición, al llegar un equipo a 3 puntos en un encuentro se le nombrara ganador y se concluye el juego ignorando el tiempo. 
+                <br><br>En caso de empate se procederá a realizar tiros libres, ambos equipos podrán tirar 1 vez, cuando uno llegue a fallar y el otro no, se nombrara como ganador al que encesto, de lo contrario se jugara otra ronda de libres, hasta que se defina el empate.  
+                <br><br>Entre partidos se podrá tomar un descanso de 1 minuto,  terminando este lapso si un equipo aun no quiere o no puede empezar el encuentro se hará efectivo la norma de puntualidad establecida en este reglamento.</p>
+            
+            <h4 class="apartado" id="finales">4. FINALES</h4>
+            <p class="texto">Los encuentros no tienen un limite de tiempo, ganara el equipo que llegue a 10 puntos primero.  
+                <br><br>Al alcanzar los 5 puntos iniciales (de cualquier lado) el juego se pausara por 1 minuto, para que los jugadores puedan descansar, rehidratarse y reorganizar sus estrategias. Si al acabar el tiempo de descanso uno de los equipos no pueda o no quiera comenzar con el partido, se hará efectivo la norma de puntualidad establecida en este reglamento.  
+                <br><br>Las canastas valen 1 punto dentro del área y 2 puntos fuera del área (según las reglas de juego en el apartado correspondiente). 
+                <br><br>Si los equipos de tercer y cuarto lugar están en un empate por puntos de la fase de grupos y si aun se cuenta con tiempo, se llevara acabo un encuentro a 5 puntos, de caso contrario se puede definir el desempate por medio de tiros libres ( 5 tiros cada equipo, si luego de la ronda existe un empate, se procederá a realizar otra ronda hasta alzarse con un ganador). </p>
+            
+            <h4 class="apartado" id="reglas-de-juego">5. REGLAS DE JUEGO</h4>
+            <p class="texto">Los partidos solo inician y se reanudan si los 6 jugadores de turno están dentro la cancha. 
+                <br><br>El balón inicial lo posee el equipo al lado izquierdo del fixture hecho para la fecha y deberá realizar un saque de media cancha, Este consiste en un pase de parte de la defensa con un rebote en el suelo exacto (no mas ni menos) a un jugador atacante. 
+                <br><br>Se considera fuera,</p>
+                <ul class="texto lista">
+                    <li>si el jugador se encuentra fuera de la cancha o si esta pisando la línea de limite de la cancha en contacto con el balón. </li>
+                    <li>Si el balón toca el arco futbolístico, la parte atrás del tablero (los bordes del tablero están permitidos) o si toca al suelo fuera o en la línea del limite de la cancha. </li>
+                </ul>
+            <br>
+            <p class="texto">Se considera doble</p>
+                <ul class="texto lista">
+                    <li>Si el jugador se desplaza sin realizar el drible. *</li>
+                    <li>Si el jugador suelta el balón con ambas manos y lo vuelve a recoger fuera del drible, o da dribles con ambas manos simultáneamente. *</li>
+                    <li>Si el jugador salta y no suelta su tiro quedándose con el balón en mano sin un bloqueo del rival.</li>
+                    <li>Si al realizar una jugada, como un tiro, el jugador arrastra los pies sin un dribleo. *</li>
+                    <li>Si el jugador se da un pase así mismo, por encima de la cabeza intencionalmente sin que el balón de un rebote.</li>
+                </ul>
+                <br>
+            <p class="texto">Se considera fuera del área, en de tiro de 2 puntos, cuando el jugador tenga o mantenga ambos pies fuera de la línea de 3 puntos, para otras jugadas basta con tener un pie completo y el balon fuera de la zona. 
+                <br><br>Las faltas y fuera otorgara el balón al equipo contrario y deberán sacarse desde media cancha.  
+                <br><br>Recuperar el balón de una ofensiva, haya sido un tiro o no, da a lugar al defensor a salir del área antes de realizar alguna jugada (como tiros). 
+                <br><br>Luego de una canasta el defensor obtendrá el balón en el acto y deberá salir del área(como esta establecido) antes de realizar cualquier jugada.</p>
+            
+            <h4 class="apartado" id="faltas">6. FALTAS</h4>
+            <p class="texto">Se consideran faltas:</p>
+                <ul class="texto lista">
+                    <li>Las jugadas de doble.</li>
+                    <li>Si un jugador mantiene el balon durante mas de 15 segundos.</li>
+                    <li>Bloquear el juego de un jugador haciendo contacto fisico en las manos con este.</li>
+                    <li>Empujar a un jugador con las manos derribando su equilibrio.</li>
+                    <li>Golpear, tumbar  o montarse encima de otro jugador.</li>
+                    <li>Hacer un mal saque de media cancha.</li>
+                </ul>
+            <p class="texto">(*) estos puntos pueden excluirse a decisión del arbitro de aquellos jugadores que se encuentren en el rango Sub-C. 
+                <br><br>Las faltas se acumulan  colectivamente al equipo, sin importar la gravedad. 
+                <br><br>Las faltas iniciales otorgan el balon para un saque de media cancha. 
+                <br><br>A partir de la quinta falta, el equipo infractor es penalizado, cualquier falta (aunque no sea en acción de tiro)  se castiga con 2 tiros libres de 1 punto cada uno. 
+                <br><br>Superando la octava falta, aparte de sancionar con 2 tiros libres, tambien se otorga la posicion del balón al equipo que recibió la falta.</p>
+            
+                <h4 class="apartado" id="arbitro-y-cambios">7. ÁRBITRO Y CAMBIOS</h4>
+            <p class="texto">En la situación de contar con un arbitro dedicado, los integrantes del equipo que descansa, durante el encuentro, asumen el cargo. 
+                <br><br>En partidos finales como el primer y tercer lugar, se necesitarán 3 personales, 1 que mire las faltas desde el medio, y 2 a ambos lados para visualizar bien cuando sea fuera de juego.  
+                <br><br>Solo los lideres de equipo pueden imponer una queja ante el arbitro. 
+                <br><br>Los cambios en equipo se producen antes de que comience cada encuentro, respetando las restricciones y limitaciones antes dicha en la sección de equipos. 
+                <br><br>Si un miembro de equipo se lesiona o por motivo de fuerza mayor no puede continuar un juego, ese equipo puede continuar jugando con los miembros restantes. 
+                <br><br>Si el equipo se niega a continuar se procede a hacer efectivo la regla de puntualidad inmediatamente.</p>
+            
+                <h4 class="apartado" id="puntualidad-y-walkover">9. PUNTUALIDAD Y WALKOVER</h4>
+            <p class="texto">Para una mejor organización,  se sugiere llegar 10 minutos antes del primer encuentro. 
+                <br><br>Se estará tomando una medida drástica si alguno de los participantes llegase a faltar o cancelar su participación el mismo día del evento ( a menos que sea motivo de fuerza mayor). Se llego a la conclusión como algo injusto e incluso de mala fe este comportamiento,  por lo cual se pide al menos una colaboración monetaria para ayudar con el pago del establecimiento. 
+                <br><br>Cuando un encuentro este listo ( uno de los dos equipos esta preparado con sus 3 integrantes) antes de jugar, en caso de impuntualidad o no se pueda iniciar el juego, se empezara un conteo para las sanciones impuestas: pasando cada 3 minutos el equipo no preparado recibe un punto en contra a favor del jugador nombrado por el adversario en cada ocasión. La condición de victoria se toma igual (3 puntos para la fase de grupos, 5 puntos tercer lugar y 11 puntos la final ).</p>
+                
+            
            
 
 
