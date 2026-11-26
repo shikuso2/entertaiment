@@ -26,7 +26,8 @@ menu.innerHTML=`
                 <div class="submenu">
                     <li><a href="${subnivel}2026-2.html">2026-2</a></li>
                     <li><a href="${subnivel}2026-3.html">2026-3</a></li>
-                    <li><a href="${subnivel}2026-4.html">2026-4</a></li>            
+                    <li><a href="${subnivel}2026-4.html">2026-4</a></li>
+                    <li><a href="${subnivel}2026-5.html">2026-E</a></li>            
                 </div>
                 <div class="menu">
                     <li><a href="${nivel}index.html">INICIO</a></li>

@@ -1,0 +1,29 @@
+﻿[
+    {
+        "cancha": "1",
+        "partidas":[
+            { "jugador7": 0, "jugador8": 0, "jugador9": 0, "jugador1":0,"jugador2":0,"jugador3":0 },
+            { "jugador1":0,"jugador2":0,"jugador3":0, "jugador4":0,"jugador5":0,"jugador6":0 },
+            { "jugador4":0,"jugador5":0,"jugador6":0, "jugador13":0,"jugador14":0,"jugador15":0 },
+            { "jugador10": 0, "jugador11": 0, "jugador12": 0, "jugador4":0,"jugador5":0,"jugador6":0 },
+            { "jugador4":0,"jugador5":0,"jugador6":0, "jugador7":0,"jugador8":0,"jugador9":0 },
+            { "jugador13":0,"jugador14":0,"jugador15":0,"jugador10": 0, "jugador11": 0, "jugador12": 0 },
+            { "jugador7": 0, "jugador8": 0, "jugador9": 0,"jugador10":0,"jugador11":0,"jugador12":0 },
+            { "jugador10": 0, "jugador11": 0, "jugador12": 0,"jugador1":0,"jugador2":0,"jugador3":0 },
+            { "jugador13":0,"jugador14":0,"jugador15":0,"jugador7":0,"jugador8":0,"jugador9":0 },
+            { "jugador1":0,"jugador2":0,"jugador3":0,"jugador13":0,"jugador14":0,"jugador15":0 },
+
+            { "jugador10": 0, "jugador11": 0, "jugador12": 0, "jugador13":0,"jugador14":0,"jugador15":0 },
+	        { "jugador10":0,"jugador11":0,"jugador12":0, "jugador7": 0, "jugador8": 0, "jugador9": 0 },            
+            { "jugador1":0,"jugador2":0,"jugador3":0, "jugador10": 0, "jugador11": 0, "jugador12": 0 },            
+            { "jugador7":0,"jugador8":0,"jugador9":0, "jugador13":0,"jugador14":0,"jugador15":0 },            
+            { "jugador13":0,"jugador14":0,"jugador15":0, "jugador1":0,"jugador2":0,"jugador3":0 },
+            { "jugador1":0,"jugador2":0,"jugador3":0,"jugador7":0,"jugador8":0,"jugador9":0 },        
+            { "jugador4":0,"jugador5":0,"jugador6":0,"jugador1":0,"jugador2":0,"jugador3":0 },            
+            { "jugador13":0,"jugador14":0,"jugador15":0,"jugador4":0,"jugador5":0,"jugador6":0 },            
+            { "jugador4":0,"jugador5":0,"jugador6":0,"jugador10": 0, "jugador11": 0, "jugador12": 0 },            
+            { "jugador7":0,"jugador8":0,"jugador9":0,"jugador4":0,"jugador5":0,"jugador6":0 }
+                        
+        ]
+    }
+]
